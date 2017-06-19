@@ -15,23 +15,25 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','mainTitle','jquery','
         $urlRouterProvider.otherwise('/index/');
         $stateProvider
         .state('index',angularAMD.route({
-            url : '/index'
+            url : '/index',
+            controller:"",
+            controllerUrl:[]
         }))
-//        .state('main.index',angularAMD.route({
-//            url : '/index/:userId',
-//            views : {
-//                'content@main' : angularAMD.route({
-//                    templateUrl : 'views/main/content/content.html',
-//                    controller : 'contentController',
-//                    controllerUrl : 'views/main/content/content',
-//                })
-//            }
-//        }))
+        .state('main.index',angularAMD.route({
+            url : '/index/:userId',
+            views : {
+                'content@main' : angularAMD.route({
+                    templateUrl : 'views/main/content/content.html',
+                    controller : 'contentController',
+                    controllerUrl : 'views/main/content/content',
+                })
+            }
+        }))
     });
     
-    /**
+  /*  *//**
      * 用户服务（前后台交互）
-     */
+     *//*
     app.factory('UserService',function($resource) {
 		var userService = $resource('../UserAction/:action', {});
 		userService.getUserByName = function(name,sucesscb,errorcb) {
@@ -52,9 +54,9 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','mainTitle','jquery','
 		return userService;
 	})
     
-    /**
+    *//**
      * 问卷服务（前后台交互）
-     */
+     *//*
     app.factory("QuestionnaireService",function($resource) {
     	var questionnaireService = $resource('../QuestionnaireAction/:action',{});
     	questionnaireService.saveQuestionnaire = function(questionnaire,sucesscb,errorcb){
@@ -91,7 +93,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','mainTitle','jquery','
     		fillInQuestionnaireService.get({action:"findFillInQuestionnaireDetail",fillInQuestionnaireId:fillInQuestionnaireId},sucesscb,errorcb);
     	}
     	return fillInQuestionnaireService;
-    })
+    })*/
     
     app.run(function($rootScope){
 		$rootScope.getController = function(element,controllerName)
