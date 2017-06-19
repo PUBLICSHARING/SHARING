@@ -1,6 +1,6 @@
-define(['angularAMD','angularUiRouter','angular','ngLoad','mainTitle','jquery','bootstrap','angularResource','comFoot'],function (angularAMD,moment){
+define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','angularResource'],function (angularAMD,moment){
 
-    var app = angular.module('app',['ui.router','mainTitleApp','ngResource','comFootApp']);
+    var app = angular.module('app',['ui.router','ngResource']);
 
     app.run(function($rootScope,$state,$stateParams){
         $rootScope.$state = $state;
@@ -12,23 +12,26 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','mainTitle','jquery','
      */
     app.config(function($stateProvider,$rootScopeProvider,$urlRouterProvider,$controllerProvider){
 
-        $urlRouterProvider.otherwise('/index/');
+        $urlRouterProvider.otherwise('/index');
         $stateProvider
         .state('index',angularAMD.route({
             url : '/index',
-            controller:"",
-            controllerUrl:[]
+            templateUrl:"../app/index.html"
         }))
-        .state('main.index',angularAMD.route({
-            url : '/index/:userId',
-            views : {
-                'content@main' : angularAMD.route({
-                    templateUrl : 'views/main/content/content.html',
-                    controller : 'contentController',
-                    controllerUrl : 'views/main/content/content',
-                })
-            }
-        }))
+        
+//        .state('main.index',angularAMD.route({
+//            url : '/index/:userId',
+//            views : {
+//                'content@main' : angularAMD.route({
+//                    templateUrl : 'views/main/content/content.html',
+//                    controller : 'contentController',
+//                    controllerUrl : 'views/main/content/content',
+//                }),
+//                'left@main' :{
+//                	
+//                }
+//            }
+//        }))
     });
     
   /*  *//**
