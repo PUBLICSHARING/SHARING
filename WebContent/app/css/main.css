@@ -1,0 +1,105 @@
+/**公共css**/
+.no-padding{
+	padding:0;
+}
+.pointer{
+    cursor: pointer;
+}
+.no-margin{
+	margin:0;
+}
+.float-right{
+	float:right;
+}
+
+
+
+
+/**私有css(请标注所用页面)**/
+
+/*index页面css*/
+
+/*loginIn页面css*/
+.loginIn-block{
+    border: 1px solid #ccc;
+    background: rgba(245, 245, 245, 0.34);
+}
+.loginIn-form{
+    margin-left: 8%;
+    margin-right: 8%;
+    border-bottom: 1px solid rgba(158, 158, 158, 0.53);
+}
+.loginIn-form-title{
+    font-size: 17px;
+    color: #777;
+    font-weight: 500;
+}
+.loginIn-form-title-block{
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.loginIn-form-input-span{
+    border-right: 0;
+    background: none;
+    height:100%
+}
+.login-form-input-block{
+    height: 45px;
+    margin-bottom: 20px;
+}
+.login-form-input{
+	height:100%;
+	font-size: 16px;
+}
+.login-form-input-icon{
+    color: #9d9d9d;
+    font-size: 16px;
+}
+.login-form-checkbox-font{
+	color: #777;
+	font-size:14px;
+}
+.login-form-loginInBtn{
+    color: white;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 0, 0, 0.57);
+    background: rgba(255, 0, 0, 0.55);
+    height: 39px;
+}
+.login-form-loginInBtn:hover{
+	color: white;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 0, 0, 0.98);
+    background: rgba(255, 0, 0, 0.87);
+    height: 39px;
+}
+.login-form-btn-block{
+	width:100%;
+    margin-top: 26px;
+    margin-bottom: 50px;
+}
+.login-form-back-block{
+	margin-left:8%;
+	margin-right:8%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.login-form-back-icon{
+    font-size: 30px;
+   	color: #00BCD4;
+}
+.login-form-back-div{
+	margin-bottom:30px;
+	text-align:center;
+}
+.login-form-back-div-margin{
+    margin-top: 8px;
+}
+.login-img{
+    width: 96%;
+    height: 457px;
+}
