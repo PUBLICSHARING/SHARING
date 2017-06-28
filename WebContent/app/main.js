@@ -7,7 +7,8 @@ require.config({
         "jquery" : "../lib/jquery/2.1.4/jquery-2.1.4.min",
         "bootstrap" : "../lib/bootstrap/js/bootstrap.min",
         "angularResource" : "../lib/angularResource/angular-resource",
-        "dialog" : "../app/directives/dialog/dialog"
+        "dialog" : "../app/directives/dialog/dialog",
+        "angularFileUpload":"../lib/angular-file-upload/2.2.0/angular-file-upload.min",
     },
         
     shim : {
@@ -40,7 +41,11 @@ require.config({
         "dialog" :{
         	deps: ["angular","jquery"],
         	experts : "dialog"
-        } 
+        },
+        "angularFileUpload":{
+        	deps:["angular"],
+        	experts:"angularFileUpload"
+        }
     },
     deps : ['app']
 });

@@ -1,4 +1,4 @@
-define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','angularResource','dialog'],function (angularAMD,moment){
+define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','angularResource','dialog','angularFileUpload'],function (angularAMD,moment){
 
     var app = angular.module('app',['ui.router','ngResource','dialogApp']);
 
