@@ -1,6 +1,6 @@
-define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','angularResource'],function (angularAMD,moment){
+define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','angularResource','dialog'],function (angularAMD,moment){
 
-    var app = angular.module('app',['ui.router','ngResource']);
+    var app = angular.module('app',['ui.router','ngResource','dialogApp']);
 
     app.run(function($rootScope,$state,$stateParams){
         $rootScope.$state = $state;
@@ -62,8 +62,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
     });
     
     app.run(function($rootScope){
-		$rootScope.getController = function(element,controllerName)
-		{
+		$rootScope.getController = function(element,controllerName){
 			return angular.element($("#"+element)[0]).controller(controllerName);
 		}
 		$rootScope.app= {};
