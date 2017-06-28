@@ -27,6 +27,7 @@
 .loginIn-form{
     margin-left: 8%;
     margin-right: 8%;
+    height: 298px;
     border-bottom: 1px solid rgba(158, 158, 158, 0.53);
 }
 .loginIn-form-title{
@@ -34,9 +35,9 @@
     color: #777;
     font-weight: 500;
 }
-.loginIn-form-title-block{
-    margin-top: 40px;
-    margin-bottom: 30px;
+.loginIn-form-title-block {
+    margin-top: 8%;
+    margin-bottom: 8%;
 }
 .loginIn-form-input-span{
     border-right: 0;
@@ -101,7 +102,7 @@
 }
 .login-img{
     width: 96%;
-    height: 457px;
+    height: 413px;
 }
 
 /*注册*/
