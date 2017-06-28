@@ -17,11 +17,11 @@
 					</div>
 					<div class="input-group login-form-input-block">
 	  					<span class="input-group-addon loginIn-form-input-span" id="basic-addon1"><a class="glyphicon glyphicon-user login-form-input-icon"></a></span>
-	  					<input type="text" class="form-control login-form-input" placeholder="用户名" aria-describedby="basic-addon1">
+	  					<input type="text" class="form-control login-form-input" placeholder="用户名" aria-describedby="basic-addon1" ng-model="user.name">
 					</div>
 					<div class="input-group login-form-input-block">
 	  					<span class="input-group-addon loginIn-form-input-span" id="basic-addon1"><a class="glyphicon glyphicon-lock login-form-input-icon"></a></span>
-	  					<input type="password" class="form-control login-form-input" placeholder="密码" aria-describedby="basic-addon1">
+	  					<input type="password" class="form-control login-form-input" placeholder="密码" aria-describedby="basic-addon1" ng-model="user.password">
 					</div>
 					<div class="checkbox login-form-checkbox-font">
 	    				<label>
@@ -30,7 +30,7 @@
 	    				<a href="" class="pointer float-right">忘记密码</a>
 	  				</div>
 	  				<div class="login-form-btn-block">
-	  					<button class="login-form-loginInBtn">登录</button>
+	  					<button class="login-form-loginInBtn" ng-click="judgeLoginUser()">登录</button>
 	  				</div>
 				</form>
 				<div class="login-form-back-block">

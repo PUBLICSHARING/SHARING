@@ -22,4 +22,37 @@ public class UserServiceBean implements UserService{
 		}
 	}
 
+	@Override
+	public boolean checkUserName(String name) throws Exception {
+		try{
+			return userMapper.checkUserName(name);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("checkUserName",e);
+		}
+	}
+
+	@Override
+	public Long addUser(User user) throws Exception {
+		try{
+			return this.userMapper.addUser(user);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("addUser",e);
+		}
+	}
+
+	@Override
+	public boolean judgeLoginUser(User user) throws Exception {
+		try{
+			return this.userMapper.judgeLoginUser(user);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("judgeLoginUser",e);
+		}
+	}
+
 }

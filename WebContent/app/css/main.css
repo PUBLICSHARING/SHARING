@@ -14,7 +14,6 @@
 
 
 
-
 /**私有css(请标注所用页面)**/
 
 /*index页面css*/
@@ -118,7 +117,22 @@
 }
 .register-form-span{
     font-size: 16px;
+    color:black;
+}
+.register-form-span-wrong{
+    font-size: 16px;
+    color:red;
 }
 .register-form-input-block{
     margin-bottom: 23px;
+}
+.register-form-button-disabled{
+	color: white;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 0, 0, 0.57);
+    background: rgba(255, 0, 0, 0.55);
+    height: 39px;
+    cursor:no-drop!important;
 }

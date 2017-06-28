@@ -39,7 +39,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     templateUrl : '../app/views/loginIn/loginIn.html',
                     controller : 'loginInCtrl',
                     controllerUrl : ['../app/views/loginIn/loginIn.js',
-                                     '../app/directives/foot/foot.js']
+                                     '../app/directives/foot/foot.js',
+                                     '../app/service/user/userService.js']
                 })
             }
         }))
@@ -52,7 +53,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     templateUrl : '../app/views/register/register.html',
                     controller : 'registerCtrl',
                     controllerUrl : ['../app/views/register/register.js',
-                                     '../app/directives/foot/foot.js']
+                                     '../app/directives/foot/foot.js',
+                                     '../app/service/user/userService.js']
                 })
             }
         }))
