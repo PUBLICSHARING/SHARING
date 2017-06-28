@@ -19,7 +19,8 @@ loginInApp.controller("loginInCtrl",["$scope","$rootScope","$state","$stateParam
 				$rootScope.alertWarn("用户密码错误，请检查");
 			}
 			else{
-				$rootScope.alertDisappear("登陆成功");
+				$rootScope.hideRefresh();
+				$rootScope.alertDisappear("登陆成功",1000);
 			}
 		}
 		function errorcb(error) {
