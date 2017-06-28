@@ -9,7 +9,7 @@ registerApp.controller("registerCtrl",["$scope","$rootScope","$state","$statePar
 				$scope.isTrue = data;
 			}
 			function errorcb(error) {
-				alert("出错了");
+				$rootScope.alertWarn("查询失败！");
 			}
 		}
 	}
@@ -24,9 +24,10 @@ registerApp.controller("registerCtrl",["$scope","$rootScope","$state","$statePar
 		function sucesscb(data) {
 			$scope.userId = data;
 			$state.go("loginIn");
+			$rootScope.alertDisappear("注册成功",1000);
 		}
 		function errorcb(error) {
-			alert("出错了");
+			$rootScope.alertWarn("注册失败");
 		}
 	}
 	
