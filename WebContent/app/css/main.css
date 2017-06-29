@@ -217,9 +217,21 @@ ul li {
     resize: none;
     max-height: 80px;
     text-rendering: auto;
-    width : 80%;
+    width : 90%;
 }
 
 .index_center_comment {
 	margin-bottom : 10px;
+}
+
+.sendButton {
+	border-radius : 2px;
+	border:none;
+	width : 9%;
+	height : 100%;
+	background-color:#efefef;
+}
+
+.sendButton:hover {
+	background-color:#dadada;
 }
