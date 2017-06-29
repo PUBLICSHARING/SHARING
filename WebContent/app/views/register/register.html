@@ -23,7 +23,7 @@
 	<div class="col-md-6 no-padding register-form-block" style="margin-left: -12px;position:relative;margin-top: 30px;margin-bottom:40px">
 	<img class="col-md-12 no-padding register-img" src="../app/image/register/background.jpg">
 		<div class="col-md-6 no-padding">
-			<form name="userForm" class="form-horizontal" style="position:absolute;left: 456px;top: -388px;width: 300px">
+			<form name="userForm" class="form-horizontal" style="position:absolute;left: 456px;left: 136%;top: -388px;width: 88%">
 				<div class="form-group register-form-input-block">
 					<span class="col-sm-2 no-padding control-label register-form-span" ng-class="{'register-form-span':isTrue=='true','register-form-span-wrong':isTrue=='false'}">用户名</span>
 					<div class="col-sm-10">
@@ -92,7 +92,7 @@ CSDN建议会员定期更换密码，避免不必要的密码泄漏。另外，�
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" ng-if="isTrue" class="" ng-disabled="userForm.$invalid || isTrue=='false' || !isChecked" ng-class="{'login-form-loginInBtn':!userForm.$invalid && isTrue=='true' && isChecked,'register-form-button-disabled':userForm.$invalid || isTrue=='false' || !isChecked}" ng-click="register()">注册</button>
-						<button type="submit" ng-if="!isTrue" style = "width:150px;margin-left:45px" class="" ng-disabled="userForm.$invalid || !isChecked" ng-class="{'login-form-loginInBtn':!userForm.$invalid && isChecked,'register-form-button-disabled':userForm.$invalid || !isChecked}" ng-click="register()">注册</button>
+						<button type="submit" ng-if="!isTrue" style = "width: 45%;margin-left: 25%" class="" ng-disabled="userForm.$invalid || !isChecked" ng-class="{'login-form-loginInBtn':!userForm.$invalid && isChecked,'register-form-button-disabled':userForm.$invalid || !isChecked}" ng-click="register()">注册</button>
 					</div>
 				</div>
 			</form>
