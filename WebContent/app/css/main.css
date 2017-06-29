@@ -219,3 +219,7 @@ ul li {
     text-rendering: auto;
     width : 100%;
 }
+
+.index_center_comment {
+	margin-bottom : 10px;
+}
