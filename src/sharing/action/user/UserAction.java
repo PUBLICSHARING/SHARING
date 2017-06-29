@@ -38,7 +38,7 @@ public class UserAction {
 		}
 	}
 	
-	public boolean judgeLoginUser(User user) throws Exception {
+	public Long judgeLoginUser(User user) throws Exception {
 		try{
 			return userService.judgeLoginUser(user);
 		}

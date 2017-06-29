@@ -45,7 +45,7 @@ public class UserServiceBean implements UserService{
 	}
 
 	@Override
-	public boolean judgeLoginUser(User user) throws Exception {
+	public Long judgeLoginUser(User user) throws Exception {
 		try{
 			return this.userMapper.judgeLoginUser(user);
 		}

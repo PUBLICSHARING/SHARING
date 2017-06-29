@@ -29,13 +29,13 @@ public class UserController implements UserMapper{
 	}
 
 	@Override
-	public boolean judgeLoginUser(User user) throws Exception {
+	public Long judgeLoginUser(User user) throws Exception {
 		User result = SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.judgeLoginUser", user);
 		if(result == null) {
-			return false;
+			return null;
 		}
 		else{
-			return true;
+			return result.getId();
 		}
 	}
 

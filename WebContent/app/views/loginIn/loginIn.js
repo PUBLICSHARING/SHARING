@@ -14,16 +14,17 @@ loginInApp.controller("loginInCtrl",["$scope","$rootScope","$state","$stateParam
 		$rootScope.alertRefresh();
 		UserService.judgeLoginUser($scope.user,sucesscb,errorcb);
 		function sucesscb(data) {
-			if(data == "false") {
+			if(data == "null") {
 				$rootScope.hideRefresh();
-				$rootScope.alertWarn("用户密码错误，请检查");
+				$rootScope.alertWarn("用户或密码错误，请检查");
 			}
 			else{
 				$rootScope.hideRefresh();
-				$rootScope.alertDisappear("登陆成功",1000);
+				$state.go("main.index",{userId:data});
 			}
 		}
 		function errorcb(error) {
+			$rootScope.hideRefresh();
 			$rootScope.alertWarn("登陆失败");
 		}
 	}

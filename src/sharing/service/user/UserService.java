@@ -9,5 +9,5 @@ public interface UserService {
 
 	public Long addUser(User user) throws Exception;
 
-	public boolean judgeLoginUser(User user) throws Exception;
+	public Long judgeLoginUser(User user) throws Exception;
 }
