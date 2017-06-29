@@ -137,3 +137,36 @@
     height: 39px;
     cursor:no-drop!important;
 }
+
+.index_main {
+	width : 80%;
+	min-width : 1000px;
+	margin:0 auto;
+}
+
+.index_center {
+	width : 60%;
+	min-wdith : 600px;
+	margin:0 auto;
+	padding-top : 120px;
+}
+
+.index_article_header {
+	border-bottom : 1px solid #efefef;
+	height : 60px;
+	padding : 16px;
+}
+
+.index_article {
+	width : 602px;
+	margin-bottom : 60px;
+	border:1px solid #ececec;
+}
+
+.index_comment {
+	padding : 0 16px;
+}
+
+.index_image_div {
+	height:30px;
+}

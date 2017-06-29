@@ -3,4 +3,8 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams",f
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}
+	
+	$scope.enterFavor = function($event) {
+		$($event.target).attr("src", "/SHARING/app/image/index/likeTwo.png");
+	}
 }])
