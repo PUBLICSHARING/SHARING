@@ -11,4 +11,9 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams",f
 			$($event.target).attr("src", "/SHARING/app/image/index/like.png");
 		}
 	}
+	
+	$scope.saveComment = function($event) {
+		$scope.comment = $event.target.parentElement.firstElementChild.value;
+		$rootScope.alertDisappear($scope.comment, 1000);
+	}
 }])
