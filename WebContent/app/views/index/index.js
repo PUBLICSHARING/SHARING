@@ -5,6 +5,10 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams",f
 	}
 	
 	$scope.enterFavor = function($event) {
-		$($event.target).attr("src", "/SHARING/app/image/index/likeTwo.png");
+		if($($event.target).context.currentSrc == "http://localhost:8080/SHARING/app/image/index/like.png") {
+			$($event.target).attr("src", "/SHARING/app/image/index/likeTwo.png");
+		} else if($($event.target).context.currentSrc == "http://localhost:8080/SHARING/app/image/index/likeTwo.png") {
+			$($event.target).attr("src", "/SHARING/app/image/index/like.png");
+		}
 	}
 }])
