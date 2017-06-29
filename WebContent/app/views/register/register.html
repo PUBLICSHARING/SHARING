@@ -1,16 +1,29 @@
 <div class="col-md-12 no-padding register-block">
-	<div class="col-md-3 no-padding"></div>
+	<nav class="navbar navbar-default col-md-12 no-padding no-margin">
+		<div class="col-md-2 navbar-default"></div>
+  		<div class="container-fluid col-md-8 no-padding">
+		    <div class="navbar-header">
+		      <a class="navbar-brand pointer">欢迎您注册使用享玩</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav smallFont">
+		        <li><a class="pointer" ></a></li>
+		        <li><a class="pointer"></a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a class="pointer" ng-click="go('loginIn')">登录</a></li>
+		        <li><a class="pointer" ng-click="goHome()">主页</a></li>
+		      </ul>
+		    </div>
+ 		 </div>
+	</nav>
+	<div class="col-md-2 no-padding">
+	</div>
 	
-	<div class="col-md-6 no-padding register-form-block" style="margin-left: -12px;">
+	<div class="col-md-6 no-padding register-form-block" style="margin-left: -12px;position:relative;margin-top: 30px;margin-bottom:40px">
+	<img class="col-md-12 no-padding register-img" src="../app/image/register/background.jpg">
 		<div class="col-md-6 no-padding">
-		<img class="col-md-12 no-padding login-img" src="../app/image/register/mobile.png">
-		<div style = "width:178px;height:290px;margin-left: 105px;margin-top: 65px;" >
-		<iframe src="../app/directives/carousel/carousel.html" frameBorder="0" width="178" height="290px" scrolling="no"></iframe>
-		</div>
-		</div>
-		<div class="col-md-3 no-padding"></div>
-		<div class="col-md-6 no-padding">
-			<form name="userForm" class="form-horizontal" style="padding-top: 36px;">
+			<form name="userForm" class="form-horizontal" style="position:absolute;left: 456px;left: 136%;top: -388px;width: 88%">
 				<div class="form-group register-form-input-block">
 					<span class="col-sm-2 no-padding control-label register-form-span" ng-class="{'register-form-span':isTrue=='true','register-form-span-wrong':isTrue=='false'}">用户名</span>
 					<div class="col-sm-10">
@@ -79,7 +92,7 @@ CSDN建议会员定期更换密码，避免不必要的密码泄漏。另外，�
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" ng-if="isTrue" class="" ng-disabled="userForm.$invalid || isTrue=='false' || !isChecked" ng-class="{'login-form-loginInBtn':!userForm.$invalid && isTrue=='true' && isChecked,'register-form-button-disabled':userForm.$invalid || isTrue=='false' || !isChecked}" ng-click="register()">注册</button>
-						<button type="submit" ng-if="!isTrue" class="" ng-disabled="userForm.$invalid || !isChecked" ng-class="{'login-form-loginInBtn':!userForm.$invalid && isChecked,'register-form-button-disabled':userForm.$invalid || !isChecked}" ng-click="register()">注册</button>
+						<button type="submit" ng-if="!isTrue" style = "width: 45%;margin-left: 25%" class="" ng-disabled="userForm.$invalid || !isChecked" ng-class="{'login-form-loginInBtn':!userForm.$invalid && isChecked,'register-form-button-disabled':userForm.$invalid || !isChecked}" ng-click="register()">注册</button>
 					</div>
 				</div>
 			</form>

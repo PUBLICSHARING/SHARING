@@ -31,4 +31,14 @@ registerApp.controller("registerCtrl",["$scope","$rootScope","$state","$statePar
 		}
 	}
 	
+	/*注册、登录跳转*/
+	$scope.go = function(state) {
+		$state.go(state);
+	}
+	/*主页*/
+	$scope.goHome = function() {
+		$state.go("main.index");
+	}
+	
 }])
+
