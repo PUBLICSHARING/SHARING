@@ -10,6 +10,7 @@ loginInApp.controller("loginInCtrl",["$scope","$rootScope","$state","$stateParam
 		$state.go("register");
 	}
 	
+	/*判断用户名与密码是否匹配*/
 	$scope.judgeLoginUser = function() {
 		$rootScope.alertRefresh();
 		UserService.judgeLoginUser($scope.user,sucesscb,errorcb);

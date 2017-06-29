@@ -14,10 +14,11 @@
 					</a>
 				</div>
 			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
 				<form class="navbar-form navbar-left">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" placeholder="关键字">
 					</div>
 					<button type="submit" class="btn btn-default">搜索</button>
 				</form>
@@ -29,33 +30,48 @@
 					<li><a class="pointer" ng-click="go('loginIn')">登录</a></li>
 					<li><a class="pointer" ng-click="go('register')">注册</a></li>
 				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">袁李<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">消息</a></li>
+							<li><a href="#">个人资料</a></li>
+							<li><a href="#">我的地盘</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</nav>
 </div>
 <style>
-#d-title-netName-block{
-	display:inline-block;
-	margin-top:10px;
-    width: 60px;
-    height: 30px;
+#d-title-netName-block {
+	display: inline-block;
+	margin-top: 10px;
+	width: 60px;
+	height: 30px;
 }
+
 #d-title-icon {
 	width: 100%;
 	height: 100%;
 }
-#d-title-netName-span{
-    font-size: 22px;
-    color: transparent;
-    background-color: black;
-    text-shadow: rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
-    -webkit-background-clip: text;
+
+#d-title-netName-span {
+	font-size: 22px;
+	color: transparent;
+	background-color: black;
+	text-shadow: rgba(255, 255, 255, 0.5) 0 5px 6px,
+		rgba(255, 255, 255, 0.2) 1px 3px 3px;
+	-webkit-background-clip: text;
 }
+
 #d-title-icon-block {
 	width: 40px;
 	height: 40px;
 	margin-top: 5px;
-	display:inline-block;
+	display: inline-block;
 	margin-right: 10px;
 }
 </style>

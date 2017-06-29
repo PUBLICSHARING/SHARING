@@ -26,7 +26,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     templateUrl : '../app/views/index/index.html',
                     controller : 'indexCtrl',
                     controllerUrl : ['../app/views/index/index.js',
-                                     '../app/directives/title/title.js']
+                                     '../app/directives/title/title.js',
+                                     '../app/service/user/userService.js']
                 })
             }
         }))

@@ -5,7 +5,7 @@ titleApp.directive("title",function() {
 			
 		},
 		restrict:'EMAC',
-		controller:['$scope','$rootScope','$state','$stateParams',function($scope,$rootScope,$state,$stateParams){
+		controller:['$scope','$rootScope','$state','$stateParams','UserService',function($scope,$rootScope,$state,$stateParams,UserService){
 			$scope.userId = $stateParams.userId;
 			/*注册、登录跳转*/
 			$scope.go = function(state) {
@@ -15,6 +15,12 @@ titleApp.directive("title",function() {
 			$scope.goHome = function() {
 				$state.go("main.index",{userId:$scope.userId});
 			}
+			
+			/*加载用户信息*/
+			$scope.findUserInfoTitleNeedById = function() {
+				
+			}
+			
 		}],
 		templateUrl:'../app/directives/title/title.html'
 	}
