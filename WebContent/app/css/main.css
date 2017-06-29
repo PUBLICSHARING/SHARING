@@ -77,6 +77,16 @@
     background: rgba(255, 0, 0, 0.87);
     height: 39px;
 }
+.login-form-loginInBtn-disabled{
+	color: white;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 0, 0, 0.57);
+    background: rgba(255, 0, 0, 0.55);
+    height: 39px;
+    cursor:no-drop!important;
+}
 .login-form-btn-block{
 	width:100%;
     margin-top: 26px;

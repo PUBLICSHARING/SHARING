@@ -30,7 +30,7 @@
 	    				<a href="" class="pointer float-right">忘记密码</a>
 	  				</div>
 	  				<div class="login-form-btn-block">
-	  					<button class="login-form-loginInBtn" ng-click="judgeLoginUser()">登录</button>
+	  					<button class="" ng-class="{'login-form-loginInBtn':user.name && user.password,'login-form-loginInBtn-disabled':!user.name || !user.password}" ng-click="judgeLoginUser()">登录</button>
 	  				</div>
 				</form>
 				<div class="login-form-back-block">
