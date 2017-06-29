@@ -171,3 +171,11 @@
 	margin-top:10px;
 	height:30px;
 }
+
+.index_center_ul {
+	padding-left:0px!important;
+}
+
+ul li {
+	list-style-type : none;
+}
