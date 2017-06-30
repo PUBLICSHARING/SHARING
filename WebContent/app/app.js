@@ -30,7 +30,6 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                                      '../app/service/user/userService.js',
                                      '../lib/bootstrap/js/bootstrap.min.js',
                                      '../lib/bootstrapfileinput/fileinput.js',
-                                     '../lib/bootstrapfileinput/locales/zh.js',
                                      '../app/directives/fileupload/fileupload.js']
                 })
             }
