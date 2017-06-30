@@ -4,7 +4,7 @@ listfileuploadApp.directive("listfileupload",function(){
 	return{
 		restrict:"AEMC",
 		replace:true,
-		template:"<input id='input-images' alt = 'd' type='file' multiple class='file-loading' accept='image/*'>",
+		template:"<input id='input-images' alt = 'd' type='file' multiple class='file-loading' accept='/*'>",
 		controller:function(){
 			$("#input-images").fileinput({
 				uploadUrl:"/GSHARING/base/servlet/fileUploadServlet/FileUploadServlet",
