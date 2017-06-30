@@ -1,6 +1,5 @@
 package sharing.service.user.impl;
 
-import com.sun.swing.internal.plaf.metal.resources.metal_zh_TW;
 
 import sharing.dao.user.UserMapper;
 import sharing.dao.user.impl.UserController;

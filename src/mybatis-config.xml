@@ -18,5 +18,6 @@ PUBLIC "-//mybatis.org//DTO Config 3.0//EN"
 		<mapper resource="sharing/entity/user/UserMapper.xml"/>
 		<mapper resource="sharing/entity/dynamic/DynamicMapper.xml"/>
 		<mapper resource="sharing/entity/comment/CommentMapper.xml"/>
+		<mapper resource="sharing/entity/file/SharingMapper.xml"/>
 	</mappers>
 </configuration>

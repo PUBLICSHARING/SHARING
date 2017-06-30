@@ -27,7 +27,11 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'indexCtrl',
                     controllerUrl : ['../app/views/index/index.js',
                                      '../app/directives/title/title.js',
-                                     '../app/service/user/userService.js']
+                                     '../app/service/user/userService.js',
+                                     '../lib/bootstrap/js/bootstrap.min.js',
+                                     '../lib/bootstrapfileinput/fileinput.js',
+                                     '../lib/bootstrapfileinput/locales/zh.js',
+                                     '../app/directives/fileupload/fileupload.js']
                 })
             }
         }))
@@ -56,6 +60,18 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controllerUrl : ['../app/views/register/register.js',
                                      '../app/directives/foot/foot.js',
                                      '../app/service/user/userService.js']
+                })
+            }
+        }))
+         .state('fileupload',angularAMD.route({
+            url : '/fileupload',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '/GSHARING/app/directives/fileupload/fileupload.html',
+                    controller : '',
+                    controllerUrl : ['/GSHARING/lib/bootstrap/js/bootstrap.min.js',
+                                     '/GSHARING/lib/bootstrapfileinput/fileinput.js',
+                                     '/GSHARING/app/directives/fileupload/fileupload.js']
                 })
             }
         }))
