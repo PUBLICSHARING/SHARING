@@ -3,7 +3,6 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
 import base.properties.PropertiesReader;
 public class ActionMap {
 	private static ActionMap actionMap = null;
