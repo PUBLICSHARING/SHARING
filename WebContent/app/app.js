@@ -62,14 +62,13 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
-         .state('fileupload',angularAMD.route({
-            url : '/fileupload',
+         .state('publishingDynamics',angularAMD.route({
+            url : '/publishingDynamics',
             views : {
                 '' : angularAMD.route({
-                    templateUrl : '/GSHARING/app/directives/fileupload/fileupload.html',
+                    templateUrl : '../app/views/publishingDynamics/publishingDynamics.html',
                     controller : '',
-                    controllerUrl : ['/GSHARING/lib/bootstrap/js/bootstrap.min.js',
-                                     '/GSHARING/lib/bootstrapfileinput/fileinput.js',
+                    controllerUrl : ['/GSHARING/lib/bootstrapfileinput/fileinput.js',
                                      '/GSHARING/app/directives/fileupload/fileupload.js']
                 })
             }

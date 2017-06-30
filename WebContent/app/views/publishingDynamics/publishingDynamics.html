@@ -1,0 +1,250 @@
+<style>
+.float_left {
+	float: left;
+}
+
+.float_right {
+	float: right;
+}
+
+.full_width {
+	width: 100%;
+}
+
+.full_height {
+	width: 100%;
+}
+
+.text_style1 {
+	text-align: center;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	font-weight: bold;
+}
+
+.main_wrap {
+	width: 900px;
+	margin: 0 auto;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+	margin-top: 20px;
+	min-width: 600px;
+}
+
+.main_wrap_head {
+	width: 96%;
+	height: 60px;
+	margin: 0 20px;
+	border-bottom: 2px solid #ddd
+}
+
+.main_wrap_head_title {
+	text-align: center;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	width: 7%;
+	float: left;
+	height: 100%;
+	padding-top: 4%;
+}
+
+.main_wrap_body {
+	margin: 8px 0px 0px 20px;
+}
+
+.main_wrap_body_left {
+	width: 73%;
+	float: left;
+	width: 73%;
+	float: left;
+}
+
+.main_wrap_body_right {
+	height: 200px;
+	width: 25%;
+	float: right;
+	float: right;
+}
+
+.main_wrap_foot {
+	border-top: 1px solid #ddd;
+	margin-top: 76px; padding-top : 40px;
+	width: 73%;
+	float: left;
+	width: 73%;
+	float: left;
+	width: 73%;
+	padding-top: 40px;
+}
+
+.content_area {
+	border: 1px solid #ddd;
+	height: 79%;
+	width: 75%;
+	box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, .04);
+	outline: medium;
+	float: left;
+}
+
+.upload_area {
+	
+}
+
+.oper {
+	width: 25%;
+	height: 80%;
+	float: right;
+}
+
+.profile_div {
+	height: 80px;
+	border-bottom: 2px solid green;
+}
+
+.personnal_img {
+	height: 100%;
+	width: 36%;
+	float: left;
+}
+
+.personnal_name_info {
+	height: 100%;
+	width: 63%;
+	float: right;
+}
+
+.personnal_name_info .pname {
+	width: 100%;
+	display: inline-block;
+	height: 40%;
+	padding-top: 8px;
+}
+
+.comment_examine {
+	padding-top: 12px;
+	border-bottom: 2px solid green;
+}
+</style>
+
+<div class="main_wrap">
+	<div class="main_wrap_head">
+		<div class="main_wrap_head_title">我的动态</div>
+	</div>
+	<div class="main_wrap_body">
+		<div class="main_wrap_body_left">
+			<div class="full_width">
+				<listfileupload></listfileupload>
+			</div>
+			<div class="full_width" style="height: 80px; margin-top: 20px;">
+				<textarea class="content_area"></textarea>
+				<div class="oper" style="text-align: center;padding-top: 2%;">
+					<button type="button" class="btn btn-info" style="background-color: #1995e4">发表</button>
+				</div>
+			</div>
+		</div>
+		<div class="main_wrap_body_right">
+			<!-- 头像对应块 -->
+			<div class="profile_div full_width">
+				<div class="personnal_img">
+					<img
+						src="../app/image/title/c1342c0ad0.jpg"
+						style="width: 100%; height: 100%;" alt="..." class="img-circle">
+				</div>
+				<div class="personnal_name_info">
+					<span class="pname text_style1"><a href="#">李桥</a></span> <span
+						class="pname"><i style="color: red;">322</i>条说说</span>
+				</div>
+			</div>
+
+			<!-- 评论对应块 -->
+			<div class="comment_examine full_width">
+				<h5>评论审核</h5>
+				<p style="font-size: 12px; color: #777;">开启评论审核后，非好友对您说说的回复经过审核才能显示</p>
+				<a style="display: inline-block;">当前待审核评论 (0)</a>
+			</div>
+
+			<!-- 评论对应块 -->
+			<div class="comment_examine full_width">
+				<a style="display: inline-block;">说说使用帮助</a>
+				<p style="font-size: 12px; color: #777;">
+					温馨提醒：</br>若有修改QQ密码会清除定时说说发表，需要重新设置定时说说
+				</p>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="main_wrap_foot">
+			<div style="width: 10%; height: 100%; float: left;">
+				<span><img src="../app/image/title/c1342c0ad0.jpg"
+					style="width: 80%; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); border-radius: 4px;" /></span>
+			</div>
+			<div
+				style="width: 89%; height: 100%; border: 1px solid #ddd; float: right; padding: 10px 0px 0px 10px;">
+				<div style="width: 100%;">
+					<p>
+						<a href="#">我有故事/\君尚有酒？</a>pre 元素可定义预格式化的文本。被包围在 pre
+						元素中的文本通常会保留空格和换行符。而文本也会呈现为等宽字体。
+					</p>
+				</div>
+				<div style="width: 100%;">
+					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
+				</div>
+				<div
+					style="width: 100%;padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
+						A53m</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="main_wrap_foot">
+			<div style="width: 10%; height: 100%; float: left;">
+				<span><img src="../app/image/title/c1342c0ad0.jpg"
+					style="width: 80%; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); border-radius: 4px;" /></span>
+			</div>
+			<div
+				style="width: 89%; height: 100%; float: right; border:1px solid #ddd; padding: 10px 0px 0px 10px;">
+				<div style="width: 100%;">
+					<p>
+						<a href="#">我有故事/\君尚有酒？</a>pre 元素可定义预格式化的文本。被包围在 pre
+						元素中的文本通常会保留空格和换行符。而文本也会呈现为等宽字体。
+					</p>
+				</div>
+				<div style="width: 100%;">
+					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
+				</div>
+				<div
+					style="width: 100%; padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
+						A53m</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="main_wrap_foot">
+			<div style="width: 10%; height: 100%; float: left;">
+				<span><img src="../app/image/title/c1342c0ad0.jpg"
+					style="width: 80%; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); border-radius: 4px;" /></span>
+			</div>
+			<div
+				style="width: 89%; height: 100%;float: right;  border:1px solid #ddd; padding: 10px 0px 0px 10px;">
+				<div style="width: 100%;">
+					<p>
+						<a href="#">我有故事/\君尚有酒？</a>pre 元素可定义预格式化的文本。被包围在 pre
+						元素中的文本通常会保留空格和换行符。而文本也会呈现为等宽字体。
+					</p>
+				</div>
+				<div style="width: 100%;">
+					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
+				</div>
+				<div
+					style="width: 100%;padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
+						A53m</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="clear: both;"></div>
+</div>
+<div style="width: 900px; margin: 0 auto; border: 1px solid #ddd">
+</div>
