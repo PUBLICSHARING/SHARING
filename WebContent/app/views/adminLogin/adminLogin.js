@@ -1,10 +1,10 @@
 var alApp = angular.module("adminLoginApp",[]);
-alApp.controller("alCtrl",["$state","$scope","$rootScope","$stateParams","$timeout",function($state,$scope,$rootScope,$stateParams,$timeout) {
+alApp.controller("alCtrl",["$state","$scope","$rootScope","$stateParams","$timeout","AdminService",function($state,$scope,$rootScope,$stateParams,$timeout,AdminService) {
 	$scope.admin = {};
 	
 	$scope.judgeAdmin = function() {
 		$rootScope.alertRefresh();
-		UserService.judgeAdmin($scope.admin,sucesscb,errorcb);
+		AdminService.judgeAdmin($scope.admin,sucesscb,errorcb);
 		function sucesscb(data) {
 			if(data == "null") {
 				$rootScope.hideRefresh();
@@ -12,7 +12,7 @@ alApp.controller("alCtrl",["$state","$scope","$rootScope","$stateParams","$timeo
 			}
 			else{
 				$rootScope.hideRefresh();
-				$state.go("main.index",{userId:data});
+				$state.go("adminMain.index",{adminId:data});
 			}
 		}
 		function errorcb(error) {
@@ -21,36 +21,7 @@ alApp.controller("alCtrl",["$state","$scope","$rootScope","$stateParams","$timeo
 		}
 	}
 	
-	$scope.index = 1;
-	
-	$scope.startImgChange = function() {
-		$timeout(function() {
-			if($scope.index!=3) {
-				$scope.index++;
-			}
-			else{
-				$scope.index=1;
-			}
-		},1000)
-	}
-	$scope.imgLeft = function() {
-		if($scope.index!=1) {
-			$scope.index--;
-		}
-		else{
-			$scope.index=3;
-		}
-	}
-	$scope.imgRight = function() {
-		if($scope.index!=3) {
-			$scope.index++;
-		}
-		else{
-			$scope.index=1;
-		}
-	}
-	$scope.goImg = function(count) {
-		$scope.index=count;
-	}
-	$scope.startImgChange();
+	$('.carousel').carousel({
+		interval: 2000
+	});
 }])

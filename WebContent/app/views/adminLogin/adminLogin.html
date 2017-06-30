@@ -2,38 +2,53 @@
 	<h1 class="adminLogin-title">管理员入口</h1>
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<div id="carousel-example-generic" class="carousel slide col-md-8 no-padding"
-			data-ride="carousel">
+		<div id="carousel-example-generic" class="carousel slide col-md-8 no-padding adminLogin-img-block" data-ride="carousel">
 			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" ng-class="{'active':index==1}" ng-click="goImg(1)"></li>
-				<li data-target="#carousel-example-generic" ng-class="{'active':index==2}" ng-click="goImg(2)"></li>
-				<li data-target="#carousel-example-generic" ng-class="{'active':index==3}" ng-click="goImg(3)"></li>
+				<li data-target="#carousel-example-generic"
+					 data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic"
+					 data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic"
+					 data-slide-to="2"></li>
 			</ol>
-
-			<div class="carousel-inner img-size" role="listbox">
-				<div class="item img-size" ng-class="{'active':index==1}">
-					<img class="img-size" src="../app/views/adminLogin/image/meinv1.png" alt="">
+			<div class="carousel-inner adminLogin-img-size" role="listbox">
+				<div class="item active" style="background:url(../app/views/adminLogin/image/meinv1.png); background-size:cover;">
+					<img src="../app/views/adminLogin/image/meinv1.png" alt="">
 				</div>
-				<div class="item img-size" ng-class="{'active':index==2}">
-					<img class="img-size" src="../app/views/adminLogin/image/meinv2.png" alt="">
+				<div class="item" style="background:url(../app/views/adminLogin/image/meinv2.png); background-size:cover;">
+					<img src="../app/views/adminLogin/image/meinv2.png" alt="">
 				</div>
-				<div class="item img-size" ng-class="{'active':index==3}">
-					<img class="img-size" src="../app/views/adminLogin/image/meinv3.png" alt="">
-					<div class="carousel-caption"></div>
+				<div class="item" style="background:url(../app/views/adminLogin/image/meinv3.png); background-size:cover;">
+					<img src="../app/views/adminLogin/image/meinv3.png" alt="">
 				</div>
 			</div>
-
-			<a class="left carousel-control pointer" ng-click="imgLeft()" role="button"> 
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a> 
-			<a class="right carousel-control pointer" ng-click="imgRight()" role="button"> 
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
 		</div>
-		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="col-md-10 no-padding loginIn-block">
+				<form name="adminForm" class="loginIn-form">
+					<div class="loginIn-form-title-block">
+						<span class="loginIn-form-title">账号登录</span>
+					</div>
+					<div class="input-group login-form-input-block">
+	  					<span class="input-group-addon loginIn-form-input-span" id="basic-addon1"><a class="glyphicon glyphicon-user login-form-input-icon"></a></span>
+	  					<input type="text" class="form-control login-form-input" placeholder="用户名" aria-describedby="basic-addon1" ng-model="admin.name">
+					</div>
+					<div class="input-group login-form-input-block">
+	  					<span class="input-group-addon loginIn-form-input-span" id="basic-addon1"><a class="glyphicon glyphicon-lock login-form-input-icon"></a></span>
+	  					<input type="password" class="form-control login-form-input" placeholder="密码" aria-describedby="basic-addon1" ng-model="admin.password">
+					</div>
+					<div class="checkbox login-form-checkbox-font">
+	    				<label>
+	      					<input type="checkbox">记住密码
+	    				</label>
+	    				<a href="" class="pointer float-right">忘记密码</a>
+	  				</div>
+	  				<div class="login-form-btn-block">
+	  					<button class="" ng-class="{'login-form-loginInBtn':admin.name && admin.password,'login-form-loginInBtn-disabled':!admin.name || !admin.password}" ng-click="judgeAdmin()">登录</button>
+	  				</div>
+				</form>
+			</div>
+		</div>
 	</div>
 	<div class="col-md-1"></div>
-	<foot></foot>
 </div>

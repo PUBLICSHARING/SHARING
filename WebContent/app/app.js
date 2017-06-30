@@ -108,7 +108,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 '' : angularAMD.route({
                     templateUrl : '../app/views/adminLogin/adminLogin.html',
                     controller : 'alCtrl',
-                    controllerUrl : ['../app/views/adminLogin/adminLogin.js']
+                    controllerUrl : ['../app/views/adminLogin/adminLogin.js',
+                                     '../app/service/admin/adminService.js']
                 })
             }
         }))
