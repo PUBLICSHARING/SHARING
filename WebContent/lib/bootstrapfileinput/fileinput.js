@@ -3845,6 +3845,7 @@
         showAjaxErrorDetails: true
     };
 
+    //这里设置默认语言
     $.fn.fileinputLocales['zh'] = {
             fileSingle: '文件',
             filePlural: '个文件',
