@@ -1,8 +1,11 @@
 package sharing.entity.user;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+
+import sharing.entity.file.SharingFile;
 
 public class User implements Serializable{
 
@@ -21,6 +24,8 @@ public class User implements Serializable{
 	private String email;
 	
 	private String phone;
+	
+	private List<SharingFile> images;
 	
 	public String getName() {
 		return name;
@@ -77,5 +82,12 @@ public class User implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
+	public List<SharingFile> getImages() {
+		return images;
+	}
+
+	public void setImages(List<SharingFile> images) {
+		this.images = images;
+	}
 }

@@ -1,4 +1,4 @@
-define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','angularResource','dialog','angularFileUpload'],function (angularAMD,moment){
+define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','angularResource','dialog','angularFileUpload','ngImgCrop'],function (angularAMD,moment){
 
     var app = angular.module('app',['ui.router','ngResource','dialogApp']);
 
@@ -28,7 +28,6 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controllerUrl : ['../app/views/index/index.js',
                                      '../app/directives/title/title.js',
                                      '../app/service/user/userService.js',
-                                     '../lib/bootstrap/js/bootstrap.min.js',
                                      '../lib/bootstrapfileinput/fileinput.js',
                                      '../app/directives/fileupload/fileupload.js']
                 })

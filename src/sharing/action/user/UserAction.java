@@ -1,4 +1,5 @@
 package sharing.action.user;
+import java.util.Map;
 
 import sharing.entity.user.User;
 import sharing.service.user.UserService;
@@ -41,6 +42,16 @@ public class UserAction {
 	public Long judgeLoginUser(User user) throws Exception {
 		try{
 			return userService.judgeLoginUser(user);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception {
+		try{
+			return userService.findUserInfoTitleNeedById(userId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

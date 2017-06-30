@@ -19,8 +19,16 @@ titleApp.directive("title",function() {
 			/*加载用户信息*/
 			$scope.findUserInfoTitleNeedById = function() {
 				
+				UserService.findUserInfoTitleNeedById($scope.userId,sucesscb,errorcb);
+				function sucesscb(data) {
+					 $scope.userInfo = data[""+ $scope.userId +""];
+				}
+				function errorcb(error) {
+					$rootScope.alertWarn("查询错误");
+				}
 			}
 			
+			$scope.findUserInfoTitleNeedById();
 		}],
 		templateUrl:'../app/directives/title/title.html'
 	}

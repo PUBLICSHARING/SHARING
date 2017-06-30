@@ -1,5 +1,5 @@
 package sharing.dao.user.impl;
-
+import java.util.Map;
 import base.sqlSession.SqlSessionUtil;
 import sharing.dao.user.UserMapper;
 import sharing.entity.user.User;
@@ -37,6 +37,11 @@ public class UserController implements UserMapper{
 		else{
 			return result.getId();
 		}
+	}
+
+	@Override
+	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception {
+		return SqlSessionUtil.getSqlSession().selectMap("sharing.entity.user.findUserInfoTitleNeedById", userId, "id");
 	}
 
 }
