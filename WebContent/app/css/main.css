@@ -11,7 +11,10 @@
 .float-right{
 	float:right;
 }
-
+.img-size{
+    width: 100%;
+    height: 100%
+}
 
 
 /**私有css(请标注所用页面)**/
@@ -249,4 +252,11 @@ ul li {
 
 .sendButton:hover {
 	background-color:#dadada;
+}
+
+/*adminLogin*/
+.adminLogin-title{
+    margin-left: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }

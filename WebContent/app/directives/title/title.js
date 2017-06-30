@@ -28,6 +28,11 @@ titleApp.directive("title",function() {
 				}
 			}
 			
+			/*退出*/
+			$scope.exit = function() {
+				$scope.userId = null;
+			}
+			
 			$scope.findUserInfoTitleNeedById();
 		}],
 		templateUrl:'../app/directives/title/title.html'
