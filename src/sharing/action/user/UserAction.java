@@ -1,6 +1,4 @@
 package sharing.action.user;
-import java.util.Map;
-
 import sharing.entity.user.User;
 import sharing.service.user.UserService;
 import sharing.service.user.impl.UserServiceBean;
