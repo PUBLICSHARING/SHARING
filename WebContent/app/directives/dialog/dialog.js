@@ -8,15 +8,15 @@ dialogApp.directive("myDialog",function() {
 			$scope.dialogSate = false;
 			$scope.dialogContent = null;
 			$rootScope.alertWarn = function(content) {
-				$('#warnDialog').modal({backdrop:'static', keyboard: false});
+				$('#Dialog').modal({backdrop:'static', keyboard: false});
 				$scope.dialogSate = true;
 				$scope.dialogContent = content;
-				$('#warnDialog').modal('show');
+				$('#Dialog').modal('show');
 			}
 			$rootScope.hideWarn = function(){
 				$scope.dialogSate = false;
 				$scope.dialogContent = null;
-				$('#warnDialog').modal('hide');
+				$('#Dialog').modal('hide');
 			}
 			$rootScope.alertRefresh = function() {
 				$('#refreshDialog').modal({backdrop:'static', keyboard: false});
@@ -34,6 +34,8 @@ dialogApp.directive("myDialog",function() {
 		    	},time);
 			}
 		}],
-		templateUrl:'../app/directives/dialog/dialog.html'
+		templateUrl:function(){
+			return "../app/directives/dialog/warnDialog.html";
+		}
 	}
 })
