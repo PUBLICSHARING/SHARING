@@ -22,13 +22,12 @@ import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import sharing.action.file.SharingFileAction;
-import sharing.entity.dynamic.Dynamic;
 import sharing.entity.file.SharingFile;
-import sharing.entity.user.User;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 @WebServlet(description = "上传图片servlet", urlPatterns = { "/PlUploadServlet" })
 public class FileUploadServlet extends HttpServlet {
@@ -98,16 +97,14 @@ public class FileUploadServlet extends HttpServlet {
 					sharingFile.setFileType(type);
 					sharingFile.setUploadDate(new Date());
 					
+					
+					//持久化到数据库中
 					sharingFileAction.addSharingFile(sharingFile);
 					
 					//write方法将FileItem对象中的内容保存到某个指定的文件中
 					//item.write(new File("D:\\12324.jpg"));
-					
-					//base64ToIo(base64Code);
 				}  
-				Object object = new Object();
-				String dString = "test";
-				out.write(JSON.toJSONString(dString));
+				out.write(JSON.toJSONString(new Object()));
 			} 
 		} catch (Exception e) {  
 
