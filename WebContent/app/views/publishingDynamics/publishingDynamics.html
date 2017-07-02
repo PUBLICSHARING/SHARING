@@ -66,9 +66,10 @@
 	float: right;
 }
 
-.main_wrap_foot {
+.main_wrap_dynamic {
 	border-top: 1px solid #ddd;
-	margin-top: 76px; padding-top : 40px;
+	margin-bottom: 8%;
+	padding-top: 40px;
 	width: 73%;
 	float: left;
 	width: 73%;
@@ -77,6 +78,13 @@
 	padding-top: 40px;
 }
 
+.dynamicOwn_img{
+	width: 80%; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); border-radius: 4px;
+}
+
+.dynamicContainer{
+	border-radius: 4%;
+}
 .content_area {
 	border: 1px solid #ddd;
 	height: 79%;
@@ -84,10 +92,6 @@
 	box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, .04);
 	outline: medium;
 	float: left;
-}
-
-.upload_area {
-	
 }
 
 .oper {
@@ -125,24 +129,23 @@
 	border-bottom: 2px solid green;
 }
 
-.apd{
-	
-}
 </style>
 
 <div class="main_wrap">
+
 	<div class="main_wrap_head">
 		<div class="main_wrap_head_title">我的动态</div>
 	</div>
+	
 	<div class="main_wrap_body">
 		<div class="main_wrap_body_left">
 			<div class="full_width">
 				<listfileupload></listfileupload>
 			</div>
 			<div class="full_width" style="height: 80px; margin-top: 20px;">
-				<textarea class="content_area"></textarea>
-				<div class="oper" style="text-align: center;padding-top: 2%;">
-					<button type="button" class="btn btn-info" style="background-color: #1995e4">发表</button>
+				<textarea class="content_area" ng-model="dynamic.content"></textarea>
+				<div class="oper" style="text-align: center; padding-top: 2%;">
+					<button type="button" class="btn btn-info" ng-click="publishDynamic()" style="background-color: #1995e4">发表</button>
 				</div>
 			</div>
 		</div>
@@ -150,8 +153,7 @@
 			<!-- 头像对应块 -->
 			<div class="profile_div full_width">
 				<div class="personnal_img">
-					<img
-						src="../app/image/title/c1342c0ad0.jpg"
+					<img src="../app/image/title/c1342c0ad0.jpg"
 						style="width: 100%; height: 100%;" alt="..." class="img-circle">
 				</div>
 				<div class="personnal_name_info">
@@ -176,69 +178,68 @@
 			</div>
 			<div style="clear: both;"></div>
 		</div>
-		<div class="main_wrap_foot">
-			<div style="width: 10%; height: 100%; float: left;">
-				<span><img src="../app/image/title/c1342c0ad0.jpg"
-					style="width: 80%; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); border-radius: 4px;" /></span>
+		
+		<!-- 动态历史纪录区域 -->
+		<div class="main_wrap_dynamic">
+			<div class = "full_height float_left" style="width: 10%;">
+				<span><img src="../app/image/title/c1342c0ad0.jpg" class="dynamicOwn_img"/></span>
 			</div>
-			<div
-				style="width: 89%; height: 100%; border: 1px solid #ddd; float: right; padding: 10px 0px 0px 10px;">
-				<div style="width: 100%;">
+			<div class="full_height float_right"
+				style="width: 89%;border: 1px solid #ddd; padding: 10px 0px 0px 10px;">
+				<div class="full_width">
 					<p>
 						<a href="#">我有故事/\君尚有酒？</a>老司机，给你来福利啦，漂亮吗？哈哈哈哈，这个给你了，不用谢。
 					</p>
 				</div>
-				<div style="width: 100%;">
+				<div class="full_width">
 					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
 				</div>
-				<div
-					style="width: 100%;padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+				<div class="full_width"
+					style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
 					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
 						A53m</span>
 				</div>
 			</div>
 		</div>
 
-		<div class="main_wrap_foot">
-			<div style="width: 10%; height: 100%; float: left;">
-				<span><img src="../app/image/title/c1342c0ad0.jpg"
-					style="width: 80%; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); border-radius: 4px;" /></span>
+		<div class="main_wrap_dynamic">
+			<div class="full_height float_left" style="width: 10%;">
+				<span><img src="../app/image/title/c1342c0ad0.jpg" class="dynamicOwn_img"/></span>
 			</div>
-			<div
-				style="width: 89%; height: 100%; float: right; border:1px solid #ddd; padding: 10px 0px 0px 10px;">
-				<div style="width: 100%;">
+			<div class="full_height float_right"
+				style="width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;">
+				<div class="full_width">
 					<p>
 						<a href="#">我有故事/\君尚有酒？</a>老司机，给你来福利啦，漂亮吗？哈哈哈哈，这个给你了，不用谢。
 					</p>
 				</div>
-				<div style="width: 100%;">
+				<div class="full_width">
 					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
 				</div>
-				<div
-					style="width: 100%; padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+				<div class="full_width"
+					style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
 					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
 						A53m</span>
 				</div>
 			</div>
 		</div>
 
-		<div class="main_wrap_foot">
-			<div style="width: 10%; height: 100%; float: left;">
-				<span><img src="../app/image/title/c1342c0ad0.jpg"
-					style="width: 80%; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); border-radius: 4px;" /></span>
+		<div class="main_wrap_dynamic">
+			<div class="full_height float_left" style="width: 10%;">
+				<span><img src="../app/image/title/c1342c0ad0.jpg" class="dynamicOwn_img" /></span>
 			</div>
-			<div
-				style="width: 89%; height: 100%;float: right;  border:1px solid #ddd; padding: 10px 0px 0px 10px;">
-				<div style="width: 100%;">
+			<div class="full_height float_right"
+				style="width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;">
+				<div class="full_width">
 					<p>
 						<a href="#">我有故事/\君尚有酒？</a>老司机，给你来福利啦，漂亮吗？哈哈哈哈，这个给你了，不用谢。
 					</p>
 				</div>
-				<div style="width: 100%;">
+				<div class="full_width">
 					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
 				</div>
-				<div
-					style="width: 100%;padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+				<div class="full_width"
+					style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
 					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
 						A53m</span>
 				</div>
@@ -247,17 +248,33 @@
 	</div>
 	<div style="clear: both;"></div>
 </div>
-<div style="width: 900px; margin: 0 auto; height:100px;margin-top:30px; border: 1px solid #ddd">
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
-	<a href="#" style="border-right: 1px solid black;padding-right: 10px;font-size:12px;">空间手机版</a>
+<div
+	style="width: 900px; margin: 0 auto; height: 100px; margin-top: 30px; border: 1px solid #ddd">
+	<p style="text-align: center;">
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none;padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+		<a href="#"
+			style="border-right: 1px solid black; text-decoration:none; padding-right: 10px; font-size: 12px;color:black">空间手机版</a>
+	</p>
+	<p style="text-align: center">Copyright © 2017-7-1 2276264677@qq.com.All Rights Reserved.</p>
 </div>

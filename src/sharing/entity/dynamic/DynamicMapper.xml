@@ -3,5 +3,8 @@
 PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sharing.entity.dynamic">
-	
+	<insert keyColumn="id" id="addDynamic" parameterType="sharing.entity.dynamic.Dynamic"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into dynamic(content,publishTime,userId,likeNum,dislikeNum) values (#{content},#{publishTime},#{user.id},#{likeNum},#{dislikeNum})
+	</insert>
 </mapper>

@@ -20,6 +20,8 @@ loginInApp.controller("loginInCtrl",["$scope","$rootScope","$state","$stateParam
 				$rootScope.alertWarn("用户或密码错误，请检查");
 			}
 			else{
+				//暂时性利用缓存
+				window.localStorage.setItem("UID", data);
 				$rootScope.hideRefresh();
 				$state.go("main.index",{userId:data});
 			}

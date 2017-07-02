@@ -27,10 +27,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'indexCtrl',
                     controllerUrl : ['../app/views/index/index.js',
                                      '../app/directives/title/title.js',
-                                     '../app/service/user/userService.js',
-                                     '../lib/bootstrap/js/bootstrap.min.js',
-                                     '../lib/bootstrapfileinput/fileinput.js',
-                                     '../app/directives/fileupload/fileupload.js']
+                                     '../app/service/user/userService.js',]
                 })
             }
         }))
@@ -67,9 +64,11 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
             views : {
                 '' : angularAMD.route({
                     templateUrl : '../app/views/publishingDynamics/publishingDynamics.html',
-                    controller : '',
+                    controller : 'publishingDynamicsCtrl',
                     controllerUrl : ['/GSHARING/lib/bootstrapfileinput/fileinput.js',
-                                     '/GSHARING/app/directives/fileupload/fileupload.js']
+                                     '/GSHARING/app/directives/fileupload/fileupload.js',
+                                     '../app/views/publishingDynamics/publishingDynamicsService.js',
+                                     '../app/views/publishingDynamics/publishingDynamics.js']
                 })
             }
         }))
