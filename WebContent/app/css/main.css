@@ -337,13 +337,13 @@ ul li {
 }
 
 .changePassWord_main {
-	width : 76.4%;
+	width : 90%;
 	min-width:500px;
 	margin:0 auto;
-	padding-top : 120px;
+	padding-top : 100px;
 }
 
 .changePassWordBtn {
-	margin-left: 47%;
+	margin-left: 43%;
 	margin-top : 5%;
 }
