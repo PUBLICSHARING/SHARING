@@ -157,7 +157,38 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
 				})
 			}
 		}))
-        
+		
+		  /*用户中心*/
+        .state('userInfo',angularAMD.route({
+            url : '/userInfo',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/userInfo/userInfo.html',
+                    controller : 'userInfoCtrl',
+                    controllerUrl : ['/SHARING/app/views/userInfo/userInfo.js',
+                                     '../app/directives/title/title.js',
+                                     '../app/service/user/userService.js',
+                                     '../lib/bootstrap/js/bootstrap.min.js',
+                                     '../lib/bootstrapfileinput/fileinput.js',
+                                     '../app/directives/fileupload/fileupload.js']
+                })
+            }
+        }))
+         .state('userInfo.changePassWord',angularAMD.route({
+            url : '/userInfo',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '/SHARING/app/views/userInfo/changePassWord.html',
+                    controller : 'changePassWordCtrl',
+                    controllerUrl : ['/SHARING/app/views/userInfo/userInfo.js',
+                                     '../app/directives/title/title.js',
+                                     '../app/service/user/userService.js',
+                                     '../lib/bootstrap/js/bootstrap.min.js',
+                                     '../lib/bootstrapfileinput/fileinput.js',
+                                     '../app/directives/fileupload/fileupload.js']
+                })
+            }
+        }))
     });
     
     app.run(function($rootScope){
