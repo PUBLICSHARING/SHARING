@@ -58,4 +58,13 @@ public class UserAction {
 			throw e;
 		}
 	}
+	
+	public User updateUser(User user) throws Exception {
+		try {
+			return userService.updateUser(user);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

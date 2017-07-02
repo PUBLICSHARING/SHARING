@@ -43,5 +43,11 @@ public class UserController implements UserMapper{
 	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception {
 		return SqlSessionUtil.getSqlSession().selectMap("sharing.entity.user.findUserInfoTitleNeedById", userId, "id");
 	}
+	
+	@Override
+	public User updateUser(User user) throws Exception {
+		SqlSessionUtil.getSqlSession().update("sharing.entity.user.updateUser", user);
+		return user;
+	}
 
 }

@@ -14,4 +14,6 @@ public interface UserService {
 	public Long judgeLoginUser(User user) throws Exception;
 
 	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception;
+	
+	public User updateUser(User user) throws Exception;
 }

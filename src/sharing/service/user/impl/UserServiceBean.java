@@ -65,5 +65,15 @@ public class UserServiceBean implements UserService{
 			throw new Exception("findUserInfoTitleNeedById",e);
 		}
 	}
+	
+	@Override
+	public User updateUser(User user) throws Exception {
+		try {
+			return this.userMapper.updateUser(user);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("updateUser", e);
+		}
+	}
 
 }
