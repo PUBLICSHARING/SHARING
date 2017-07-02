@@ -12,6 +12,9 @@ define(['app'],function(app) {
 		},
 		userService.findUserInfoTitleNeedById = function(userId,sucesscb,errorcb) {
 			userService.query({action:"findUserInfoTitleNeedById",userId:userId},sucesscb,errorcb);
+		},
+		userService.updateUser = function(user, sucesscb, errorcb) {
+			userService.save({action:"updateUser"},{user:user},sucesscb, errorcb);
 		}
 		return userService;
 	})

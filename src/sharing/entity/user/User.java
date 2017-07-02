@@ -27,6 +27,8 @@ public class User implements Serializable{
 	
 	private String phone;
 	
+	private String profile;
+	
 	private List<SharingFile> images;
 	
 	private List<Dynamic> dynamics;
@@ -112,5 +114,15 @@ public class User implements Serializable{
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	
+	
 	
 }
