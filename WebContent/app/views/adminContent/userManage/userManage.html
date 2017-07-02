@@ -1,0 +1,20 @@
+<div class="">
+	<table class="table table-bordered">
+		<tr>
+			<td><label>用户</label></td>
+			<td><label>问卷</label></td>
+			<td><label>ip</label></td>
+			<td><label>提交时间</label></td>
+			<td><label>操作</label></td>
+		</tr>
+		<tr ng-repeat="(index,fillInQuestionnaire) in fillInQuestionnaires">
+			<td>{{fillInQuestionnaire.user.name}}</td>
+			<td>{{questionnaire.name}}</td>
+			<td>{{fillInQuestionnaire.ip}}</td>
+			<td>{{fillInQuestionnaire.fillInDate|date:'medium'}}</td>
+			<td>
+				<a ng-click="goDisplay(fillInQuestionnaire.id)">查看</a>
+			</td>
+		</tr>
+	</table>
+</div>
