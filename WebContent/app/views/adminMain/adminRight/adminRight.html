@@ -1,3 +1,15 @@
-<div class="col-md-12 no-padding">
-	<h1>内容</h1>
+<div class="col-md-12 no-padding adminMain-right-block-block">
+	<div class="adminMian-right-title-block">
+		<form class="navbar-form navbar-left adminMain-right-title-form">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Search">
+	        </div>
+	        <button type="submit" class="btn btn-default" ng-click="goMain()">Submit</button>
+	    </form>
+	    <div class="adminMain-right-title-right-block">
+	    	<span>您好，admin</span>
+	    	<a>退出</a>
+	    </div>
+	</div>
+	<div class="col-md-12 no-padding adminMain-right-content-block" ui-view></div>
 </div>

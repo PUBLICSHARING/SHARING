@@ -12,7 +12,7 @@ alApp.controller("alCtrl",["$state","$scope","$rootScope","$stateParams","$timeo
 			}
 			else{
 				$rootScope.hideRefresh();
-				$state.go("adminMain.index",{adminId:data});
+				$state.go("adminMain.index.main",{adminId:data});
 			}
 		}
 		function errorcb(error) {

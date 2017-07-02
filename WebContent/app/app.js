@@ -6,6 +6,25 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
     });
+    
+    /*自适应高度*/
+    app.directive('autoHeight',function ($window,$rootScope) {
+        return {
+            restrict : 'A',
+            scope : {},
+            link : function($scope, element, attrs) {
+                $scope.winowHeight = $window.innerHeight;
+                element.css('height',$scope.winowHeight + 'px');
+              //添加浏览器窗口高度变化
+				window.onresize = function() {
+					$scope.winowHeight = $window.innerHeight;
+	                element.css('height',$scope.winowHeight + 'px');
+					$scope.$apply(function() {
+					})
+				}
+            }
+        };
+    });
 
     /**
      * 路由
@@ -111,12 +130,12 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
-        /*管理系统*/
+        /*管理-入口*/
         .state('adminMain',angularAMD.route({
             url : '/adminMain',
             templateUrl:'../app/views/adminMain/adminMain.html'
         }))
-        /*管理员登录*/
+        /*管理=左块、右块的加载*/
         .state('adminMain.index',angularAMD.route({
             url : '/index/:adminId',
             views : {
@@ -129,6 +148,29 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     templateUrl : '../app/views/adminMain/adminRight/adminRight.html',
                     controller : 'adminRightCtrl',
                     controllerUrl : ['../app/views/adminMain/adminRight/adminRight.js']
+                })
+            }
+        }))
+        /*管理-主页*/
+        .state('adminMain.index.main',angularAMD.route({
+            url : '/main/:adminId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/main/main.html',
+                    controller : 'mainCtrl',
+                    controllerUrl : ['../app/views/adminContent/main/main.js']
+                })
+            }
+        }))
+        /*管理-用户管理*/
+        .state('adminMain.index.userManage',angularAMD.route({
+            url : '/userManage/:adminId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/userManage/userManage.html',
+                    controller : 'userMCtrl',
+                    controllerUrl : ['../app/views/adminContent/userManage/userManage.js',
+                                     '../app/service/user/userService.js']
                 })
             }
         }))
@@ -150,8 +192,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
 				'' : angularAMD.route({
 					templateUrl : '../app/views/publishingDynamics/publishingDynamics.html',
 					controller : 'publishingDynamicsCtrl',
-					controllerUrl : ['/GSHARING/lib/bootstrapfileinput/fileinput.js',
-					                 '/GSHARING/app/directives/fileupload/fileupload.js',
+					controllerUrl : ['../lib/bootstrapfileinput/fileinput.js',
+					                 '../app/directives/fileupload/fileupload.js',
 					                 '../app/views/publishingDynamics/publishingDynamicsService.js',
 					                 '../app/views/publishingDynamics/publishingDynamics.js']
 				})
