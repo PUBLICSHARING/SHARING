@@ -306,7 +306,7 @@ ul li {
 .userInfo_ul li {
 	line-height : 70px;
 	padding-left : 20px;
-	cursor:no-drop!important;
+	cursor: pointer; 
 }
 
 .userInfo_ul li:hover {
@@ -341,4 +341,9 @@ ul li {
 	min-width:500px;
 	margin:0 auto;
 	padding-top : 120px;
+}
+
+.changePassWordBtn {
+	margin-left: 47%;
+	margin-top : 5%;
 }
