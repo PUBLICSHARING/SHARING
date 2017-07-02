@@ -5,15 +5,14 @@
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">姓名</span>
 					<div class="col-sm-7">
-						<input type="password" class="form-control" ng-model = "uerName"/>
+						<input type="text" class="form-control" ng-model = "user.name"/>
 					</div>
 					<div class="col-sm-2"></div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">性别</span>
-					<div class = "col-sm-4">
-						<select class="form-control">
-							<!-- <input type="password" class="form-control" ng-model = "uerName"/> -->
+					<div class = "  col-sm-4">
+						<select class="form-control" ng-model = "user.sex">
 							<option>男</option>
 							<option>女</option>
 							<option>未指定</option>
@@ -24,28 +23,28 @@
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">邮箱</span>
 					<div class="col-sm-7">
-						<input type="password" class="form-control" ng-model = "uerName"/>
+						<input type="email" class="form-control" ng-model = "user.email"/>
 					</div>
 					<div class="col-sm-2"></div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">联系电话</span>
 					<div class="col-sm-7">
-						<input type="password" class="form-control" ng-model = "uerName"/>
+						<input type="number" class="form-control" ng-model = "user.phone"/>
 					</div>
 					<div class="col-sm-2"></div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">个人简介</span>
 					<div class="col-sm-7">
-						<textarea  class="form-control" ng-model = "uerName" rows = "3"></textarea>
+						<textarea  class="form-control" ng-model = "user.profile" rows = "3"></textarea>
 					</div>
 					<div class="col-sm-2"></div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label"></span>
 					<div class="col-sm-7">
-						<button class = "btn btn-defatule" ng-click = "submitInfo()">提交</button>
+						<button class = "btn btn-info" ng-click = "submitInfo()">提交</button>
 					</div>
 					<div class="col-sm-2"></div>
 				</div>
