@@ -9,6 +9,7 @@ require.config({
         "angularResource" : "../lib/angularResource/angular-resource",
         "dialog" : "../app/directives/dialog/dialog",
         "angularFileUpload":"../lib/angular-file-upload/2.2.0/angular-file-upload.min",
+        "ngImgCrop" : "../lib/ng-img-crop/ng-img-crop"
     },
         
     shim : {
@@ -45,6 +46,10 @@ require.config({
         "angularFileUpload":{
         	deps:["angular"],
         	experts:"angularFileUpload"
+        },
+        "ngImgCrop":{
+        	deps:["angular"],
+        	experts:"ngImgCrop"
         }
     },
     deps : ['app']

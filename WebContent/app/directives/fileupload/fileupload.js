@@ -4,7 +4,7 @@ listfileuploadApp.directive("listfileupload",["$rootScope",function($rootScope){
 	return{
 		restrict:"AEMC",
 		replace:true,
-		template:"<input id='input-images' alt = 'd' type='file' multiple class='file-loading' style='background-color: rgb(25, 149, 228);' accept='/*'>",
+		template:"<input id='input-images' alt = 'd' type='file' multiple class='file-loading' accept='/*'>",
 		controller:function(){
 			$("#input-images").fileinput({
 				uploadUrl:"/GSHARING/base/servlet/fileUploadServlet/FileUploadServlet",
@@ -20,7 +20,6 @@ listfileuploadApp.directive("listfileupload",["$rootScope",function($rootScope){
 	            console.log('文件正在上传');
 	        }).on("fileuploaded", function (event, data, previewId, index) {    //一个文件上传成功的回掉函数
 	        	$rootScope.alertWarn("上传成功！");
-	        	//$("#dd").html("<img src= 'data:image/png;base64,"+ data.response + "' />");
 
 	        }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
 	        	$rootScope.alertWarn("上传失败！");

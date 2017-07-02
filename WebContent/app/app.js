@@ -27,7 +27,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'indexCtrl',
                     controllerUrl : ['../app/views/index/index.js',
                                      '../app/directives/title/title.js',
-                                     '../app/service/user/userService.js',]
+                                     '../app/service/user/userService.js',
+                                     '../app/directives/foot/foot.js']
                 })
             }
         }))
@@ -59,7 +60,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
-                /*选择兴趣*/
+        /*选择兴趣*/
         .state('chooseInterests',angularAMD.route({
             url : '/chooseInterests/:userId',
             views : {
@@ -131,19 +132,31 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
-         .state('publishingDynamics',angularAMD.route({
-            url : '/publishingDynamics',
+         .state('fileupload',angularAMD.route({
+            url : '/fileupload',
             views : {
                 '' : angularAMD.route({
-                    templateUrl : '../app/views/publishingDynamics/publishingDynamics.html',
-                    controller : 'publishingDynamicsCtrl',
+                    templateUrl : '/GSHARING/app/directives/fileupload/fileupload.html',
+                    controller : '',
                     controllerUrl : ['/GSHARING/lib/bootstrapfileinput/fileinput.js',
-                                     '/GSHARING/app/directives/fileupload/fileupload.js',
-                                     '../app/views/publishingDynamics/publishingDynamicsService.js',
-                                     '../app/views/publishingDynamics/publishingDynamics.js']
+                                     '/GSHARING/app/directives/fileupload/fileupload.js']
                 })
             }
         }))
+        	//发布动态
+		.state('publishingDynamics',angularAMD.route({
+			url : '/publishingDynamics',
+			views : {
+				'' : angularAMD.route({
+					templateUrl : '../app/views/publishingDynamics/publishingDynamics.html',
+					controller : 'publishingDynamicsCtrl',
+					controllerUrl : ['/GSHARING/lib/bootstrapfileinput/fileinput.js',
+					                 '/GSHARING/app/directives/fileupload/fileupload.js',
+					                 '../app/views/publishingDynamics/publishingDynamicsService.js',
+					                 '../app/views/publishingDynamics/publishingDynamics.js']
+				})
+			}
+		}))
         
     });
     

@@ -1,8 +1,13 @@
 package sharing.entity.user;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+
+import sharing.entity.comment.Comment;
+import sharing.entity.dynamic.Dynamic;
+import sharing.entity.file.SharingFile;
 
 public class User implements Serializable{
 
@@ -21,6 +26,12 @@ public class User implements Serializable{
 	private String email;
 	
 	private String phone;
+	
+	private List<SharingFile> images;
+	
+	private List<Dynamic> dynamics;
+	
+	private List<Comment> comments;
 	
 	public String getName() {
 		return name;
@@ -76,6 +87,30 @@ public class User implements Serializable{
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public List<SharingFile> getImages() {
+		return images;
+	}
+
+	public void setImages(List<SharingFile> images) {
+		this.images = images;
+	}
+
+	public List<Dynamic> getDynamics() {
+		return dynamics;
+	}
+
+	public void setDynamics(List<Dynamic> dynamics) {
+		this.dynamics = dynamics;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 }

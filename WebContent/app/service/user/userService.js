@@ -9,6 +9,9 @@ define(['app'],function(app) {
 		},
 		userService.judgeLoginUser = function(user,sucesscb,errorcb) {
 			userService.save({action:"judgeLoginUser"},{user:user},sucesscb,errorcb);
+		},
+		userService.findUserInfoTitleNeedById = function(userId,sucesscb,errorcb) {
+			userService.query({action:"findUserInfoTitleNeedById",userId:userId},sucesscb,errorcb);
 		}
 		return userService;
 	})

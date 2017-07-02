@@ -9,7 +9,7 @@
 					</a>
 				</div> -->
 				<div id="d-title-netName-block">
-					<a ng-click="goHome()"> <img id="d-title-icon"
+					<a ng-click="goHome()" class="pointer"> <img id="d-title-icon"
 						src="../app/directives/title/image/name.png">
 					</a>
 				</div>
@@ -26,18 +26,23 @@
 					<li><a class="pointer" ng-click=""></a></li>
 					<li><a class="pointer"></a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right" ng-if="!userId">
 					<li><a class="pointer" ng-click="go('loginIn')">登录</a></li>
 					<li><a class="pointer" ng-click="go('register')">注册</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">袁李<span class="caret"></span></a>
+				<ul class="nav navbar-nav navbar-right" ng-if="userId">
+					<li class="dropdown">
+						<a id="head-img-a" class="dropdown-toggle pointer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<img id="head-img" ng-if="userInfo.images.length > 0" src="data:image/jpg;base64,{{userInfo.images[0].fileCode}}">
+							<img id="head-img" ng-if="userInfo.images.length==0" src="../app/directives/title/image/default.jpg">
+							{{userInfo.name}}
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">消息</a></li>
-							<li><a href="#">个人资料</a></li>
-							<li><a href="#">我的地盘</a></li>
+							<li><a class="pointer">消息</a></li>
+							<li><a class="pointer">个人资料</a></li>
+							<li><a class="pointer">我的地盘</a></li>
+							<li><a class="pointer" ng-click="exit()">退出</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -46,6 +51,16 @@
 	</nav>
 </div>
 <style>
+#head-img-a{
+	padding:0;
+	margin:0;
+	padding-top:10px;
+}
+#head-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
 #d-title-netName-block {
 	display: inline-block;
 	margin-top: 10px;

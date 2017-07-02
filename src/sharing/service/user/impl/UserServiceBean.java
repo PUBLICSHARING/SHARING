@@ -1,5 +1,6 @@
 package sharing.service.user.impl;
 
+import java.util.Map;
 
 import sharing.dao.user.UserMapper;
 import sharing.dao.user.impl.UserController;
@@ -51,6 +52,17 @@ public class UserServiceBean implements UserService{
 		catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("judgeLoginUser",e);
+		}
+	}
+
+	@Override
+	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception {
+		try{
+			return this.userMapper.findUserInfoTitleNeedById(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findUserInfoTitleNeedById",e);
 		}
 	}
 

@@ -15,4 +15,14 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="judgeLoginUser" parameterType="sharing.entity.user.User" resultType="sharing.entity.user.User">
 		select * from user where name=#{name} and password=#{password}
 	</select>
+	<resultMap type="sharing.entity.user.User" id="UserInfoTitleNeedResult">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<collection property="images" ofType="sharing.entity.file.SharingFile">
+			<result property="fileCode" column="fileCode"/>
+		</collection>
+	</resultMap>
+	<select id="findUserInfoTitleNeedById" resultMap="UserInfoTitleNeedResult">
+		select user.name,user.id,sharingfile.fileCode from user left join sharingfile on user.id=sharingfile.userId where user.id=#{id}
+	</select>
 </mapper>

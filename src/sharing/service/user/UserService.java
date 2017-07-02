@@ -1,5 +1,7 @@
 package sharing.service.user;
 
+import java.util.Map;
+
 import sharing.entity.user.User;
 
 public interface UserService {
@@ -10,4 +12,6 @@ public interface UserService {
 	public Long addUser(User user) throws Exception;
 
 	public Long judgeLoginUser(User user) throws Exception;
+
+	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception;
 }
