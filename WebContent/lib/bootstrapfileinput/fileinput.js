@@ -3854,7 +3854,7 @@
             removeTitle: '清除选中文件',
             cancelLabel: '取消',
             cancelTitle: '取消进行中的上传',
-            uploadLabel: '上传',
+            uploadLabel: '发布动态',
             uploadTitle: '上传选中文件',
             msgNo: '没有',
             msgNoFilesSelected: '',
