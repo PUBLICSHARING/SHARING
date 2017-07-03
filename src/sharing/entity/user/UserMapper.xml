@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<update id = "updateUser" parameterType = "sharing.entity.user.User">
 		update user set user.name = #{name},user.phone = #{phone},user.email = #{email},user.sex = #{sex},user.profile = #{profile} where user.id = #{id};
 	</update>
-	<update id = "updatePassWord" parameterType="sharing.entity.user.User">
-		update user set user.password = #{2} where user.id = #{0};
+	<update id = "updatePassWord">
+		update user set user.password = #{newPassWord} where user.id = #{userId};
 	</update>
 </mapper>

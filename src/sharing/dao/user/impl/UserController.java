@@ -1,5 +1,8 @@
 package sharing.dao.user.impl;
+import java.util.HashMap;
 import java.util.Map;
+
+import base.method.Param;
 import base.sqlSession.SqlSessionUtil;
 import sharing.dao.user.UserMapper;
 import sharing.entity.user.User;
@@ -51,8 +54,11 @@ public class UserController implements UserMapper{
 	}
 	
 	@Override
-	public Long updatePassWord(Long userId, String originalPassWord, String newPassWord) throws Exception {
-		SqlSessionUtil.getSqlSession().update("sharing.entity.user.updatePassWord");
+	public Long updatePassWord(@Param("userId")Long userId, @Param("originalPassWord")String originalPassWord, @Param("newPassWord")String newPassWord) throws Exception {
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put("userId", userId);
+		params.put("newPassWord", newPassWord);
+		SqlSessionUtil.getSqlSession().update("sharing.entity.user.updatePassWord",params);
 		//在配置文件中配置更新语句
 		return userId;
 	}

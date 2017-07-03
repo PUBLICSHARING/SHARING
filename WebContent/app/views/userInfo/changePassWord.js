@@ -1,6 +1,8 @@
 var changePassWordApp = angular.module("changePassWordApp",[]);
 changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state","$stateParams","UserService",function($scope,$rootScope,$state,$stateParams,UserService) {
 	
+	$scope.userId = 26;
+	
 	$scope.changePassWord = function() {
 		if(!$scope.checkPassWord()) {
 			alert("两次密码输入不一致");
