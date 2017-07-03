@@ -7,7 +7,7 @@ changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state
 			return;
 		}
 		
-		UserService.updatePassWord($scope.user.id, $scope.originalPassWord, $scope.newPassWord, sucesscb, errorcb);
+		UserService.updatePassWord($scope.userId, $scope.originalPassWord, $scope.newPassWord, sucesscb, errorcb);
 		
 		function sucesscb(data) {
 			alert("修改成功");

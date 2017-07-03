@@ -15,6 +15,9 @@ define(['app'],function(app) {
 		},
 		userService.updateUser = function(user, sucesscb, errorcb) {
 			userService.save({action:"updateUser"},{user:user},sucesscb, errorcb);
+		},
+		userService.updatePassWord = function(userId, originalPassWord, newPassWord, sucesscb, errorcb) {
+			userService.get({action:"updatePassWord", userId:userId, originalPassWord:originalPassWord, newPassWord:newPassWord},sucesscb, errorcb);
 		}
 		return userService;
 	})

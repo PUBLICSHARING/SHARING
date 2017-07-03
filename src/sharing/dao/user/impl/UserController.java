@@ -52,8 +52,9 @@ public class UserController implements UserMapper{
 	
 	@Override
 	public Long updatePassWord(Long userId, String originalPassWord, String newPassWord) throws Exception {
+		SqlSessionUtil.getSqlSession().update("sharing.entity.user.updatePassWord");
 		//在配置文件中配置更新语句
-		return null;
+		return userId;
 	}
 
 }
