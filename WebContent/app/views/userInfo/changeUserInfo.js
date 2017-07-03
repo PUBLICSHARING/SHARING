@@ -7,13 +7,14 @@ changeUserInfo.controller("changeUserInfoCtrl",["$scope","$rootScope","$state","
 		$scope.user.id = 1;
 		$scope.user.password = "123456";
 		$scope.user.age = 20;
-		UserService.updateUser($scope.user, successCB, errorCB);
+		UserService.updateUser($scope.user, sucesscb, errorcb);
 		
-		function successCB(data) {
+		function sucesscb(data) {
+			alert(data.name);
 			alert("更新成功");
 		}
 		
-		function errorCB(error) {
+		function errorcb(error) {
 			alert("更新失败");
 		}
 	}  
