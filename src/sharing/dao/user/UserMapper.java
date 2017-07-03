@@ -16,4 +16,6 @@ public interface UserMapper {
 	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception;
 	
 	public User updateUser(User user) throws Exception;
+	
+	public Long updatePassWord(Long userId, String originalPassWord, String newPassWord) throws Exception;
 }

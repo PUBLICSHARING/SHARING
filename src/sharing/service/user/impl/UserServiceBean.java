@@ -75,5 +75,23 @@ public class UserServiceBean implements UserService{
 			throw new Exception("updateUser", e);
 		}
 	}
+	
+	@Override
+	public Long updatePassWord(Long userId, String originalPassWord, String newPassWord) throws Exception {
+		try {
+			//根据用户ID,查询所对应用户,查看密码是否输入正确
+			User user = findUserById(userId);
+			
+			if(!user.getPassword().equals(originalPassWord)) {	//密码输入有误
+				return null;
+			}
+			
+			//如果原始密码正确,则执行密码的更新操作
+			return this.userMapper.updatePassWord(userId, originalPassWord, newPassWord);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("updatePassWord", e);
+		}
+	}
 
 }

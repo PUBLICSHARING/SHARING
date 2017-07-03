@@ -67,4 +67,13 @@ public class UserAction {
 			throw e;
 		}
 	}
+	
+	public Long updatePassWord(Long userId, String originalPassWord, String newPassWord) throws Exception {
+		try {
+			return userService.updatePassWord(userId, originalPassWord, newPassWord);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }
