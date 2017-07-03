@@ -18,6 +18,12 @@ define(['app'],function(app) {
 		},
 		userService.updatePassWord = function(userId, originalPassWord, newPassWord, sucesscb, errorcb) {
 			userService.get({action:"updatePassWord", userId:userId, originalPassWord:originalPassWord, newPassWord:newPassWord},sucesscb, errorcb);
+		},
+		userService.findUsersByLimit = function(currentPage,pageSize,sucesscb, errorcb) {
+			userService.get({action:"findUsersByLimit",currentPage:currentPage,pageSize:pageSize},sucesscb, errorcb);
+		},
+		userService.findUsersAndTotalByLimit = function(currentPage,pageSize,sucesscb, errorcb) {
+			userService.get({action:"findUsersAndTotalByLimit",currentPage:currentPage,pageSize:pageSize},sucesscb, errorcb);
 		}
 		return userService;
 	})

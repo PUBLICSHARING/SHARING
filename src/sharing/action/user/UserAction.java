@@ -1,4 +1,6 @@
 package sharing.action.user;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import sharing.entity.user.User;
@@ -72,6 +74,38 @@ public class UserAction {
 		try {
 			return userService.updatePassWord(userId, originalPassWord, newPassWord);
 		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public List<User> findUsersByLimit(Long currentPage,Long pageSize) throws Exception {
+		try{
+			return userService.findUsersByLimit(currentPage,pageSize);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Long findAllUsersTotal() throws Exception {
+		try{
+			return userService.findAllUsersTotal();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Map<String, Object> findUsersAndTotalByLimit(Long currentPage,Long pageSize) throws Exception {
+		try{
+			Map<String, Object> result = new HashMap<String,Object>();
+			result.put("total", this.findAllUsersTotal());
+			result.put("users", this.findUsersByLimit(currentPage, pageSize));
+			return result;
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 			throw e;
 		}

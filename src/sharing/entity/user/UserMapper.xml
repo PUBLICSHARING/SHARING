@@ -31,4 +31,11 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<update id = "updatePassWord">
 		update user set user.password = #{newPassWord} where user.id = #{userId};
 	</update>
+	<select id="findUsersByLimit" resultType="sharing.entity.user.User">
+		select * from user order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	<select id="findAllUsersTotal" resultType="java.lang.Long">
+		select count(id) from user
+	</select>
+>>>>>>> Stashed changes
 </mapper>

@@ -1,5 +1,6 @@
 package sharing.service.user;
 
+import java.util.List;
 import java.util.Map;
 
 import sharing.entity.user.User;
@@ -18,4 +19,8 @@ public interface UserService {
 	public User updateUser(User user) throws Exception;
 	
 	public Long updatePassWord(Long userId, String originalPassWord, String newPassWord) throws Exception;
+
+	public List<User> findUsersByLimit(Long currentPage, Long pageSize) throws Exception;
+
+	public Long findAllUsersTotal() throws Exception;
 }

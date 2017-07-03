@@ -1,5 +1,6 @@
 package sharing.dao.user.impl;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import base.method.Param;
@@ -61,6 +62,20 @@ public class UserController implements UserMapper{
 		SqlSessionUtil.getSqlSession().update("sharing.entity.user.updatePassWord",params);
 		//在配置文件中配置更新语句
 		return userId;
+	}
+
+	@Override
+	public List<User> findUsersByLimit(Long currentPage, Long pageSize) throws Exception {
+		Map<String, Object> params = new HashMap<String,Object>();
+		Long startIndex = Long.valueOf((currentPage.longValue() - 1L)* pageSize.longValue());
+		params.put("startIndex", startIndex);
+		params.put("pageSize", pageSize);
+		return SqlSessionUtil.getSqlSession().selectList("sharing.entity.user.findUsersByLimit",params);
+	}
+
+	@Override
+	public Long findAllUsersTotal() throws Exception {
+		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.findAllUsersTotal");
 	}
 
 }
