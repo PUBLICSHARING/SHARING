@@ -1,5 +1,5 @@
 angular.module("publishingDynamicsModule",[])
-.controller("publishingDynamicsCtrl",["$scope","$rootScope","$state","$stateParams","PublishingDynamicsService",function($scope,$rootScope,$state,$stateParams,PublishingDynamicsService) {
+.controller("publishingDynamicsCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService",function($scope,$rootScope,$state,$stateParams,PublishingDynamicsService) {
 	$rootScope.dynamic = {};
 	$scope.fileCount = 0;
 	$scope.publishDynamic = function(){

@@ -194,7 +194,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
 					controller : 'publishingDynamicsCtrl',
 					controllerUrl : ['../lib/bootstrapfileinput/fileinput.js',
 					                 '../app/directives/fileupload/fileupload.js',
-					                 '../app/views/publishingDynamics/publishingDynamicsService.js',
+					                 '../app/service/dynamic/dynamicsService.js',
 					                 '../app/views/publishingDynamics/publishingDynamics.js']
 				})
 			}
