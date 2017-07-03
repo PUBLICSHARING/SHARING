@@ -5,6 +5,8 @@ changeUserInfo.controller("changeUserInfoCtrl",["$scope","$rootScope","$state","
 	//方法,用于更新用户信息
 	$scope.submitInfo = function() {
 		$scope.user.id = 1;
+		$scope.user.password = "123456";
+		$scope.user.age = 20;
 		UserService.updateUser($scope.user, successCB, errorCB);
 		
 		function successCB(data) {
