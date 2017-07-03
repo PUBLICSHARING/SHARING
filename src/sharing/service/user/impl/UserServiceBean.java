@@ -1,5 +1,6 @@
 package sharing.service.user.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import sharing.dao.user.UserMapper;
@@ -91,6 +92,28 @@ public class UserServiceBean implements UserService{
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("updatePassWord", e);
+		}
+	}
+
+	@Override
+	public List<User> findUsersByLimit(Long currentPage, Long pageSize) throws Exception {
+		try{
+			return this.userMapper.findUsersByLimit(currentPage,pageSize);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findUsersByLimit",e);
+		}
+	}
+
+	@Override
+	public Long findAllUsersTotal() throws Exception {
+		try{
+			return userMapper.findAllUsersTotal();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findAllUsersTotal",e);
 		}
 	}
 

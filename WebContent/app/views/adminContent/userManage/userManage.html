@@ -1,20 +1,54 @@
-<div class="">
-	<table class="table table-bordered">
-		<tr>
-			<td><label>用户</label></td>
-			<td><label>问卷</label></td>
-			<td><label>ip</label></td>
-			<td><label>提交时间</label></td>
-			<td><label>操作</label></td>
-		</tr>
-		<tr ng-repeat="(index,fillInQuestionnaire) in fillInQuestionnaires">
-			<td>{{fillInQuestionnaire.user.name}}</td>
-			<td>{{questionnaire.name}}</td>
-			<td>{{fillInQuestionnaire.ip}}</td>
-			<td>{{fillInQuestionnaire.fillInDate|date:'medium'}}</td>
-			<td>
-				<a ng-click="goDisplay(fillInQuestionnaire.id)">查看</a>
-			</td>
-		</tr>
-	</table>
+<div class="col-md-12 no-padding userManage-block">
+	<div>
+		<div class="userManage-title-block">
+			<a class="glyphicon glyphicon-user"></a>
+			<span class="userManage-title-span"> 用户管理</span>
+		</div>
+		<form class="navbar-form navbar-left userManage-search-form">
+        	<div class="form-group">
+          		<input type="text" class="form-control" placeholder="关键字">
+        	</div>
+        	<button type="submit" class="btn btn-default" ng-click="goMain()">搜索</button>
+    	</form>
+	</div>
+	<div class="userManage-table-block">
+		<table class="table table-bordered userManage-table">
+			<tr>
+				<td><label>id</label></td>
+				<td><label>用户名</label></td>
+				<td><label>性别</label></td>
+				<td><label>年龄</label></td>
+				<td><label>电话</label></td>
+				<td><label>密码</label></td>
+				<td><label>简介</label></td>
+				<td><label>是否冻结</label></td>
+				<td><label>操作</label></td>
+			</tr>
+			<tr ng-repeat="(index,user) in users">
+				<td>{{user.id}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.sex}}</td>
+				<td>{{user.age}}</td>
+				<td>{{user.phone}}</td>
+				<td>{{user.password}}</td>
+				<td>{{user.profile}}</td>
+				<td>{{user.isStop}}</td>
+				<td>
+					<a class="pointer" ng-click="goDisplay(user.id)">查看</a>
+					<a class="pointer" ng-click="goDisplay(user.id)">编辑</a>
+					<a class="pointer" ng-click="goDisplay(user.id)">删除</a>
+					<a class="pointer" ng-click="goDisplay(user.id)">冻结</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="userManage-pageOperator-block">
+		<span>当前页：{{currentPage}} 共{{allPage}}页</span>
+		<button class="btn btn-default" ng-click="prePage()">上一页</button>
+		<button class="btn btn-default" ng-click="nextPage()">下一页</button>
+		<button class="btn btn-default" ng-click="firstPage()">首页</button>
+		<button class="btn btn-default" ng-click="lastPage()">尾页</button>
+		<input type="number" class="userManage-pageOperator-input" ng-model="goPageIndex"/>
+		<button class="btn btn-default" ng-click="goPage()">跳转</button>
+	</div>
 </div>

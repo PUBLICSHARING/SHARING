@@ -35,6 +35,16 @@ public class User implements Serializable{
 	
 	private List<Comment> comments;
 	
+	private String isStop;
+	
+	public String getIsStop() {
+		return isStop;
+	}
+
+	public void setIsStop(String isStop) {
+		this.isStop = isStop;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -122,7 +132,4 @@ public class User implements Serializable{
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	
-	
-	
 }
