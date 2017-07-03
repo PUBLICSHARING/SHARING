@@ -24,6 +24,9 @@ define(['app'],function(app) {
 		},
 		userService.findUsersAndTotalByLimit = function(currentPage,pageSize,sucesscb, errorcb) {
 			userService.get({action:"findUsersAndTotalByLimit",currentPage:currentPage,pageSize:pageSize},sucesscb, errorcb);
+		},
+		userService.findUserById = function(userId, sucesscb, errorcb) {
+			userService.get({action:"findUserById", userId:userId},sucesscb, errorcb);
 		}
 		return userService;
 	})
