@@ -255,7 +255,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
         }))
         
         .state('userInfo.changeUserInfo',angularAMD.route({
-            url : '/',
+            url : '/information',
             views : {
                 '' : angularAMD.route({
                     templateUrl : '/SHRING/app/views/userInfo/changeUserInfo.html',
@@ -272,7 +272,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
         }))
         
          .state('userInfo.changePassWord',angularAMD.route({
-            url : '/',
+            url : '/changePd',
             views : {
                 '' : angularAMD.route({
                     templateUrl : '/SHARING/app/views/userInfo/changePassWord.html',
