@@ -32,4 +32,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="findCountOfDynamicsByUserId" resultType="java.lang.Long">
 		select count(id) from dynamic where dynamic.userId=#{userId}
 	</select>
+	<select id="findMaxDynamicId">
+		SELECT MAX(id) as Did FROM dynamic
+	</select>
 </mapper>

@@ -132,7 +132,7 @@ public class FileUploadServlet extends HttpServlet {
 						//构造一个文件的对象
 						SharingFile sharingFile = new SharingFile();
 						Dynamic dynamic = new Dynamic();
-						didSession = request.getSession();
+						didSession = request.getSession(true);
 						Long id = Long.parseLong(didSession.getAttribute("Did") + "");
 						System.out.println(id);
 						//session设置外键
