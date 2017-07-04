@@ -371,6 +371,12 @@ ul li {
     height: 298px;
 }
 
+.checkSpan {
+	display: block;
+    margin-top: 2%;
+    font-size : 18px;
+}
+
 /*adminMain-left*/
 .adminMain-left-block{
 	background:#202121;
