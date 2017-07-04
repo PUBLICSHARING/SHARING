@@ -348,6 +348,7 @@ ul li {
 	min-width:500px;
 	margin:0 auto;
 	padding-top : 100px;
+	margin-bottom : 20px;
 }
 
 .changePassWordBtn {
@@ -390,7 +391,40 @@ ul li {
 }
 
 .changeHeaderLeft {
-	width : 
+	width : 65%;
+	float : left;
+}
+
+.changeHeaderLeft:after {
+	content : ".";
+	display : block;
+	height : 0;
+	visibility : hidden;
+	clear : both;
+}
+
+.changeHeaderRight {
+	width : 35%;
+	float:right;
+}
+
+.changeHeader_center:after {
+	content : ".";
+	display : block;
+	height : 0;
+	visibility : hidden;
+	clear : both;
+}
+
+.changeHeader_Right_div_text {
+    margin-top: 8%;
+    padding-left: 32%;
+    margin-bottom: 8%;
+}
+
+.changeHeaderImgBtn {
+	width: 100%;
+	height : 50px;
 }
 
 /*adminMain-left*/

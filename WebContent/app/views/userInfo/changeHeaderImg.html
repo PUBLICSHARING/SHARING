@@ -1,7 +1,7 @@
 <div class="changePassWord_main" ng-init="init()">
 	<div class="changeHeader_center">
 		<div class="changeHeaderLeft">
-			<div>
+			<div style = "padding-bottom:3%;">
 				请选择您的头像:<input type="file" id="fileInput" />
 			</div>
 			<div class="cropArea">
@@ -9,9 +9,14 @@
 			</div>
 		</div>
 		<div class="changeHeaderRight">
-			<div>Cropped Image</div>
-			<div>
-				<img ng-src="{{myCroppedImage}}">
+			<div style = "width : 75%;margin:0 auto;">
+				<div class="changeHeader_Right_div_text">头像预览</div>
+				<div>
+					<img ng-src="{{myCroppedImage}}" style="border-radius: 50%;">
+				</div>
+			</div>
+			<div class="form-group" style="margin-top: 36%">
+				<button class = "changeHeaderImgBtn btn btn-info">更换头像</button>
 			</div>
 		</div>
 	</div>
