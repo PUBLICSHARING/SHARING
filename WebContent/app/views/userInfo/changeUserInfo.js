@@ -11,11 +11,16 @@ changeUserInfo.controller("changeUserInfoCtrl",["$scope","$rootScope","$state","
 		UserService.findUserById($scope.user.id, sucesscb, errorcb);
 		
 		function sucesscb(data) {
-			$scope.user = data;
+			if(data != null) {
+				$scope.user = data;
+			} else {
+				$rootScope.alertDisappear("获取用户信息失败", 1000);
+			}
+			
 		}
 		
 		function errorcb(error) {
-			
+			$rootScope.alertDisappear("获取用户信息失败", 1000);
 		}
 	}
 	
@@ -24,12 +29,11 @@ changeUserInfo.controller("changeUserInfoCtrl",["$scope","$rootScope","$state","
 		UserService.updateUser($scope.user, sucesscb, errorcb);
 		
 		function sucesscb(data) {
-			alert(data.name);
-			alert("更新成功");
+			$rootScope.alertDisappear("修改成功", 1000);
 		}
 		
 		function errorcb(error) {
-			alert("更新失败");
+			$rootScope.alertDisappear("修改信息失败", 1000);
 		}
 	}  
 }]);

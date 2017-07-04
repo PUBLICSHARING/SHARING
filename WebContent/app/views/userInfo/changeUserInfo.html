@@ -1,52 +1,64 @@
 <div ng-init = "init()">
 	<div class = "changePassWord_main">
 		<div class="col-md-12 no-padding">
-			<form name="changePassWordForm" class="form-horizontal">
+			<form name="changeUserInfoForm" class="form-horizontal">
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">姓名</span>
-					<div class="col-sm-7">
-						<input type="text" class="form-control" ng-model = "user.name"/>
+					<div class="col-sm-6">
+						<input type="text" name = "userName" class="form-control" ng-model = "user.name" required/>
 					</div>
-					<div class="col-sm-2"></div>
+					<div class="col-sm-3">
+						<span style="color:red" ng-show="changeUserInfoForm.userName.$dirty && changeUserInfoForm.userName.$invalid">
+  							<span class = "checkSpan" ng-if="changeUserInfoForm.userName.$error.required">*姓名不能为空</span>
+  						</span>
+					</div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">性别</span>
-					<div class = "  col-sm-4">
-						<select class="form-control" ng-model = "user.sex">
+					<div class = "  col-sm-3">
+						<select class="form-control" ng-model = "user.sex" required>
 							<option>男</option>
 							<option>女</option>
 							<option>未指定</option>
 						</select>
 					</div>
-					<div class="col-sm-5"></div>
+					<div class="col-sm-6"></div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">邮箱</span>
-					<div class="col-sm-7">
-						<input type="email" class="form-control" ng-model = "user.email"/>
+					<div class="col-sm-6">
+						<input type="email" name = "email" class="form-control" ng-pattern="/^[\w]+@((qq)|(163)|(gmail)|(sina)|(189)|(126)|(sohu))(.com)$/" ng-model = "user.email"/>
 					</div>
-					<div class="col-sm-2"></div>
+					<div class="col-sm-3">
+						<span style="color:red" ng-show="changeUserInfoForm.email.$dirty && changeUserInfoForm.email.$invalid">
+  							<span class = "checkSpan" ng-if="changeUserInfoForm.email.$error.email">*邮箱格式错误</span>
+  						</span>
+					</div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">联系电话</span>
-					<div class="col-sm-7">
-						<input type="text" class="form-control" ng-model = "user.phone"/>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name = "phone" pattern="((^(0\d{2,3}-?)?\d{7,8}$)|(^1[34578]\d{9}$))" ng-model = "user.phone"/>
 					</div>
-					<div class="col-sm-2"></div>
+					<div class="col-sm-3">
+						<span style="color:red" ng-show="changeUserInfoForm.phone.$dirty && changeUserInfoForm.phone.$invalid">
+  							<span class = "checkSpan" ng-if="changeUserInfoForm.phone.$error">*手机格式错误</span>
+  						</span>
+					</div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label">个人简介</span>
-					<div class="col-sm-7">
-						<textarea  class="form-control" ng-model = "user.profile" rows = "3"></textarea>
+					<div class="col-sm-6">
+						<textarea style = "max-width : 392.71px;min-width : 392.71px" class="form-control" ng-model = "user.profile" rows = "3"></textarea>
 					</div>
-					<div class="col-sm-2"></div>
+					<div class="col-sm-3"></div>
 				</div>
 				<div class="form-group">
 					<span class="col-sm-3 no-padding control-label"></span>
-					<div class="col-sm-7">
-						<button class = "btn btn-info" ng-click = "submitInfo()">提交</button>
+					<div class="col-sm-6">
+						<button class = "btn btn-info" ng-disabled="changeUserInfoForm.$invalid" ng-click = "submitInfo()">提交</button>
 					</div>
-					<div class="col-sm-2"></div>
+					<div class="col-sm-3"></div>
 				</div>
 			</form>
 		</div>

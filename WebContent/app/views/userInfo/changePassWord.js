@@ -1,18 +1,25 @@
 var changePassWordApp = angular.module("changePassWordApp",[]);
 changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state","$stateParams","UserService",function($scope,$rootScope,$state,$stateParams,UserService) {
 	
-	$scope.userId = 26;
+	$scope.init = function() {
+		$scope.userId = 26;
+	}
 	
 	$scope.changePassWord = function() {
 		if(!$scope.checkPassWord()) {
-			alert("两次密码输入不一致");
+			$rootScope.alertDisappear("两次输入的新密码不一致", 1000);
 			return;
 		}
 		
 		UserService.updatePassWord($scope.userId, $scope.originalPassWord, $scope.newPassWord, sucesscb, errorcb);
 		
 		function sucesscb(data) {
-			alert("修改成功");
+			if(data == null) {
+				$rootScope.alertDisappear("原始密码错误", 1000);
+			} else {
+				$rootScope.alertDisappear("修改成功", 1000);
+				setTimeout($state.go("userInfo.changeUserInfo"), 1500);
+			}
 		}
 		
 		function errorcb(error) {
@@ -22,7 +29,7 @@ changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state
 	
 	//方法,用来检测两次输入的新密码是否相同
 	$scope.checkPassWord = function() {
-		if(($scope.newPassWord == $scope.againNewPassWord) && $scope.newPassWord != "" && $scope.againNewPassWord != "") {
+		if(($scope.newPassWord == $scope.againNewPassWord)) {
 			//相同,返回true
 			return true;
 		}
