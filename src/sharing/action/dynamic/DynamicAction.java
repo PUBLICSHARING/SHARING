@@ -64,4 +64,14 @@ public class DynamicAction {
 			throw e;
 		}
 	}
+	
+	public Long findCountOfDynamicsByUserId(Long userId) throws Exception {
+		try{
+			return this.dynamicService.findCountOfDynamicsByUserId(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

@@ -10,4 +10,6 @@ public interface DynamicService {
 	public Long findAllDynamicsTotal() throws Exception;
 
 	public List<Dynamic> findDynamicsByLimit(Long currentPage, Long pageSize) throws Exception;
+
+	public Long findCountOfDynamicsByUserId(Long userId) throws Exception;
 }

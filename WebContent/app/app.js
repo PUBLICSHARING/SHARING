@@ -174,6 +174,18 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
+        /*管理-用户查看*/
+        .state('adminMain.index.userDisplay',angularAMD.route({
+            url : '/userDisplay/:adminId/:userId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/userManage/userDisplay/userDisplay.html',
+                    controller : 'userDCtrl',
+                    controllerUrl : ['../app/views/adminContent/userManage/userDisplay/userDisplay.js',
+                                     '../app/service/user/userService.js']
+                })
+            }
+        }))
         /*管理-动态管理*/
         .state('adminMain.index.dynamicManage',angularAMD.route({
             url : '/dynamicManage/:adminId',

@@ -30,4 +30,9 @@ public class DynamicController implements DynamicMapper{
 		return SqlSessionUtil.getSqlSession().selectList("sharing.entity.dynamic.findDynamicsByLimit", params);
 	}
 
+	@Override
+	public Long findCountOfDynamicsByUserId(Long userId) throws Exception {
+		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.dynamic.findCountOfDynamicsByUserId",userId);
+	}
+
 }

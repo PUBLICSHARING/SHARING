@@ -26,6 +26,22 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 			<result property="fileCode" column="fileCode"/>
 		</collection>
 	</resultMap>
+	<resultMap type="sharing.entity.user.User" id="UserBaseInfoAndImages">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="password" column="password"/>
+		<result property="sex" column="sex"/>
+		<result property="age" column="age"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="profile" column="profile"/>
+		<collection property="images" ofType="sharing.entity.file.SharingFile">
+			<result property="id" column="sharingFile.id"/>
+			<result property="fileCode" column="fileCode"/>
+			<result property="width" column="width"/>
+			<result property="height" column="height"/>
+		</collection>
+	</resultMap>
 	<select id="findUserInfoTitleNeedById" resultMap="UserInfoTitleNeedResult">
 		select user.name,user.id,sharingfile.fileCode from user left join sharingfile on user.id=sharingfile.userId where user.id=#{id}
 	</select>
@@ -40,5 +56,8 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	</select>
 	<select id="findAllUsersTotal" resultType="java.lang.Long">
 		select count(id) from user
+	</select>
+	<select id="findUserBaseInfoAndImages" resultMap="UserBaseInfoAndImages">
+		select * from user left join sharingFile on user.id=sharingFile.userId where user.id=#{userId}
 	</select>
 </mapper>

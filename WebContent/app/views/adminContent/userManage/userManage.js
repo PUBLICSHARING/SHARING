@@ -27,6 +27,11 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 			$rootScope.alertWarn("查询失败！");
 		}
 	}
+	
+	$scope.goDisplay = function(userId) {
+		$state.go("adminMain.index.userDisplay",{adminId:$scope.adminId,userId:userId});
+	}
+	
 	/*上一页*/
 	$scope.prePage = function() {
 		if($scope.currentPage != 1) {

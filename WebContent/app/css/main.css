@@ -501,3 +501,25 @@ ul li {
 .fileManage-table-width{
 	width:7%;
 }
+
+/*userManage-userDisplay*/
+.userDisplay-baseInfo-block{
+    height: 25%;
+    position: absolute;
+    width: 100%;
+}
+.userDisplay-baseInfo-img-block{
+	height: 100%;
+    width: 16%;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    display:inline-block;
+}
+.userDisplay-baseInfo-img{
+	height: 100%;
+	border-radius:50%;
+}
+.userDisplay-baseInfo-text-block{
+	display:inline-block;
+}

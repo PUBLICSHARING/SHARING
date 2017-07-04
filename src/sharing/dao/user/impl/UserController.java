@@ -5,11 +5,19 @@ import java.util.Map;
 
 import base.method.Param;
 import base.sqlSession.SqlSessionUtil;
+import sharing.dao.comment.CommentMapper;
+import sharing.dao.comment.impl.CommentController;
+import sharing.dao.dynamic.DynamicMapper;
+import sharing.dao.dynamic.impl.DynamicController;
 import sharing.dao.user.UserMapper;
 import sharing.entity.user.User;
 
 public class UserController implements UserMapper{
 
+	private DynamicMapper dynamicMapper = new DynamicController();
+	
+	private CommentMapper commentMapper = new CommentController();
+	
 	@Override
 	public User findUserById(Long userId) throws Exception{
 		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.findUserById", userId);
@@ -76,6 +84,20 @@ public class UserController implements UserMapper{
 	@Override
 	public Long findAllUsersTotal() throws Exception {
 		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.findAllUsersTotal");
+	}
+
+	@Override
+	public Map<String, Object> findUserInfoAndCountOfOthers(Long userId) throws Exception {
+		Map<String, Object> result = new HashMap<String,Object>();
+		result.put("user", this.findUserBaseInfoAndImages(userId));
+		result.put("commentCount", this.commentMapper.findCountOfCommentsByUserId(userId));
+		result.put("dynamicCount", this.dynamicMapper.findCountOfDynamicsByUserId(userId));
+		return result;
+	}
+
+	@Override
+	public User findUserBaseInfoAndImages(Long userId) throws Exception {
+		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.findUserBaseInfoAndImages",userId);
 	}
 
 }

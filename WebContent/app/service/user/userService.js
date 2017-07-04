@@ -27,6 +27,12 @@ define(['app'],function(app) {
 		},
 		userService.findUserById = function(userId, sucesscb, errorcb) {
 			userService.get({action:"findUserById", userId:userId},sucesscb, errorcb);
+		},
+		userService.findUserInfoAndCountOfOthers = function(userId, sucesscb, errorcb) {
+			userService.get({action:"findUserInfoAndCountOfOthers", userId:userId},sucesscb, errorcb);
+		},
+		userService.findUserBaseInfoAndImages = function(userId, sucesscb, errorcb) {
+			userService.get({action:"findUserBaseInfoAndImages", userId:userId},sucesscb, errorcb);
 		}
 		return userService;
 	})

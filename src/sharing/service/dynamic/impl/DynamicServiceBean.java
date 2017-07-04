@@ -45,4 +45,15 @@ public class DynamicServiceBean implements DynamicService{
 		}
 	}
 
+	@Override
+	public Long findCountOfDynamicsByUserId(Long userId) throws Exception {
+		try{
+			return this.dynamicMapper.findCountOfDynamicsByUserId(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findCountOfDynamicsByUserId",e);
+		}
+	}
+
 }

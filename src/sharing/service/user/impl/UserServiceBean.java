@@ -117,4 +117,26 @@ public class UserServiceBean implements UserService{
 		}
 	}
 
+	@Override
+	public Map<String, Object> findUserInfoAndCountOfOthers(Long userId) throws Exception {
+		try{
+			return userMapper.findUserInfoAndCountOfOthers(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findUserInfoAndCountOfOthers",e);
+		}
+	}
+
+	@Override
+	public User findUserBaseInfoAndImages(Long userId) throws Exception {
+		try{
+			return userMapper.findUserBaseInfoAndImages(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findUserBaseInfoAndImages",e);
+		}
+	}
+
 }

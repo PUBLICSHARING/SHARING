@@ -110,4 +110,24 @@ public class UserAction {
 			throw e;
 		}
 	}
+	
+	public User findUserBaseInfoAndImages(Long userId) throws Exception{
+		try{
+			return this.userService.findUserBaseInfoAndImages(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Map<String, Object> findUserInfoAndCountOfOthers(Long userId) throws Exception {
+		try{
+			return this.userService.findUserInfoAndCountOfOthers(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

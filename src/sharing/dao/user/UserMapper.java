@@ -23,4 +23,8 @@ public interface UserMapper {
 	public List<User> findUsersByLimit(Long currentPage, Long pageSize) throws Exception;
 
 	public Long findAllUsersTotal() throws Exception;
+
+	public Map<String, Object> findUserInfoAndCountOfOthers(Long userId) throws Exception;
+
+	public User findUserBaseInfoAndImages(Long userId) throws Exception;
 }
