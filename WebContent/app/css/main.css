@@ -377,6 +377,22 @@ ul li {
     font-size : 18px;
 }
 
+.cropArea {
+	       background: #E4E4E4;
+      overflow: hidden;
+      width:500px;
+      height:350px;
+}
+
+.changeHeader_center {
+	width : 100%;
+	height : 100%;
+}
+
+.changeHeaderLeft {
+	width : 
+}
+
 /*adminMain-left*/
 .adminMain-left-block{
 	background:#202121;

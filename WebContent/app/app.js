@@ -285,6 +285,21 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
+        
+        .state('userInfo.changeHeaderImg',angularAMD.route({
+            url : '/headerImg/:userId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '/SHRING/app/views/userInfo/changeHeaderImg.html',
+                    controller : 'changeHeaderImgCtrl',
+                    controllerUrl : ['/SHRING/app/views/userInfo/changeHeaderImg.js',
+                                     '../app/directives/title/title.js',
+                                     '../lib/bootstrap/js/bootstrap.min.js',
+                                     '../app/service/user/userService.js',
+                                     '/SHRING/lib/ng-img-crop/ng-img-crop.js']
+                })
+            }
+        }))
     });
     
     app.run(function($rootScope){

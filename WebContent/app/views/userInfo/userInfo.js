@@ -13,6 +13,8 @@ userInfoApp.controller("userInfoCtrl",["$scope","$rootScope","$state","$statePar
 			$state.go("userInfo.changePassWord", {userId:$scope.userId});
 		} else if(state == "changeComment") {
 			$state.go("userInfo.changeComment");
+		} else if(state == "changeImg") {
+			$state.go("userInfo.changeHeaderImg", {userId:$scope.userId});
 		}
 	}
 }]);
