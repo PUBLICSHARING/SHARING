@@ -35,7 +35,7 @@ titleApp.directive("title",function() {
 			
 			/*跳转用户中心*/
 			$scope.manageUserInfo = function() {
-				$state.go("userInfo.changeUserInfo",{userId:$scope.userId});
+				$state.go("userInfo",{userId:$scope.userId});
 			}
 			
 			$scope.findUserInfoTitleNeedById();

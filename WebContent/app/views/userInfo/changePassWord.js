@@ -2,7 +2,7 @@ var changePassWordApp = angular.module("changePassWordApp",[]);
 changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state","$stateParams","UserService",function($scope,$rootScope,$state,$stateParams,UserService) {
 	
 	$scope.init = function() {
-		$scope.userId = 26;
+		$scope.userId = $stateParams.userId;
 	}
 	
 	$scope.changePassWord = function() {

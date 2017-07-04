@@ -262,11 +262,9 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'changeUserInfoCtrl',
                     controllerUrl : ['/SHRING/app/views/userInfo/changeUserInfo.js',
                                      '../app/directives/title/title.js',
-                                     '../app/service/user/userService.js',
                                      '../lib/bootstrap/js/bootstrap.min.js',
-                                     '../lib/bootstrapfileinput/fileinput.js',
-                                     '../app/directives/fileupload/fileupload.js',
-                                     '../app/service/user/userService.js']
+                                     '../app/service/user/userService.js',
+                                     '/SHRING/lib/ng-img-crop/ng-img-crop.js']
                 })
             }
         }))

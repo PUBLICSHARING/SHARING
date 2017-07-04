@@ -9,7 +9,6 @@ changeUserInfo.controller("changeUserInfoCtrl",["$scope","$rootScope","$state","
 	
 	//方法,根据传递过来的用户ID展示用户信息
 	$scope.findUser = function() {
-		$scope.user.id = 26;
 		UserService.findUserById($scope.user.id, sucesscb, errorcb);
 		
 		function sucesscb(data) {
