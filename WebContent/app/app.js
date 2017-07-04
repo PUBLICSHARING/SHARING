@@ -238,7 +238,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
 		
 		  /*用户中心*/
         .state('userInfo',angularAMD.route({
-            url : '/userInfo',
+            url : '/userInfo/:userId',
             views : {
                 '' : angularAMD.route({
                     templateUrl : '../app/views/userInfo/userInfo.html',
@@ -255,7 +255,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
         }))
         
         .state('userInfo.changeUserInfo',angularAMD.route({
-            url : '/information',
+            url : '/information/:userId',
             views : {
                 '' : angularAMD.route({
                     templateUrl : '/SHRING/app/views/userInfo/changeUserInfo.html',
@@ -272,7 +272,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
         }))
         
          .state('userInfo.changePassWord',angularAMD.route({
-            url : '/changePd',
+            url : '/changePd/:userId',
             views : {
                 '' : angularAMD.route({
                     templateUrl : '/SHARING/app/views/userInfo/changePassWord.html',

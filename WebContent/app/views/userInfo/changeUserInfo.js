@@ -2,6 +2,8 @@ var changeUserInfo = angular.module("changeUserInfo",[]);
 changeUserInfo.controller("changeUserInfoCtrl",["$scope","$rootScope","$state","$stateParams","UserService",function($scope,$rootScope,$state,$stateParams,UserService) {
 	$scope.init = function() {
 		$scope.user = {};
+		
+		$scope.user.id = $stateParams.userId;
 		$scope.findUser();
 	}
 	

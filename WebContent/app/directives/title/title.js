@@ -33,6 +33,11 @@ titleApp.directive("title",function() {
 				$scope.userId = null;
 			}
 			
+			/*跳转用户中心*/
+			$scope.manageUserInfo = function() {
+				$state.go("userInfo.changeUserInfo",{userId:$scope.userId});
+			}
+			
 			$scope.findUserInfoTitleNeedById();
 		}],
 		templateUrl:'../app/directives/title/title.html'
