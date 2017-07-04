@@ -1,5 +1,7 @@
 package sharing.service.file.impl;
 
+import java.util.List;
+
 import sharing.dao.file.SharingFileMapper;
 import sharing.dao.file.impl.SharingFileController;
 import sharing.entity.file.SharingFile;
@@ -26,6 +28,28 @@ public class SharingFileServiceBean implements SharingFileService{
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("addSharingFile",e);
+		}
+	}
+
+	@Override
+	public Long findAllFilesTotal() throws Exception {
+		try{
+			return this.sharingFileMapper.findAllFilesTotal();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findAllFilesTotal",e);
+		}
+	}
+
+	@Override
+	public List<SharingFile> findFilesByLimit(Long currentPage, Long pageSize) throws Exception {
+		try{
+			return this.sharingFileMapper.findFilesByLimit(currentPage,pageSize);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findFilesByLimit",e);
 		}
 	}
 

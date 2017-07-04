@@ -9,4 +9,12 @@ adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateP
 	$scope.goUserManage = function() {
 		$state.go("adminMain.index.userManage",{adminId : $scope.adminId});
 	}
+	
+	$scope.goDynamicManage = function() {
+		$state.go("adminMain.index.dynamicManage",{adminId : $scope.adminId});
+	}
+	
+	$scope.goFileManage = function() {
+		$state.go("adminMain.index.fileManage",{adminId:$scope.adminId});
+	}
 }])

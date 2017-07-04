@@ -1,0 +1,57 @@
+<div class="col-md-12 no-padding userManage-block">
+	<div>
+		<div class="userManage-title-block">
+			<a class="glyphicon glyphicon-folder-open"></a>
+			<span class="userManage-title-span"> 文件管理</span>
+		</div>
+		<form class="navbar-form navbar-left userManage-search-form">
+        	<div class="form-group">
+          		<input type="text" class="form-control" placeholder="关键字">
+        	</div>
+        	<button type="submit" class="btn btn-default" ng-click="goMain()">搜索</button>
+    	</form>
+	</div>
+	<div class="userManage-table-block">
+		<table class="table table-bordered userManage-table fileManage-table">
+			<tr>
+				<td class="fileManage-table-td table-id"><label>id</label></td>
+				<td class="fileManage-table-td"><label>文件流</label></td>
+				<td class="fileManage-table-td"><label>文件名</label></td>
+				<td class="fileManage-table-td fileManage-table-width"><label>宽</label></td>
+				<td class="fileManage-table-td fileManage-table-width"><label>高</label></td>
+				<td class="fileManage-table-td"><label>上传时间</label></td>
+				<td class="fileManage-table-td"><label>所属用户Id</label></td>
+				<td class="fileManage-table-td"><label>所属用户名</label></td>
+				<td class="fileManage-table-td"><label>所属动态Id</label></td>
+				<td class="fileManage-table-td"><label>所属动态内容</label></td>
+				<td class="fileManage-table-td"><label>操作</label></td>
+			</tr>
+			<tr ng-repeat="(index,file) in files">
+				<td class="fileManage-table-td table-id">{{file.id}}</td>
+				<td class="fileManage-table-td">{{file.fileCode}}</td>
+				<td class="fileManage-table-td">{{file.fileName}}</td>
+				<td class="fileManage-table-td fileManage-table-width">{{file.width}}</td>
+				<td class="fileManage-table-td fileManage-table-width">{{file.height}}</td>
+				<td class="fileManage-table-td">{{file.uploadDate}}</td>
+				<td class="fileManage-table-td">{{file.user.id}}</td>
+				<td class="fileManage-table-td">{{file.user.name}}</td>
+				<td class="fileManage-table-td">{{file.dynamic.id}}</td>
+				<td class="fileManage-table-td">{{file.dynamic.content}}</td>
+				<td>
+					<a class="pointer" ng-click="goDisplay(file.id)">查看</a>
+					<a class="pointer" ng-click="goEdit(file.id)">编辑</a>
+					<a class="pointer" ng-click="delete(file.id)">删除</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="userManage-pageOperator-block">
+		<span>当前页：{{currentPage}} 共{{allPage}}页</span>
+		<button class="btn btn-default" ng-click="prePage()">上一页</button>
+		<button class="btn btn-default" ng-click="nextPage()">下一页</button>
+		<button class="btn btn-default" ng-click="firstPage()">首页</button>
+		<button class="btn btn-default" ng-click="lastPage()">尾页</button>
+		<input type="number" class="userManage-pageOperator-input" ng-model="goPageIndex"/>
+		<button class="btn btn-default" ng-click="goPage()">跳转</button>
+	</div>
+</div>

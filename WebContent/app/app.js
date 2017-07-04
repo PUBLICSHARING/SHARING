@@ -174,6 +174,30 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
+        /*管理-动态管理*/
+        .state('adminMain.index.dynamicManage',angularAMD.route({
+            url : '/dynamicManage/:adminId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/dynamicManage/dynamicManage.html',
+                    controller : 'dynamicMCtrl',
+                    controllerUrl : ['../app/views/adminContent/dynamicManage/dynamicManage.js',
+                                     '../app/service/dynamic/dynamicsService.js']
+                })
+            }
+        }))
+        /*管理-文件管理*/
+        .state('adminMain.index.fileManage',angularAMD.route({
+            url : '/fileManage/:adminId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/fileManage/fileManage.html',
+                    controller : 'fileMCtrl',
+                    controllerUrl : ['../app/views/adminContent/fileManage/fileManage.js',
+                                     '../app/service/file/sharingFileService.js']
+                })
+            }
+        }))
          .state('fileupload',angularAMD.route({
             url : '/fileupload',
             views : {

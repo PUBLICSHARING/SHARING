@@ -7,4 +7,26 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into dynamic(content,publishTime,userId,likeNum,dislikeNum) values (#{content},#{publishTime},#{user.id},#{likeNum},#{dislikeNum})
 	</insert>
+	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicIdAndContent">
+		<result property="id" column="id"/>
+		<result property="content" column="content"/>
+	</resultMap>
+	<resultMap type="sharing.entity.user.User" id="UserNameAndId">
+		<result property="id" column="userId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicBaseInfo">
+		<result property="id" column="id"/>
+		<result property="content" column="content"/>
+		<result property="publishTime" column="publishTime"/>
+		<result property="likeNum" column="likeNum"/>
+		<result property="dislikeNum" column="dislikeNum"/>
+		<association property="user" column="userId" javaType="sharing.entity.user.User" resultMap="UserNameAndId"></association>
+	</resultMap>
+	<select id="findDynamicsByLimit" resultMap="DynamicBaseInfo">
+		select * from dynamic left join user on user.id=dynamic.userId order by user.id desc limit #{startIndex},#{pageSize}
+	</select>
+	<select id="findAllDynamicsTotal" resultType="java.lang.Long">
+		select count(id) from dynamic
+	</select>
 </mapper>

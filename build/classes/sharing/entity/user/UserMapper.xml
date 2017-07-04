@@ -15,6 +15,10 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="judgeLoginUser" parameterType="sharing.entity.user.User" resultType="sharing.entity.user.User">
 		select * from user where name=#{name} and password=#{password}
 	</select>
+	<resultMap type="sharing.entity.user.User" id="UserNameAndId">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+	</resultMap>
 	<resultMap type="sharing.entity.user.User" id="UserInfoTitleNeedResult">
 		<id property="id" column="id"/>
 		<result property="name" column="name"/>

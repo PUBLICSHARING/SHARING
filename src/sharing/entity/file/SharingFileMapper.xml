@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sharing.entity.file">
+	<select id="findSharingFileById" resultType="sharing.entity.file.SharingFile">
+		select * from sharingFile where id=#{id}
+	</select>
+	<insert keyColumn="id" id="addSharingFile" parameterType="sharing.entity.file.SharingFile"  useGeneratedKeys="true" keyProperty="id">
+		insert into sharingFile(fileCode,fileName,width,height,uploadDate,userId,dynamicId) values(#{fileCode},#{fileName},#{width},#{height},#{uploadDate},#{user.id},#{dynamic.id})
+	</insert>
+	<select id="findAllFilesTotal" resultType="java.lang.Long">
+		select count(id) from sharingFile
+	</select>
+	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicIdAndContent">
+		<result property="id" column="id"/>
+		<result property="content" column="content"/>
+	</resultMap>
+	<resultMap type="sharing.entity.user.User" id="UserNameAndId">
+		<result property="id" column="userId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap type="sharing.entity.file.SharingFile" id="FileBaseInfo">
+		<result property="id" column="id"/>
+		<result property="fileCode" column="fileCode"/>
+		<result property="fileType" column="fileType"/>
+		<result property="fileName" column="fileName"/>
+		<result property="width" column="width"/>
+		<result property="height" column="height"/>
+		<result property="uploadDate" column="uploadDate"/>
+		<association property="user" column="userId" resultMap="UserNameAndId"></association>
+		<association property="dynamic" column="dynamicId" resultMap="DynamicIdAndContent"></association>
+	</resultMap>
+	<select id="findFilesByLimit" resultMap="FileBaseInfo">
+		select * from sharingFile left join user on user.id=sharingFile.userId left join dynamic on dynamic.id=sharingFile.dynamicId limit #{startIndex},#{pageSize}
+	</select>
+</mapper>

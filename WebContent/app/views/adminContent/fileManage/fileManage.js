@@ -1,19 +1,19 @@
-var userMApp = angular.module("userMApp",[]);
-userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","UserService",function($state,$scope,$rootScope,$stateParams,UserService) {
+var fileMApp = angular.module("fileMApp",[]);
+fileMApp.controller("fileMCtrl",["$state","$scope","$rootScope","$stateParams","SharingFileService",function($state,$scope,$rootScope,$stateParams,SharingFileService) {
 	$scope.adminId = $stateParams.adminId;
-	$scope.users = [];
+	$scope.files = [];
 	$scope.currentPage = 1;
-	$scope.pageSize = 12;
+	$scope.pageSize = 11;
 	$scope.total = 0;
 	$scope.hasDataMore = true;
 	$scope.allPage = 0;
 	/*指定页*/
-	$scope.findUsersAndTotalByLimit = function() {
+	$scope.findFilesAndTotalByLimit = function() {
 		$rootScope.alertRefresh();
-		UserService.findUsersAndTotalByLimit($scope.currentPage,$scope.pageSize,sucesscb,errorcb);
+		SharingFileService.findFilesAndTotalByLimit($scope.currentPage,$scope.pageSize,sucesscb,errorcb);
 		function sucesscb(data) {
 			$scope.total = data.total;
-			$scope.users = data.users;
+			$scope.files = data.files;
 			if(($scope.currentPage * $scope.pageSize) >= $scope.total) {
 				$scope.hasDataMore = false;
 			}
@@ -31,28 +31,28 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 	$scope.prePage = function() {
 		if($scope.currentPage != 1) {
 			$scope.currentPage--;
-			$scope.findUsersAndTotalByLimit();
+			$scope.findFilesAndTotalByLimit();
 		}
 	}
 	/*下一页*/
 	$scope.nextPage = function() {
 		if($scope.currentPage != $scope.allPage) {
 			$scope.currentPage++;
-			$scope.findUsersAndTotalByLimit();
+			$scope.findFilesAndTotalByLimit();
 		}
 	}
 	/*首页*/
 	$scope.firstPage = function() {
 		if($scope.currentPage != 1) {
 			$scope.currentPage = 1;
-			$scope.findUsersAndTotalByLimit();
+			$scope.findFilesAndTotalByLimit();
 		}
 	}
 	/*尾页*/
 	$scope.lastPage = function() {
 		if($scope.currentPage != $scope.allPage) {
 			$scope.currentPage = $scope.allPage;
-			$scope.findUsersAndTotalByLimit();
+			$scope.findFilesAndTotalByLimit();
 		}
 	}
 	/*跳转*/
@@ -62,9 +62,10 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 		}
 		else{
 			$scope.currentPage = $scope.goPageIndex;
-			$scope.findUsersAndTotalByLimit();
+			$scope.findFilesAndTotalByLimit();
 		}
 	}
 	
-	$scope.findUsersAndTotalByLimit();
+	$scope.findFilesAndTotalByLimit();
+	
 }])
