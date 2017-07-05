@@ -49,6 +49,7 @@ titleApp.directive("title",function() {
 			/*退出*/
 			$scope.exit = function() {
 				$scope.userId = null;
+				$state.go("loginIn");
 			}
 
 			/*跳转用户中心*/

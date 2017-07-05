@@ -7,7 +7,7 @@ changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state
 	
 	$scope.changePassWord = function() {
 		if(!$scope.checkPassWord()) {
-			$rootScope.alertDisappear("两次输入的新密码不一致", 1000);
+			$rootScope.alertWarn("两次密码输入不一致");
 			return;
 		}
 		
@@ -15,7 +15,7 @@ changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state
 		
 		function sucesscb(data) {
 			if(data == null) {
-				$rootScope.alertDisappear("原始密码错误", 1000);
+				$rootScope.alertWarn("原始密码错误,请检查");
 			} else {
 				$rootScope.alertDisappear("修改成功", 1000);
 				setTimeout($state.go("userInfo.changeUserInfo"), 1500);
@@ -23,7 +23,7 @@ changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state
 		}
 		
 		function errorcb(error) {
-			alert("修改失败,请联系维护人员");
+			$rootScope.alertWarn("修改失败,请联系维护人员");
 		}
 	}
 	

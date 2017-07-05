@@ -14,7 +14,7 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 		}
 		
 		function errorcb(error) {
-			alert("查询头像信息失败")
+			$rootScope.alertWarn("查询头像信息失败");
 		}
 	}
 
@@ -39,7 +39,7 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 		}
 		
 		function errorcb(error) {
-			alert("保存失败");
+			$rootScope.alertWarn("保存失败");
 		}
 	}
 	
