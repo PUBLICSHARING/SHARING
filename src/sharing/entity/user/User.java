@@ -29,6 +29,11 @@ public class User implements Serializable{
 	
 	private String profile;
 	
+	private String headImg;
+	
+	/*设置一个绝对路径来保存文件*/
+	public static final String REAL_PATH = "D:/myWorkSpace/groupGit/SHARING/WebContent/app/image/headImg";
+	
 	private List<SharingFile> images;
 	
 	private List<Dynamic> dynamics;
@@ -131,5 +136,13 @@ public class User implements Serializable{
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+
+	public String getHeadImg() {
+		return headImg;
+	}
+
+	public void setHeadImg(String headImg) {
+		this.headImg = headImg;
 	}
 }

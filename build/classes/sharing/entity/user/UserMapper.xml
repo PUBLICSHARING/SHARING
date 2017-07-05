@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		select user.name,user.id,sharingfile.fileCode from user left join sharingfile on user.id=sharingfile.userId where user.id=#{id}
 	</select>
 	<update id = "updateUser" parameterType = "sharing.entity.user.User">
-		update user set user.name = #{name},user.phone = #{phone},user.email = #{email},user.sex = #{sex},user.profile = #{profile} where user.id = #{id};
+		update user set user.name = #{name},user.phone = #{phone},user.email = #{email},user.sex = #{sex},user.profile = #{profile}, user.headImg = #{headImg} where user.id = #{id};
 	</update>
 	<update id = "updatePassWord">
 		update user set user.password = #{newPassWord} where user.id = #{userId};

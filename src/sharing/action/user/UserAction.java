@@ -151,4 +151,13 @@ public class UserAction {
 			throw e;
 		}
 	}
+	
+	public Long updateHeadImg(Long userId, String imgCode) throws Exception {
+		try {
+			return this.userService.updateHeadImg(userId, imgCode);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

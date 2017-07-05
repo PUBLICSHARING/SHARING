@@ -20,5 +20,17 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 		reader.readAsDataURL(file);
 	};
 	
+	$scope.saveHeadImg = function() {
+		UserService.updateHeadImg($scope.user.id, $scope.myImage, sucesscb, errorcb);
+		
+		function sucesscb(data) {
+			alert("保存成功");
+		}
+		
+		function errorcb(error) {
+			alert("保存失败");
+		}
+	}
+	
 	angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
 }]);

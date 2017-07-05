@@ -39,6 +39,9 @@ define(['app'],function(app) {
 		},
 		userService.startUser = function(userId, sucesscb, errorcb) {
 			userService.query({action:"startUser", userId:userId},sucesscb, errorcb);
+		},
+		userService.updateHeadImg = function(userId, imgCode, sucesscb, errorcb) {
+			userService.get({action:"updateHeadImg", userId:userId, imgCode:imgCode}, sucesscb, errorcb);
 		}
 		return userService;
 	})

@@ -1,5 +1,11 @@
 package sharing.service.user.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +13,8 @@ import sharing.dao.user.UserMapper;
 import sharing.dao.user.impl.UserController;
 import sharing.entity.user.User;
 import sharing.service.user.UserService;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 public class UserServiceBean implements UserService{
 
@@ -159,6 +167,89 @@ public class UserServiceBean implements UserService{
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	
+	@Override
+	public Long updateHeadImg(Long userId, String imgCode) throws Exception {
+		try {
+			/*获取文件的名称*/
+			String path = getPath(User.REAL_PATH);
+			
+			/*将图片解码并写入文件*/
+			if(GenerateImage(imgCode, path)) {	//成功将图片保存在指定目录后的操作,将书籍信息和保存的文件路径写入到数据库
+				User user = findUserById(userId);	//根据用户Id查询出对应用户
+				user.setHeadImg(path);	//设置头像路径
+				updateUser(user);
+				return user.getId();
+			} else {
+				return null;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	//对字节数组字符串进行Base64解码并生成图片
+	public  boolean GenerateImage(String imgStr, String imgFilePath) {
+		// 图像数据为空  
+		if(imgStr == null) {
+			return false; 
+		} 
+		BASE64Decoder decoder = new BASE64Decoder();  
+		try {  
+			// Base64解码  
+			byte[] bytes = decoder.decodeBuffer(imgStr);  
+			for (int i = 0; i < bytes.length; ++i) {  
+				if (bytes[i] < 0) {		// 调整异常数据  
+					bytes[i] += 256;  
+				}  
+			}
+				
+			OutputStream out = new FileOutputStream(imgFilePath);  
+			out.write(bytes);  
+			out.flush();  
+			out.close();  
+		return true;  
+		} catch (Exception e) {  
+			return false;  
+		}  
+	}
+	
+	/*获取当前目录的路径,并且基于时间给图片创建一个名称，返回该图片的完整路径+名称*/
+	public  String getPath(String realPath){
+		return realPath + "/" + getNo() + ".png";
+	}
+	
+	/*一个方法,读取指定图片文件,将其转化为base64编码字符串*/
+	public String getImageString(File file) {
+		byte[] data = null;
+		try{
+			InputStream	input = new FileInputStream(file);
+			data = new byte[input.available()];
+			input.read(data);
+			input.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		BASE64Encoder encoder = new BASE64Encoder();
+		
+		return encoder.encode(data);
+	}
+	
+	/*获取一个记录编号*格式:12位时间+业务编号+随机数*/
+	public  String getNo() {
+		//返回的code String code;
+		//系统当前时间 12位
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddhhmmss");
+		String nowDate = sdf.format(new java.util.Date());
+		
+		//随机数
+		String iRandom = Math.round(Math.random() * 900) + 100 + "";
+		
+		//整合一个code
+		return nowDate + iRandom;
 	}
 
 }

@@ -31,4 +31,6 @@ public interface UserService {
 	public int stopUser(Long userId) throws Exception;
 
 	public int startUser(Long userId) throws Exception;
+	
+	public Long updateHeadImg(Long userId, String imgCode) throws Exception;
 }
