@@ -5,34 +5,82 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 <mapper namespace="sharing.entity.dynamic">
 	<insert keyColumn="id" id="addDynamic" parameterType="sharing.entity.dynamic.Dynamic"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into dynamic(content,publishTime,userId,likeNum,dislikeNum) values (#{content},#{publishTime},#{user.id},#{likeNum},#{dislikeNum})
+		insert into
+		dynamic(content,publishTime,userId,likeNum,dislikeNum) values
+		(#{content},#{publishTime},#{user.id},#{likeNum},#{dislikeNum})
 	</insert>
 	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicIdAndContent">
-		<result property="id" column="id"/>
-		<result property="content" column="content"/>
+		<result property="id" column="id" />
+		<result property="content" column="content" />
 	</resultMap>
 	<resultMap type="sharing.entity.user.User" id="UserNameAndId">
-		<result property="id" column="userId"/>
-		<result property="name" column="name"/>
+		<result property="id" column="userId" />
+		<result property="name" column="name" />
 	</resultMap>
 	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicBaseInfo">
-		<result property="id" column="id"/>
-		<result property="content" column="content"/>
-		<result property="publishTime" column="publishTime"/>
-		<result property="likeNum" column="likeNum"/>
-		<result property="dislikeNum" column="dislikeNum"/>
-		<association property="user" column="userId" javaType="sharing.entity.user.User" resultMap="UserNameAndId"></association>
+		<result property="id" column="id" />
+		<result property="content" column="content" />
+		<result property="publishTime" column="publishTime" />
+		<result property="likeNum" column="likeNum" />
+		<result property="dislikeNum" column="dislikeNum" />
+		<association property="user" column="userId"
+			javaType="sharing.entity.user.User" resultMap="UserNameAndId"></association>
 	</resultMap>
 	<select id="findDynamicsByLimit" resultMap="DynamicBaseInfo">
-		select * from dynamic left join user on user.id=dynamic.userId order by user.id desc limit #{startIndex},#{pageSize}
+		select * from dynamic
+		left join user on user.id=dynamic.userId order by user.id desc limit
+		#{startIndex},#{pageSize}
 	</select>
 	<select id="findAllDynamicsTotal" resultType="java.lang.Long">
-		select count(id) from dynamic
+		select count(id)
+		from dynamic
 	</select>
 	<select id="findCountOfDynamicsByUserId" resultType="java.lang.Long">
-		select count(id) from dynamic where dynamic.userId=#{userId}
+		select
+		count(id) from dynamic where dynamic.userId=#{userId}
 	</select>
-	<select id="findMaxDynamicId">
-		SELECT MAX(id) as Did FROM dynamic
+	<select id="findMaxDynamicId" resultType="java.lang.Long">
+		SELECT MAX(id) as Did
+		FROM dynamic
 	</select>
+	<select id="findAllDynamicsByUserId" resultMap="UserAllDynamicInfo">
+		SELECT
+		`user`.`name`,`user`.id,dy.content,dy.publishTime,dy.likeNum,dy.dislikeNum,sharingfile.fileCode
+		from `user` LEFT JOIN dynamic dy ON dy.userId = `user`.id LEFT JOIN
+		sharingfile ON dynamicId = dy.id WHERE `user`.id=#{id}
+	</select>
+
+	<select id="findNewestDynamics" resultMap="newestDynamicsInfo">
+		SELECT `user`.id as userId,dy.id,`user`.`name`,dy.content,dy.publishTime,dy.likeNum,dy.dislikeNum,sf.fileCode FROM dynamic dy LEFT JOIN `user` ON `user`.id = dy.userId LEFT JOIN sharingfile sf ON dy.id = sf.dynamicId ORDER BY dy.publishTime DESC
+	</select>
+
+
+	<resultMap type="sharing.entity.user.User" id="UserAllDynamicInfo">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<collection property="dynamics" ofType="sharing.entity.dynamic.Dynamic">
+			<result property="content" column="content" />
+			<result property="publishTime" column="publishTime" />
+			<result property="likeNum" column="likeNum" />
+			<result property="dislikeNum" column="dislikeNum" />
+			<collection property="images" ofType="sharing.entity.file.SharingFile">
+				<result property="fileCode" column="fileCode" />
+			</collection>
+		</collection>
+	</resultMap>
+
+	<resultMap type="sharing.entity.dynamic.Dynamic" id="newestDynamicsInfo">
+		<id property="id" column="id" />
+		<result property="content" column="content" />
+		<result property="publishTime" column="publishTime" />
+		<result property="likeNum" column="likeNum" />
+		<result property="dislikeNum" column="dislikeNum" />
+    	<association property="user" javaType="sharing.entity.user.User">  
+        	<id property="id" column="userId"/>  
+        	<result property="name" column="name"/>
+    	</association>  
+    	<collection property="images" ofType="sharing.entity.file.SharingFile">
+			<result property="fileCode" column="fileCode" />
+		</collection>
+	</resultMap>
 </mapper>

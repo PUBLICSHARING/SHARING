@@ -1,7 +1,9 @@
 angular.module("publishingDynamicsModule",[])
-.controller("publishingDynamicsCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService",function($scope,$rootScope,$state,$stateParams,PublishingDynamicsService) {
+.controller("publishingDynamicsCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService",function($scope,$rootScope,$state,$stateParams,DynamicsService) {
 	$rootScope.dynamic = {};
 	$scope.fileCount = 0;
+	
+	
 	$scope.publishDynamic = function(){
 		if($rootScope.dynamic.content==""){
 			alert("没有发布内容，无法发布动态");
@@ -24,7 +26,7 @@ angular.module("publishingDynamicsModule",[])
 		dropZoneEnabled:false,
 		overwriteInitial: false,
 		resizeImage: true,
-		//uploadAsync:true,
+		uploadAsync:true,
 		uploadExtraData: function(previewId, index) {
 			return {"dynamic":$scope.publishDynamic()};
 		}
@@ -40,4 +42,36 @@ angular.module("publishingDynamicsModule",[])
 	}).on('fileerror', function(event, data, msg) {  //一个文件上传失败
 		$rootScope.alertWarn("上传失败！");
 	})
+	
+	
+	$scope.init=function(){
+		DynamicsService.findAllDynamicsByUserId(32,sucess,error);
+		
+		function sucess(data){
+			$scope.userName = data["32"].name;
+			$scope.dynamics = data["32"].dynamics;
+			//$("#d").html("<img src='showImagServlet?imgUrl=\'" + data.dynamics[0].images[0].fileCode + "\'' style='width:35%'/>");
+			//$("#d").html("<img src='data:image/jpeg;base64," + data["32"].dynamics[0].images[0].fileCode + "' style='width:35%'/>");
+		}
+		
+		function error(error){
+			
+		}
+	}
+	
+	$scope.hanImgCode = function (imgCode){
+		return "data:image/jpeg;base64,"+imgCode;
+	}
+	
+	$scope.formatDate = function(longTime){
+		var date = new Date(longTime);
+		var year = date.getFullYear();
+	    var month = date.getMonth()+1;    //js从0开始取 
+	    var date1 = date.getDate(); 
+	    var hour = date.getHours(); 
+	    var minutes = date.getMinutes(); 
+	    var second = date.getSeconds();
+	    
+	    return "" + year + "年" + month + "月    " + hour + "时" + minutes + "分" + second + "秒";
+	}
 }]);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import sharing.entity.dynamic.Dynamic;
+import sharing.entity.user.User;
 import sharing.service.dynamic.DynamicService;
 import sharing.service.dynamic.impl.DynamicServiceBean;
 
@@ -74,4 +75,34 @@ public class DynamicAction {
 			throw e;
 		}
 	}
+	
+	public Long findMaxDynamicId() throws Exception{
+		try {
+			return this.dynamicService.findMaxDynamicId();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Map<String, Object> findAllDynamicsByUserId(Long id) throws Exception{
+		try {
+			Map<String, Object> user =  this.dynamicService.findAllDynamicsByUserId(id);
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Map<String, Object> findNewestDynamics() throws Exception{
+		try {
+			Map<String, Object> user =  this.dynamicService.findNewestDynamics();
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }
+

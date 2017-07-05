@@ -13,6 +13,15 @@ define(['app'],function(app) {
 		dynamicService.findDynamicsAndTotalByLimit = function(currentPage,pageSize,sucesscb,errorcb) {
 			dynamicService.get({action:"findDynamicsAndTotalByLimit",currentPage:currentPage,pageSize:pageSize},sucesscb,errorcb);
 		}
+		
+		dynamicService.findAllDynamicsByUserId = function(userId,sucesscb,errorcb){
+			dynamicService.get({action:"findAllDynamicsByUserId",id:userId},sucesscb,errorcb);
+		}
+		
+		dynamicService.findNewestDynamics = function(sucesscb,errorcb){
+			dynamicService.get({action:"findNewestDynamics"},sucesscb,errorcb);
+		}
+		
 		return dynamicService;
 	})
 })
