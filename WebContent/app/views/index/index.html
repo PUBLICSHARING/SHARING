@@ -8,13 +8,18 @@
 				</header>
 				<div style="width: 100%;">
 					<ul>
-						<li ng-repeat="imge in dynamic.images"><img src="data:image/jpeg;base64,{{imge.fileCode}}" style="width:30%;"></li>
+						<li ng-repeat="imge in dynamic.images" style="display: inline;"><img src="data:image/jpeg;base64,{{imge.fileCode}}" style="width:30%;"></li>
 					</ul>
 				</div>
-				<div class="index_comment">
+				<div class="index_comment"><!--<img src="/SHARING/app/image/index/like.png"style="cursor: pointer;" /> -->
 					<div class="index_image_div" ng-click="enterFavor($event)">
-						<img src="/SHARING/app/image/index/like.png"
-							style="cursor: pointer;" />
+						<a><span class="glyphicon glyphicon-thumbs-up" style="cursor: pointer;"></span>+336次</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a><span class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>-23次</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a><span class="glyphicon glyphicon-question-sign" style="cursor: pointer;text-decoration: none"></span>举报</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a><span class="glyphicon glyphicon-pencil" style="cursor: pointer;text-decoration: none"></span>回复</a>
 					</div>
 					<div class="favor_div">
 						<span>XXXX次赞</span>
