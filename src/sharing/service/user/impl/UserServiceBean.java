@@ -63,7 +63,7 @@ public class UserServiceBean implements UserService{
 			} else if(resultUser.getIsStop().equals("是")) {	//如果该账户已被冻结
 				return "冻结";
 			} else {
-				return "登录成功";
+				return resultUser.getId() + "";
 			}
 		}
 		catch(Exception e) {
