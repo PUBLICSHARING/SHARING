@@ -5,6 +5,17 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 		$scope.user.id = $stateParams.userId;
 		$scope.myImage = "";
 		$scope.myCroppedImage = "";
+		
+		UserService.findUserHeadImg($scope.user.id, sucesscb, errorcb);
+		
+		function sucesscb(data) {
+			var b64 = data.replace('','data:image/png;base64,');
+			$scope.myCroppedImage = b64;
+		}
+		
+		function errorcb(error) {
+			alert("查询头像信息失败")
+		}
 	}
 
 	var handleFileSelect=function(evt) {
@@ -21,7 +32,7 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 	};
 	
 	$scope.saveHeadImg = function() {
-		UserService.updateHeadImg($scope.user.id, $scope.myImage, sucesscb, errorcb);
+		UserService.updateHeadImg($scope.user.id, $scope.myCroppedImage, sucesscb, errorcb);
 		
 		function sucesscb(data) {
 			alert("保存成功");

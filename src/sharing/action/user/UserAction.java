@@ -160,4 +160,13 @@ public class UserAction {
 			throw e;
 		}
 	}
+	
+	public String findUserHeadImg(Long userId) throws Exception {
+		try {
+			return this.userService.findUserHeadImg(userId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

@@ -172,11 +172,12 @@ public class UserServiceBean implements UserService{
 	@Override
 	public Long updateHeadImg(Long userId, String imgCode) throws Exception {
 		try {
+			String[] splitString = imgCode.split(",");
 			/*获取文件的名称*/
 			String path = getPath(User.REAL_PATH);
 			
 			/*将图片解码并写入文件*/
-			if(GenerateImage(imgCode, path)) {	//成功将图片保存在指定目录后的操作,将书籍信息和保存的文件路径写入到数据库
+			if(GenerateImage(splitString[1], path)) {	//成功将图片保存在指定目录后的操作,将书籍信息和保存的文件路径写入到数据库
 				User user = findUserById(userId);	//根据用户Id查询出对应用户
 				user.setHeadImg(path);	//设置头像路径
 				updateUser(user);
@@ -184,6 +185,19 @@ public class UserServiceBean implements UserService{
 			} else {
 				return null;
 			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	@Override
+	public String findUserHeadImg(Long userId) throws Exception {
+		try {
+			User user = findUserById(userId);
+			String path = user.getHeadImg();
+			File file = new File(path);
+			return getImageString(file);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw e;
