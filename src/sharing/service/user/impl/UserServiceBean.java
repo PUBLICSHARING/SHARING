@@ -46,7 +46,7 @@ public class UserServiceBean implements UserService{
 	@Override
 	public Long addUser(User user) throws Exception {
 		try{
-			user.setHeadImg("/WebContent/app/directives/title/image/default.jpg");
+			user.setHeadImg("D:/angular/workspace/GSHARING/src/sharing/image/default.jpg");
 			return this.userMapper.addUser(user);
 		}
 		catch(Exception e) {
@@ -189,7 +189,7 @@ public class UserServiceBean implements UserService{
 		try {
 			String[] splitString = imgCode.split(",");	//分割传递过来的base64字符串
 			/*获取文件的名称*/
-			String path = getPath(getAbsolutePath());	//获取上传的头像新的路径名+文件名
+			String path = getPath(User.PATH);	//获取上传的头像新的路径名+文件名
 			
 			/*将图片解码并写入文件*/
 			if(GenerateImage(splitString[1], path)) {	//成功将图片保存在指定目录后的操作,将书籍信息和保存的文件路径写入到数据库
@@ -320,29 +320,26 @@ public class UserServiceBean implements UserService{
 
 
 	/*方法,获取头像文件存放的想对路径*/
-	public String getAbsolutePath() {
-/*		File file = new File("src/sharing/image/");
+/*	public String getAbsolutePath() {
+		File file = new File("src/sharing/image/");
 		String absolutePath = file.getAbsolutePath();
-		String fileAbsolutePath = absolutePath.replaceAll("\\\\", "/");*/
+		String fileAbsolutePath = absolutePath.replaceAll("\\\\", "/");
 		
 		
 		
-		/*String absolutePath = PropertiesReader.class.getResource("/action.properties").getPath();
+		String absolutePath = PropertiesReader.class.getResource("/action.properties").getPath();
 		String fileAbsolutePath = absolutePath.replace("action.properties", "sharing/image");
-		String path = fileAbsolutePath.replaceFirst("/", "");*/
+		String path = fileAbsolutePath.replaceFirst("/", "");
 		
 		
 		
-		/*return fileAbsolutePath;*/
+		return fileAbsolutePath;
 		
-		/*System.out.println(fileAbsolutePath);*/
+		System.out.println(fileAbsolutePath);
 		
-		/*return path;*/
-		String absolutionPath = System.getProperty("user.dir");
-		String bString = absolutionPath.replace("\\\\", "/");
-		bString += "/src/sharing/image";
-		return bString;
-	}	
+		return path;
+		
+	}	*/
 	
 /*	public static void  main(String[] args) {
 		getAbsolutePath();

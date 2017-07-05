@@ -37,6 +37,8 @@ public class User implements Serializable{
 	
 	private List<Comment> comments;
 	
+	public static final String PATH = "D:/angular/workspace/GSHARING/src/sharing/image";
+	
 	private String isStop;
 	
 	public String getIsStop() {
