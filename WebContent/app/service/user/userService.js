@@ -33,6 +33,12 @@ define(['app'],function(app) {
 		},
 		userService.findUserBaseInfoAndImages = function(userId, sucesscb, errorcb) {
 			userService.get({action:"findUserBaseInfoAndImages", userId:userId},sucesscb, errorcb);
+		},
+		userService.stopUser = function(userId, sucesscb, errorcb) {
+			userService.query({action:"stopUser", userId:userId},sucesscb, errorcb);
+		},
+		userService.startUser = function(userId, sucesscb, errorcb) {
+			userService.query({action:"startUser", userId:userId},sucesscb, errorcb);
 		}
 		return userService;
 	})

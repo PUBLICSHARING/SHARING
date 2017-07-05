@@ -4,7 +4,57 @@
 			<img class="userDisplay-baseInfo-img" src="../app/directives/title/image/default.jpg" />
 		</div>
 		<div class="userDisplay-baseInfo-text-block">
-			
+			<div class="col-md-12">
+				<div class="col-md-4">
+					<label class="col-md-4">id:</label>
+					<span class="col-md-8 no-padding">{{userInfo.user.id}}</span>
+				</div>
+				<div class="col-md-4">
+					<label class="col-md-4">用户名:</label>
+					<span class="col-md-8 no-padding">{{userInfo.user.name}}</span>
+				</div>
+				<div class="col-md-4">
+					<label class="col-md-4">密码:</label>
+					<span class="col-md-8 no-padding">{{userInfo.user.password}}</span>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-4">
+					<label class="col-md-4">性别:</label>
+					<span ng-if="userInfo.user.sex" class="col-md-8 no-padding">{{userInfo.user.sex}}</span>
+					<span ng-if="!userInfo.user.sex"  class="col-md-8 no-padding">暂未设置</span>
+				</div>
+				<div class="col-md-4">
+					<label class="col-md-4">年龄:</label>
+					<span ng-if="userInfo.user.age" class="col-md-8 no-padding">{{userInfo.user.age}}</span>
+					<span ng-if="!userInfo.user.age" class="col-md-8 no-padding">暂未设置</span>
+				</div>
+				<div class="col-md-4">
+					<label class="col-md-4">邮箱:</label>
+					<span class="col-md-8 no-padding">{{userInfo.user.email}}</span>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-4">
+					<label class="col-md-4">电话:</label>
+					<span class="col-md-8 no-padding">{{userInfo.user.phone}}</span>
+				</div>
+				<div class="col-md-4">
+					<label class="col-md-4">评论次数:</label>
+					<span class="col-md-8 no-padding">{{userInfo.commentCount}}</span>
+				</div>
+				<div class="col-md-4">
+					<label class="col-md-4">动态数量:</label>
+					<span class="col-md-8 no-padding">{{userInfo.dynamicCount}}</span>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-4">
+					<label class="col-md-4">简介:</label>
+					<span ng-if="userInfo.user.profile" class="col-md-8 no-padding">{{userInfo.user.profile}}</span>
+					<span ng-if="!userInfo.user.profile" class="col-md-8 no-padding">暂未设置</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

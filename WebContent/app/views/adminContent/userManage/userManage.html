@@ -27,17 +27,19 @@
 			<tr ng-repeat="(index,user) in users">
 				<td>{{user.id}}</td>
 				<td>{{user.name}}</td>
-				<td>{{user.sex}}</td>
-				<td>{{user.age}}</td>
+				<td ng-if="user.sex">{{user.sex}}</td>
+				<td ng-if="!user.sex">未设置</td>
+				<td ng-if="user.age">{{user.age}}</td>
+				<td ng-if="!user.age">未设置</td>
 				<td>{{user.phone}}</td>
 				<td>{{user.password}}</td>
-				<td>{{user.profile}}</td>
+				<td ng-if="user.profile">{{user.profile}}</td>
+				<td ng-if="!user.profile">未设置</td>
 				<td>{{user.isStop}}</td>
 				<td>
 					<a class="pointer" ng-click="goDisplay(user.id)">查看</a>
-					<a class="pointer" ng-click="goDisplay(user.id)">编辑</a>
-					<a class="pointer" ng-click="goDisplay(user.id)">删除</a>
-					<a class="pointer" ng-click="goDisplay(user.id)">冻结</a>
+					<a class="pointer" ng-if="user.isStop=='否'" ng-click="stopUser(index,user.id)">冻结</a>
+					<a class="pointer" ng-if="user.isStop=='是'" ng-click="startUser(index,user.id)">解结</a>
 				</td>
 			</tr>
 		</table>

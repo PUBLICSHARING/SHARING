@@ -60,4 +60,10 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="findUserBaseInfoAndImages" resultMap="UserBaseInfoAndImages">
 		select * from user left join sharingFile on user.id=sharingFile.userId where user.id=#{userId}
 	</select>
+	<update id="stopUser">
+		update user set user.isStop='是' where user.id=#{userId}
+	</update>
+	<update id="startUser">
+		update user set user.isStop='否' where user.id=#{userId}
+	</update>
 </mapper>

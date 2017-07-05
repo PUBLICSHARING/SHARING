@@ -131,11 +131,33 @@ public class UserServiceBean implements UserService{
 	@Override
 	public User findUserBaseInfoAndImages(Long userId) throws Exception {
 		try{
-			return userMapper.findUserBaseInfoAndImages(userId);
+			return this.userMapper.findUserBaseInfoAndImages(userId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("findUserBaseInfoAndImages",e);
+		}
+	}
+
+	@Override
+	public int stopUser(Long userId) throws Exception {
+		try{
+			return this.userMapper.stopUser(userId);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public int startUser(Long userId) throws Exception {
+		try{
+			return this.userMapper.startUser(userId);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw e;
 		}
 	}
 

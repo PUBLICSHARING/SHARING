@@ -100,4 +100,14 @@ public class UserController implements UserMapper{
 		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.findUserBaseInfoAndImages",userId);
 	}
 
+	@Override
+	public int stopUser(Long userId) throws Exception {
+		return SqlSessionUtil.getSqlSession().update("sharing.entity.user.stopUser", userId);
+	}
+
+	@Override
+	public int startUser(Long userId) throws Exception {
+		return SqlSessionUtil.getSqlSession().update("sharing.entity.user.startUser", userId);
+	}
+
 }

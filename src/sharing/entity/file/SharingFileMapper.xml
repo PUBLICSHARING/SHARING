@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		select count(id) from sharingFile
 	</select>
 	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicIdAndContent">
-		<result property="id" column="id"/>
+		<result property="id" column="dynamicId"/>
 		<result property="content" column="content"/>
 	</resultMap>
 	<resultMap type="sharing.entity.user.User" id="UserNameAndId">

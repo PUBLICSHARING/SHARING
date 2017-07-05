@@ -27,4 +27,8 @@ public interface UserMapper {
 	public Map<String, Object> findUserInfoAndCountOfOthers(Long userId) throws Exception;
 
 	public User findUserBaseInfoAndImages(Long userId) throws Exception;
+
+	public int stopUser(Long userId) throws Exception;
+
+	public int startUser(Long userId) throws Exception;
 }

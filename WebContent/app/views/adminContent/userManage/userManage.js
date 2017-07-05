@@ -71,5 +71,33 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 		}
 	}
 	
+	/*冻结用户*/
+	$scope.stopUser = function(index,userId) {
+		$rootScope.alertRefresh();
+		UserService.stopUser(userId,sucesscb,errorcb);
+		function sucesscb(data) {
+			$scope.users[index].isStop='是';
+			$rootScope.hideRefresh();
+		}
+		function errorcb(error) {
+			$rootScope.hideRefresh();
+			$rootScope.alertWarn("冻结失败！");
+		}
+	}
+	
+	/*解冻用户*/
+	$scope.startUser = function(index,userId) {
+		$rootScope.alertRefresh();
+		UserService.startUser(userId,sucesscb,errorcb);
+		function sucesscb(data) {
+			$scope.users[index].isStop='否';
+			$rootScope.hideRefresh();
+		}
+		function errorcb(error) {
+			$rootScope.hideRefresh();
+			$rootScope.alertWarn("解冻失败！");
+		}
+	}
+	
 	$scope.findUsersAndTotalByLimit();
 }])

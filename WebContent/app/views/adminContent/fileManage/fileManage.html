@@ -32,11 +32,15 @@
 				<td class="fileManage-table-td">{{file.fileName}}</td>
 				<td class="fileManage-table-td fileManage-table-width">{{file.width}}</td>
 				<td class="fileManage-table-td fileManage-table-width">{{file.height}}</td>
-				<td class="fileManage-table-td">{{file.uploadDate}}</td>
-				<td class="fileManage-table-td">{{file.user.id}}</td>
-				<td class="fileManage-table-td">{{file.user.name}}</td>
-				<td class="fileManage-table-td">{{file.dynamic.id}}</td>
-				<td class="fileManage-table-td">{{file.dynamic.content}}</td>
+				<td class="fileManage-table-td">{{file.uploadDate | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+				<td ng-if="file.user.id" class="fileManage-table-td">{{file.user.id}}</td>
+				<td ng-if="!file.user.id" class="fileManage-table-td">空</td>
+				<td ng-if="file.user.name" class="fileManage-table-td">{{file.user.name}}</td>
+				<td ng-if="!file.user.name" class="fileManage-table-td">空</td>
+				<td ng-if="file.dynamic.id" class="fileManage-table-td">{{file.dynamic.id}}</td>
+				<td ng-if="!file.dynamic.id" class="fileManage-table-td">空</td>
+				<td ng-if="file.dynamic.content" class="fileManage-table-td">{{file.dynamic.content}}</td>
+				<td ng-if="!file.dynamic.content" class="fileManage-table-td">空</td>
 				<td>
 					<a class="pointer" ng-click="goDisplay(file.id)">查看</a>
 					<a class="pointer" ng-click="goEdit(file.id)">编辑</a>

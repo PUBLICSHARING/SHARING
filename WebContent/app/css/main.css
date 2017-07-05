@@ -579,20 +579,29 @@ ul li {
 .userDisplay-baseInfo-block{
     height: 25%;
     position: absolute;
-    width: 100%;
+    width:98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-bottom: 1px solid rgba(158, 158, 158, 0.33);
 }
 .userDisplay-baseInfo-img-block{
-	height: 100%;
+    position: absolute;
+    height: 100%;
     width: 16%;
     padding-top: 2%;
     padding-left: 2%;
     padding-bottom: 2%;
-    display:inline-block;
+    display: inline-block;
 }
 .userDisplay-baseInfo-img{
 	height: 100%;
 	border-radius:50%;
 }
 .userDisplay-baseInfo-text-block{
-	display:inline-block;
+    display: inline-block;
+    width: 82%;
+    margin-top: 0px;
+    position: absolute;
+    margin-left: 16%;
+    padding-top: 3%;
 }

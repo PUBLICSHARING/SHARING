@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import base.sqlSession.SqlSessionUtil;
 import sharing.entity.user.User;
 import sharing.service.user.UserService;
 import sharing.service.user.impl.UserServiceBean;
@@ -124,6 +125,26 @@ public class UserAction {
 	public Map<String, Object> findUserInfoAndCountOfOthers(Long userId) throws Exception {
 		try{
 			return this.userService.findUserInfoAndCountOfOthers(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int stopUser(Long userId) throws Exception {
+		try{
+			return this.userService.stopUser(userId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int startUser(Long userId) throws Exception {
+		try{
+			return this.userService.startUser(userId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
