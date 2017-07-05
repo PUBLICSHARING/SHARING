@@ -55,9 +55,16 @@ public class UserServiceBean implements UserService{
 	}
 
 	@Override
-	public Long judgeLoginUser(User user) throws Exception {
+	public String judgeLoginUser(User user) throws Exception {
 		try{
-			return this.userMapper.judgeLoginUser(user);
+			User resultUser = this.userMapper.judgeLoginUser(user);
+			if(resultUser == null) {
+				return "用户名或密码错误";
+			} else if(resultUser.getIsStop().equals("是")) {	//如果该账户已被冻结
+				return "冻结";
+			} else {
+				return "登录成功";
+			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();

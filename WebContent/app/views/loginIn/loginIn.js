@@ -15,9 +15,12 @@ loginInApp.controller("loginInCtrl",["$scope","$rootScope","$state","$stateParam
 		$rootScope.alertRefresh();
 		UserService.judgeLoginUser($scope.user,sucesscb,errorcb);
 		function sucesscb(data) {
-			if(data == "null") {
+			if(data == "用户名或密码错误") {
 				$rootScope.hideRefresh();
 				$rootScope.alertWarn("用户或密码错误，请检查");
+			} else if(data == "冻结") {
+				$rootScope.hideRefresh();
+				$rootScope.alertWarn("很抱歉,您的账号可能由于不当言论已被冻结,请联系管理员");
 			}
 			else{
 				//暂时性利用缓存

@@ -42,7 +42,7 @@ public class UserAction {
 		}
 	}
 	
-	public Long judgeLoginUser(User user) throws Exception {
+	public String judgeLoginUser(User user) throws Exception {
 		try{
 			return userService.judgeLoginUser(user);
 		}

@@ -12,7 +12,7 @@ public interface UserMapper {
 
 	public Long addUser(User user) throws Exception;
 
-	public Long judgeLoginUser(User user) throws Exception;
+	public User judgeLoginUser(User user) throws Exception;
 
 	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception;
 	

@@ -12,7 +12,7 @@ public interface UserService {
 
 	public Long addUser(User user) throws Exception;
 
-	public Long judgeLoginUser(User user) throws Exception;
+	public String judgeLoginUser(User user) throws Exception;
 
 	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception;
 	
