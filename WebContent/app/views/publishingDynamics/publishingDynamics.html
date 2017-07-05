@@ -149,12 +149,11 @@
 
 	<div class="main_wrap_body">
 		<div class="main_wrap_body_left">
-			<form enctype=”multipart/form-data”>
+			<form enctype="multipart/form-data" name = "dynamicForm">
 				<div class="full_width" style="height: 80px; margin-top: 20px;">
 					<!-- <textarea class="content_area" ng-model="dynamic.content"></textarea> -->
-					<input type="text" class="content_area" ng-model="dynamic.content" name="desc"/>
+					<input type="text" class="content_area" ng-model="dynamic.content" name="desc" required/>
 					<div class="oper" style="text-align: center; padding-top: 2%;">
-						<!-- <button type="button" class="btn btn-info" ng-click="publishDynamic()" style="background-color: #1995e4">发表</button> -->
 					</div>
 				</div>
 				<div class="full_width">
@@ -171,7 +170,7 @@
 						style="width: 100%; height: 100%;" alt="..." class="img-circle">
 				</div>
 				<div class="personnal_name_info">
-					<span class="pname text_style1"><a href="#">李桥</a></span> <span
+					<span class="pname text_style1"><a href="#">{{userName}}</a></span> <span
 						class="pname"><i style="color: red;">322</i>条说说</span>
 				</div>
 			</div>
