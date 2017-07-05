@@ -31,4 +31,6 @@ public interface UserMapper {
 	public int stopUser(Long userId) throws Exception;
 
 	public int startUser(Long userId) throws Exception;
+	
+	public User findUserByName(String userName) throws Exception;
 }

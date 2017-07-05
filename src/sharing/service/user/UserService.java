@@ -35,4 +35,6 @@ public interface UserService {
 	public Long updateHeadImg(Long userId, String imgCode) throws Exception;
 	
 	public String findUserHeadImg(Long userId) throws Exception;
+	
+	public User findUserByName(String userName) throws Exception;
 }

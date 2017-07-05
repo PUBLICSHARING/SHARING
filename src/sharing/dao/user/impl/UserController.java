@@ -109,5 +109,9 @@ public class UserController implements UserMapper{
 	public int startUser(Long userId) throws Exception {
 		return SqlSessionUtil.getSqlSession().update("sharing.entity.user.startUser", userId);
 	}
-
+	
+	@Override
+	public User findUserByName(String userName) throws Exception {
+		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.findUserByName", userName);
+	}
 }

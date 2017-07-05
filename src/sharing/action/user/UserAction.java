@@ -169,4 +169,14 @@ public class UserAction {
 			throw e;
 		}
 	}
+	
+	public User findUserByName(String userName) throws Exception {
+		try {
+			return this.userService.findUserByName(userName);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }
+	

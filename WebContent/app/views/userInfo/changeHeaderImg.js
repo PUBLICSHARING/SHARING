@@ -9,12 +9,15 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 		UserService.findUserHeadImg($scope.user.id, sucesscb, errorcb);
 		
 		function sucesscb(data) {
+			if(data == "null" || data == null) {
+				$rootScope.alertWarn("获取头像信息失败");
+			}
 			var b64 = data.replace('','data:image/png;base64,');
 			$scope.myCroppedImage = b64;
 		}
 		
 		function errorcb(error) {
-			$rootScope.alertWarn("查询头像信息失败");
+			$rootScope.alertWarn("获取头像信息失败");
 		}
 	}
 

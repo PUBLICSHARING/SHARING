@@ -79,7 +79,13 @@ public class UserServiceBean implements UserService{
 	@Override
 	public User updateUser(User user) throws Exception {
 		try {
-			return this.userMapper.updateUser(user);
+			String userName = user.getName();
+			User newUser = findUserByName(userName);
+			if(newUser != null && newUser.getId() != user.getId()) { //如果存在该用户,且该用户不是自己
+				return null;
+			} else {	//如果用户名不存在冲突,执行更新操作
+				return this.userMapper.updateUser(user);	
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("updateUser", e);
@@ -173,9 +179,9 @@ public class UserServiceBean implements UserService{
 	@Override
 	public Long updateHeadImg(Long userId, String imgCode) throws Exception {
 		try {
-			String[] splitString = imgCode.split(",");
+			String[] splitString = imgCode.split(",");	//分割传递过来的base64字符串
 			/*获取文件的名称*/
-			String path = getPath(User.REAL_PATH);
+			String path = getPath(User.REAL_PATH);	//获取上传的头像新的路径名+文件名
 			
 			/*将图片解码并写入文件*/
 			if(GenerateImage(splitString[1], path)) {	//成功将图片保存在指定目录后的操作,将书籍信息和保存的文件路径写入到数据库
@@ -188,14 +194,14 @@ public class UserServiceBean implements UserService{
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
-			throw e;
+			throw new Exception("updateHeadImg", e);
 		}
 	}
 	
 	@Override
 	public String findUserHeadImg(Long userId) throws Exception {
 		try {
-			User user = findUserById(userId);
+			User user = findUserById(userId); //根据用户Id查询用哪用户信息
 			String path = user.getHeadImg();
 			if(!path.equals("") && path != "" && path != null) {
 				File file = new File(path);
@@ -205,7 +211,17 @@ public class UserServiceBean implements UserService{
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
-			throw e;
+			throw new Exception("findUserHeadImg", e);
+		}
+	}
+	
+	@Override
+	public User findUserByName(String userName) throws Exception {
+		try {
+			return this.userMapper.findUserByName(userName);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findUserByName", e);
 		}
 	}
 	
