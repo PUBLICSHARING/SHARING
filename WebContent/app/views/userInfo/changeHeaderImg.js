@@ -38,7 +38,7 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 		UserService.updateHeadImg($scope.user.id, $scope.myCroppedImage, sucesscb, errorcb);
 		
 		function sucesscb(data) {
-			$rootScope.alertDisappear("修改成功", 1000);
+			$state.reload();
 		}
 		
 		function errorcb(error) {
