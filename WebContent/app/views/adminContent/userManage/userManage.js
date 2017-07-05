@@ -7,6 +7,7 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 	$scope.total = 0;
 	$scope.hasDataMore = true;
 	$scope.allPage = 0;
+	$scope.isSearch = false;
 	/*指定页*/
 	$scope.findUsersAndTotalByLimit = function() {
 		$rootScope.alertRefresh();
@@ -36,28 +37,48 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 	$scope.prePage = function() {
 		if($scope.currentPage != 1) {
 			$scope.currentPage--;
-			$scope.findUsersAndTotalByLimit();
+			if(!$scope.isSearch){
+				$scope.findUsersAndTotalByLimit();
+			}
+			else{
+				$scope.searchUsersAndTotalByLimit();
+			}
 		}
 	}
 	/*下一页*/
 	$scope.nextPage = function() {
 		if($scope.currentPage != $scope.allPage) {
 			$scope.currentPage++;
-			$scope.findUsersAndTotalByLimit();
+			if(!$scope.isSearch){
+				$scope.findUsersAndTotalByLimit();
+			}
+			else{
+				$scope.searchUsersAndTotalByLimit();
+			}
 		}
 	}
 	/*首页*/
 	$scope.firstPage = function() {
 		if($scope.currentPage != 1) {
 			$scope.currentPage = 1;
-			$scope.findUsersAndTotalByLimit();
+			if(!$scope.isSearch){
+				$scope.findUsersAndTotalByLimit();
+			}
+			else{
+				$scope.searchUsersAndTotalByLimit();
+			}
 		}
 	}
 	/*尾页*/
 	$scope.lastPage = function() {
 		if($scope.currentPage != $scope.allPage) {
 			$scope.currentPage = $scope.allPage;
-			$scope.findUsersAndTotalByLimit();
+			if(!$scope.isSearch){
+				$scope.findUsersAndTotalByLimit();
+			}
+			else{
+				$scope.searchUsersAndTotalByLimit();
+			}
 		}
 	}
 	/*跳转*/
@@ -67,7 +88,12 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 		}
 		else{
 			$scope.currentPage = $scope.goPageIndex;
-			$scope.findUsersAndTotalByLimit();
+			if(!$scope.isSearch){
+				$scope.findUsersAndTotalByLimit();
+			}
+			else{
+				$scope.searchUsersAndTotalByLimit();
+			}
 		}
 	}
 	
@@ -96,6 +122,42 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 		function errorcb(error) {
 			$rootScope.hideRefresh();
 			$rootScope.alertWarn("解冻失败！");
+		}
+	}
+	
+	$scope.searchInfo = null;
+	$scope.searchUser = function() {
+		if($scope.searchInfo === null || $scope.searchInfo===""){
+			$scope.findUsersAndTotalByLimit();
+		}
+		else{
+			$scope.searchUsersAndTotalByLimit();
+		}
+	}
+	
+	$scope.searchUsersAndTotalByLimit = function() {
+		if(!$scope.isSearch) {
+			$scope.currentPage = 1;
+			$scope.pageSize = 12;
+			$scope.total = 0;
+			$scope.hasDataMore = true;
+			$scope.allPage = 0;
+			$scope.isSearch = true;
+		}
+		UserService.searchUsersAndTotalByLimit($scope.searchInfo,$scope.currentPage,$scope.pageSize,sucesscb,errorcb);
+		function sucesscb(data) {
+			$scope.total = data.total;
+			$scope.users = data.users;
+			if(($scope.currentPage * $scope.pageSize) >= $scope.total) {
+				$scope.hasDataMore = false;
+			}
+			if($scope.total % $scope.pageSize !== 0) {
+				$scope.allPage = ($scope.total-$scope.total % $scope.pageSize) / $scope.pageSize + 1;
+			}
+			$rootScope.hideRefresh();
+		}
+		function errorcb(error) {
+			$rootScope.alertWarn("搜索失败！");
 		}
 	}
 	

@@ -178,5 +178,38 @@ public class UserAction {
 			throw e;
 		}
 	}
+	
+	public Map<String, Object> searchUsersAndTotalByLimit(String searchInfo,Long currentPage,Long pageSize) throws Exception {
+		try{
+			Map<String, Object> result = new HashMap<String,Object>();
+			result.put("total", this.searchAllUsersTotal(searchInfo));
+			result.put("users", this.searchUsersByLimit(searchInfo,currentPage, pageSize));
+			return result;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	private List<User> searchUsersByLimit(String searchInfo, Long currentPage, Long pageSize)  throws Exception{
+		try{
+			return userService.searchUsersByLimit(searchInfo,currentPage,pageSize);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	private Long searchAllUsersTotal(String searchInfo) throws Exception{
+		try{
+			return userService.searchAllUsersTotal(searchInfo);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }
 	

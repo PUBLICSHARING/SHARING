@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
+import base.properties.PropertiesReader;
 import sharing.dao.user.UserMapper;
 import sharing.dao.user.impl.UserController;
 import sharing.entity.user.User;
@@ -45,7 +46,7 @@ public class UserServiceBean implements UserService{
 	@Override
 	public Long addUser(User user) throws Exception {
 		try{
-			user.setHeadImg("D:/myWorkSpace/groupGit/SHARING/WebContent/app/directives/title/image/default.jpg");
+			user.setHeadImg("/WebContent/app/directives/title/image/default.jpg");
 			return this.userMapper.addUser(user);
 		}
 		catch(Exception e) {
@@ -188,7 +189,7 @@ public class UserServiceBean implements UserService{
 		try {
 			String[] splitString = imgCode.split(",");	//分割传递过来的base64字符串
 			/*获取文件的名称*/
-			String path = getPath(User.REAL_PATH);	//获取上传的头像新的路径名+文件名
+			String path = getPath(getAbsolutePath());	//获取上传的头像新的路径名+文件名
 			
 			/*将图片解码并写入文件*/
 			if(GenerateImage(splitString[1], path)) {	//成功将图片保存在指定目录后的操作,将书籍信息和保存的文件路径写入到数据库
@@ -247,8 +248,8 @@ public class UserServiceBean implements UserService{
 					bytes[i] += 256;  
 				}  
 			}
-				
-			OutputStream out = new FileOutputStream(imgFilePath);  
+			File file = new File(imgFilePath);
+			OutputStream out = new FileOutputStream(file);  
 			out.write(bytes);  
 			out.flush();  
 			out.close();  
@@ -293,5 +294,48 @@ public class UserServiceBean implements UserService{
 		//整合一个code
 		return nowDate + iRandom;
 	}
+
+
+	@Override
+	public List<User> searchUsersByLimit(String searchInfo, Long currentPage, Long pageSize) throws Exception {
+		try{
+			return this.userMapper.searchUsersByLimit(searchInfo,currentPage,pageSize);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("searchUsersByLimit",e);
+		}
+	}
+
+	@Override
+	public Long searchAllUsersTotal(String searchInfo) throws Exception {
+		try{
+			return userMapper.searchAllUsersTotal(searchInfo);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("searchAllUsersTotal",e);
+		}
+	}
+
+
+	/*方法,获取头像文件存放的想对路径*/
+	public String getAbsolutePath() {
+/*		File file = new File("src/sharing/image/");
+		String absolutePath = file.getAbsolutePath();
+		String fileAbsolutePath = absolutePath.replaceAll("\\\\", "/");*/
+		String absolutePath = PropertiesReader.class.getResource("/action.properties").getPath();
+		String fileAbsolutePath = absolutePath.replace("action.properties", "sharing/image");
+		String path = fileAbsolutePath.replaceFirst("/", "");
+		/*return fileAbsolutePath;*/
+		
+		/*System.out.println(fileAbsolutePath);*/
+		
+		return path;
+	}	
+	
+/*	public static void  main(String[] args) {
+		getAbsolutePath();
+	}*/
 
 }

@@ -33,4 +33,8 @@ public interface UserMapper {
 	public int startUser(Long userId) throws Exception;
 	
 	public User findUserByName(String userName) throws Exception;
+
+	public List<User> searchUsersByLimit(String searchInfo, Long currentPage, Long pageSize) throws Exception;
+
+	public Long searchAllUsersTotal(String searchInfo) throws Exception;
 }

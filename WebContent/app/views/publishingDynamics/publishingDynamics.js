@@ -11,14 +11,14 @@ angular.module("publishingDynamicsModule",[])
 		}
 		else{
 			var user = {};
-			user.id = 32;//window.localStorage.getItem("UID");
+			user.id = window.localStorage.getItem("UID");
 			$rootScope.dynamic.user = user;
 			return user.id + "," + $rootScope.dynamic.content + "," + $scope.fileCount++;
 		}
 	}
 	
 	$("#input-images").fileinput({
-		uploadUrl:"/GSHARING/base/servlet/fileUploadServlet/FileUploadServlet",
+		uploadUrl:"../base/servlet/fileUploadServlet/FileUploadServlet",
 		allowedFileExtensions: ["jpg", "png", "gif","xlsx","doc"],
 		resizePreference: 'height',
 		maxFileCount: 10,
@@ -45,11 +45,12 @@ angular.module("publishingDynamicsModule",[])
 	
 	
 	$scope.init=function(){
-		DynamicsService.findAllDynamicsByUserId(32,sucess,error);
+		var userId = window.localStorage.getItem("UID");
+		DynamicsService.findAllDynamicsByUserId(userId,sucess,error);
 		
 		function sucess(data){
-			$scope.userName = data["32"].name;
-			$scope.dynamics = data["32"].dynamics;
+			$scope.userName = data[userId].name;
+			$scope.dynamics = data[userId].dynamics;
 			//$("#d").html("<img src='showImagServlet?imgUrl=\'" + data.dynamics[0].images[0].fileCode + "\'' style='width:35%'/>");
 			//$("#d").html("<img src='data:image/jpeg;base64," + data["32"].dynamics[0].images[0].fileCode + "' style='width:35%'/>");
 		}

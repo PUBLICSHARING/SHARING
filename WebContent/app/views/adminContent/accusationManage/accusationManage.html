@@ -1,0 +1,52 @@
+<div class="col-md-12 no-padding userManage-block">
+	<div>
+		<div class="userManage-title-block">
+			<a class="glyphicon glyphicon-bell"></a>
+			<span class="userManage-title-span"> 反馈管理</span>
+		</div>
+		<form class="navbar-form navbar-left userManage-search-form">
+        	<div class="form-group">
+          		<input type="text" class="form-control" placeholder="关键字">
+        	</div>
+        	<button type="submit" class="btn btn-default" ng-click="goMain()">搜索</button>
+    	</form>
+	</div>
+	<div class="userManage-table-block">
+		<table class="table table-bordered userManage-table fileManage-table">
+			<tr>
+				<td class="fileManage-table-td table-id"><label>id</label></td>
+				<td class="fileManage-table-td"><label>举报用户id</label></td>
+				<td class="fileManage-table-td"><label>被举报用户id</label></td>
+				<td class="fileManage-table-td"><label>被举报动态id</label></td>
+				<td class="fileManage-table-td"><label>被举报评论id</label></td>
+				<td class="fileManage-table-td"><label>举报内容</label></td>
+				<td class="fileManage-table-td"><label>举报时间</label></td>
+				<td class="fileManage-table-td"><label>操作</label></td>
+			</tr>
+			<tr ng-repeat="(index,accusation) in accusations">
+				<td class="fileManage-table-td">{{accusation.id}}</td>
+				<td class="fileManage-table-td">{{accusation.accusationUser.id}}</td>
+				<td ng-if="accusation.accusationedUser.id" class="fileManage-table-td">{{accusation.accusationedUser.id}}</td>
+				<td ng-if="!accusation.accusationedUser.id"  class="fileManage-table-td">空</td>
+				<td ng-if="accusation.accusationedDynamic.id" class="fileManage-table-td">{{accusation.accusationedDynamic.id}}</td>
+				<td ng-if="!accusation.accusationedDynamic.id" class="fileManage-table-td">空</td>
+				<td ng-if="accusation.accusationedComment.id" class="fileManage-table-td">{{accusation.accusationedComment.id}}</td>
+				<td ng-if="!accusation.accusationedComment.id" class="fileManage-table-td">空</td>
+				<td class="fileManage-table-td">{{accusation.accusationedRemark}}</td>
+				<td class="fileManage-table-td">{{accusation.accusationedDate | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+				<td>
+					<a class="pointer" ng-click="deleteAccusation(accusation.id)">删除</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="userManage-pageOperator-block">
+		<span>当前页：{{currentPage}} 共{{allPage}}页</span>
+		<button class="btn btn-default" ng-click="prePage()">上一页</button>
+		<button class="btn btn-default" ng-click="nextPage()">下一页</button>
+		<button class="btn btn-default" ng-click="firstPage()">首页</button>
+		<button class="btn btn-default" ng-click="lastPage()">尾页</button>
+		<input type="number" class="userManage-pageOperator-input" ng-model="goPageIndex"/>
+		<button class="btn btn-default" ng-click="goPage()">跳转</button>
+	</div>
+</div>

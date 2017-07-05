@@ -49,7 +49,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                                      '../app/service/user/userService.js',
                                      '../app/directives/foot/foot.js',
                                      '../app/service/question/questionService.js',
-                                     '../app/service/dynamic/dynamicsService.js']
+                                     '../app/service/dynamic/dynamicsService.js',
+                                     '../app/service/accusation/accusationService.js']
                 })
             }
         }))
@@ -227,6 +228,18 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'questionMCtrl',
                     controllerUrl : ['../app/views/adminContent/questionManage/questionManage.js',
                                      '../app/service/question/questionService.js']
+                })
+            }
+        }))
+        /*管理-举报管理*/
+        .state('adminMain.index.accusationManage',angularAMD.route({
+            url : '/accusationManage/:adminId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/accusationManage/accusationManage.html',
+                    controller : 'accusationMCtrl',
+                    controllerUrl : ['../app/views/adminContent/accusationManage/accusationManage.js',
+                                     '../app/service/accusation/accusationService.js']
                 })
             }
         }))

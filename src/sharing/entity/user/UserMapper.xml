@@ -66,4 +66,10 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<update id="startUser">
 		update user set user.isStop='否' where user.id=#{userId}
 	</update>
+	<!-- <select id="searchUsersByLimit" resultType="sharing.entity.user.User">
+		select * from user where user.name like '%#{searchInfo}%' or user.password like '%#{searchInfo}%' or user.sex like '%#{searchInfo}%' or user.email like '%#{searchInfo}%' or user.phone like '%#{searchInfo}%' or user.profile like '%#{searchInfo}%' order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	<select id="searchAllUsersTotal" resultType="java.lang.Long">
+		select count(id) from user where user.name like '%#{searchInfo}%' or user.password like '%#{searchInfo}%' or user.sex like '%#{searchInfo}%' or user.email like '%#{searchInfo}%' or user.phone like '%#{searchInfo}%' or user.profile like '%#{searchInfo}%'
+	</select> -->
 </mapper>
