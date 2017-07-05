@@ -294,4 +294,26 @@ public class UserServiceBean implements UserService{
 		return nowDate + iRandom;
 	}
 
+	@Override
+	public List<User> searchUsersByLimit(String searchInfo, Long currentPage, Long pageSize) throws Exception {
+		try{
+			return this.userMapper.searchUsersByLimit(searchInfo,currentPage,pageSize);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("searchUsersByLimit",e);
+		}
+	}
+
+	@Override
+	public Long searchAllUsersTotal(String searchInfo) throws Exception {
+		try{
+			return userMapper.searchAllUsersTotal(searchInfo);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("searchAllUsersTotal",e);
+		}
+	}
+
 }

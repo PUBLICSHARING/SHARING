@@ -45,6 +45,9 @@ define(['app'],function(app) {
 		},
 		userService.findUserHeadImg = function(userId, sucesscb, errorcb) {
 			userService.save({action:"findUserHeadImg"}, {userId:userId}, sucesscb, errorcb);
+		},
+		userService.searchUsersAndTotalByLimit = function(searchInfo,currentPage,pageSize,sucesscb, errorcb) {
+			userService.get({action:"searchUsersAndTotalByLimit",searchInfo:searchInfo,currentPage:currentPage,pageSize:pageSize}, sucesscb, errorcb);
 		}
 		return userService;
 	})

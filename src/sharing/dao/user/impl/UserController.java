@@ -108,4 +108,21 @@ public class UserController implements UserMapper{
 	public User findUserByName(String userName) throws Exception {
 		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.findUserByName", userName);
 	}
+
+	@Override
+	public List<User> searchUsersByLimit(String searchInfo, Long currentPage, Long pageSize) throws Exception {
+		Map<String, Object> params = new HashMap<String,Object>();
+		Long startIndex = Long.valueOf((currentPage.longValue() - 1L)* pageSize.longValue());
+		params.put("searchInfo", searchInfo);
+		params.put("startIndex", startIndex);
+		params.put("pageSize", pageSize);
+//		return SqlSessionUtil.getSqlSession().selectList("sharing.entity.user.searchUsersByLimit",params);
+		return null;
+	}
+
+	@Override
+	public Long searchAllUsersTotal(String searchInfo) throws Exception {
+//		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.user.searchAllUsersTotal",searchInfo);
+		return null;
+	}
 }

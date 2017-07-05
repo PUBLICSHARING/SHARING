@@ -31,5 +31,10 @@ adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateP
 			$rootScope.alertWarn("查询未查看反馈数量失败！");
 		}
 	}
+	
+	$scope.goAccusationManage = function() {
+		$state.go("adminMain.index.accusationManage",{adminId:$scope.adminId});
+	}
+	
 	$scope.findNotReadCountOfQuestion();
 }])

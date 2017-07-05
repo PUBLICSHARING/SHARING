@@ -230,6 +230,18 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
+        /*管理-举报管理*/
+        .state('adminMain.index.accusationManage',angularAMD.route({
+            url : '/accusationManage/:adminId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/accusationManage/accusationManage.html',
+                    controller : 'accusationMCtrl',
+                    controllerUrl : ['../app/views/adminContent/accusationManage/accusationManage.js',
+                                     '../app/service/accusation/accusationService.js']
+                })
+            }
+        }))
          .state('fileupload',angularAMD.route({
             url : '/fileupload',
             views : {
