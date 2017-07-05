@@ -324,14 +324,24 @@ public class UserServiceBean implements UserService{
 /*		File file = new File("src/sharing/image/");
 		String absolutePath = file.getAbsolutePath();
 		String fileAbsolutePath = absolutePath.replaceAll("\\\\", "/");*/
-		String absolutePath = PropertiesReader.class.getResource("/action.properties").getPath();
+		
+		
+		
+		/*String absolutePath = PropertiesReader.class.getResource("/action.properties").getPath();
 		String fileAbsolutePath = absolutePath.replace("action.properties", "sharing/image");
-		String path = fileAbsolutePath.replaceFirst("/", "");
+		String path = fileAbsolutePath.replaceFirst("/", "");*/
+		
+		
+		
 		/*return fileAbsolutePath;*/
 		
 		/*System.out.println(fileAbsolutePath);*/
 		
-		return path;
+		/*return path;*/
+		String absolutionPath = System.getProperty("user.dir");
+		String bString = absolutionPath.replace("\\\\", "/");
+		bString += "/src/sharing/image";
+		return bString;
 	}	
 	
 /*	public static void  main(String[] args) {
