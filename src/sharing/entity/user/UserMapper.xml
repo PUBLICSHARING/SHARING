@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		select * from user where name=#{name}
 	</select>
 	<insert keyColumn="id" id="addUser" parameterType="sharing.entity.user.User"  useGeneratedKeys="true" keyProperty="id">
-		insert into user(name,password,phone,email) values(#{name},#{password},#{phone},#{email})
+		insert into user(name,password,phone,email,headImg) values(#{name},#{password},#{phone},#{email},#{headImg})
 	</insert>
 	<select id="judgeLoginUser" parameterType="sharing.entity.user.User" resultType="sharing.entity.user.User">
 		select * from user where name=#{name} and password=#{password}

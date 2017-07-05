@@ -45,6 +45,7 @@ public class UserServiceBean implements UserService{
 	@Override
 	public Long addUser(User user) throws Exception {
 		try{
+			user.setHeadImg("D:/myWorkSpace/groupGit/SHARING/WebContent/app/directives/title/image/default.jpg");
 			return this.userMapper.addUser(user);
 		}
 		catch(Exception e) {
