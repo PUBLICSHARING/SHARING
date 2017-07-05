@@ -12,7 +12,7 @@ changeUserInfo.controller("changeUserInfoCtrl",["$scope","$rootScope","$state","
 		UserService.findUserById($scope.user.id, sucesscb, errorcb);
 		
 		function sucesscb(data) {
-			if(data != null) {	//在查询用户信息时,如果不存在,则返回null
+			if(data != null && data != "null") {	//在查询用户信息时,如果不存在,则返回null
 				$scope.user = data;
 			} else {
 				$rootScope.alertDisappear("获取用户信息失败", 1000);

@@ -14,7 +14,7 @@ changePassWordApp.controller("changePassWordCtrl",["$scope","$rootScope","$state
 		UserService.updatePassWord($scope.userId, $scope.originalPassWord, $scope.newPassWord, sucesscb, errorcb);
 		
 		function sucesscb(data) {
-			if(data == null) {
+			if(data == "null" || data == null) {
 				$rootScope.alertWarn("原始密码错误,请检查");
 			} else {
 				$rootScope.alertDisappear("修改成功", 1000);
