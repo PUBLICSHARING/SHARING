@@ -8,10 +8,34 @@
 		<div id="net-base" class="col-md-12 no-padding">
 			<span>Copyright © 2017-2032 版权所有 
 			<a class="pointer" ng-click="goAbout()">关于我们</a> 
-			<a class="pointer" ng-click="goQuestion()">问题反馈</a>  渝ICP备12003257号</span>
+			<a class="pointer" ng-click="openDialog()">问题反馈</a>  渝ICP备12003257号</span>
 		</div>
 	</div>
 	<div class="col-md-2 no-padding"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="questionDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">问题反馈</h4>
+      </div>
+      <div class="modal-body">
+        <form name="questionForm">
+        	<div class="form-group">
+		    	<label for="exampleInputEmail1"></label>
+		    	<textarea rows="4" type="text" class="form-control" id="exampleInputEmail1" placeholder="输入您反馈的信息" ng-model="question.remark"></textarea>
+		    </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button ng-disabled="!question.remark" type="button" ng-click="submmitQuestion()" class="btn btn-primary">提交</button>
+      </div>
+    </div>
+  </div>
 </div>
 <style>
 	#foot{
