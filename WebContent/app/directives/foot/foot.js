@@ -5,7 +5,7 @@ footApp.directive("foot",function(){
 			
 		}, 
 		restrict:"EAMC",
-		controller:["$scope","$rootScope","$state","$stateParams",function($scope,$rootScope,$state,$stateParams) {
+		controller:["$scope","$rootScope","$state","$stateParams","QuestionService",function($scope,$rootScope,$state,$stateParams,QuestionService) {
 			$scope.userId = $stateParams.userId;
 			$scope.question = {};
 			$scope.goAbout = function() {
@@ -25,7 +25,8 @@ footApp.directive("foot",function(){
 				$scope.question.user = {id:$scope.userId};
 				QuestionService.addQuestion($scope.question,sucesscb,errorcb);
 				function sucesscb(data) {
-					$rootScope.alertDisappear("反馈成功，我们会尽快处理");
+					$('#questionDialog').modal('hide');
+					$rootScope.alertDisappear("反馈成功，我们会尽快处理",1000);
 				}
 				function errorcb(error) {
 					$rootScope.alertWarn("反馈失败！");

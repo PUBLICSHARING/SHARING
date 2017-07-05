@@ -16,6 +16,16 @@ public class Question implements Serializable{
 	private Date submitDate;
 	
 	private User user;
+	
+	private String isRead;
+
+	public String getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(String isRead) {
+		this.isRead = isRead;
+	}
 
 	public Long getId() {
 		return id;
