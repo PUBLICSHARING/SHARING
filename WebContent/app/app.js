@@ -49,7 +49,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                                      '../app/service/user/userService.js',
                                      '../app/directives/foot/foot.js',
                                      '../app/service/question/questionService.js',
-                                     '../app/service/dynamic/dynamicsService.js']
+                                     '../app/service/dynamic/dynamicsService.js',
+                                     '../app/service/accusation/accusationService.js']
                 })
             }
         }))

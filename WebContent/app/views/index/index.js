@@ -1,5 +1,5 @@
 var indexApp = angular.module("indexApp",[]);
-indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService",function($scope,$rootScope,$state,$stateParams,DynamicsService) {
+indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService",function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService) {
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}
@@ -50,5 +50,46 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 	
 	$scope.cancelConment = function(index){
 		$("#" + index).slideUp(200);
+	}
+	/*举报*/
+	$scope.accusation = {};
+	$scope.type = null;
+	$scope.id = null;
+	$scope.clickAccusation = function(type,id) {
+		$scope.type = type;
+		$scope.id = id;
+		$('#accusationDialog').modal({backdrop:'static', keyboard: false});
+		$('#accusationDialog').modal('show');
+	}
+	
+	$scope.submmitAccusation = function(){
+		$scope.accusation.accusationUser = {id:$scope.userId};
+		if($scope.type==="dynamic"){
+			$scope.accusation.accusationedDynamic = {id:$scope.id};
+		}
+		else if($scope.type==="user"){
+			$scope.accusation.accusationedUser = {id:$scope.id};
+		}
+		else if($scope.type==="comment"){
+			$scope.accusation.accusationedComment = {id:$scope.id};
+		}
+		$scope.addAccusation();
+	}
+	
+	$scope.addAccusation = function() {
+		AccusationService.addAccusation($scope.accusation,sucesscb,errorcb);
+		function sucesscb(data) {
+			$scope.accusation = {};
+			$scope.type = null;
+			$scope.id = null;
+			$('#accusationDialog').modal('hide');
+			$rootScope.alertDisappear("举报成功，我们会尽快处理！",1000);
+		}
+		function errorcb(error) {
+			$scope.accusation = {};
+			$scope.type = null;
+			$scope.id = null;
+			$rootScope.alertWarn("举报失败！");
+		}
 	}
 }])

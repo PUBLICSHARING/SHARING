@@ -21,6 +21,7 @@
 				<div class="index_comment">
 					<!--<img src="/SHARING/app/image/index/like.png"style="cursor: pointer;" /> -->
 					<div class="index_image_div" ng-click="enterFavor($event)">
+<<<<<<< Updated upstream
 						<a><span class="glyphicon glyphicon-thumbs-up"
 							style="cursor: pointer;"></span>+336次</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a><span
@@ -31,6 +32,13 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a ng-click="conment($index)"><span
 							class="glyphicon glyphicon-pencil"
 							style="cursor: pointer; text-decoration: none"></span>回复</a>
+						<a><span class="glyphicon glyphicon-thumbs-up" style="cursor: pointer;"></span>+336次</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a><span class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>-23次</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a><span class="glyphicon glyphicon-question-sign" style="cursor: pointer;text-decoration: none" ng-click="clickAccusation('dynamic',dynamic.id)"></span>举报</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a><span class="glyphicon glyphicon-pencil" style="cursor: pointer;text-decoration: none"></span>回复</a>
 					</div>
 					<!-- 					<div class="favor_div">
 						<span>XXXX次赞</span>
@@ -65,4 +73,27 @@
 		</div>
 	</div>
 	<foot></foot>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="accusationDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">问题反馈</h4>
+      </div>
+      <div class="modal-body">
+        <form name="questionForm">
+        	<div class="form-group">
+		    	<label for="exampleInputEmail1"></label>
+		    	<textarea rows="4" type="text" class="form-control" id="exampleInputEmail1" placeholder="输入您举报的理由" ng-model="accusation.accusationedRemark"></textarea>
+		    </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button ng-disabled="!accusation.accusationedRemark" type="button" ng-click="submmitAccusation()" class="btn btn-primary">提交</button>
+      </div>
+    </div>
+  </div>
 </div>
