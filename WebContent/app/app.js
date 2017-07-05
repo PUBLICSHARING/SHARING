@@ -47,7 +47,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controllerUrl : ['../app/views/index/index.js',
                                      '../app/directives/title/title.js',
                                      '../app/service/user/userService.js',
-                                     '../app/directives/foot/foot.js']
+                                     '../app/directives/foot/foot.js',
+                                     '../app/service/question/questionService.js']
                 })
             }
         }))
@@ -61,7 +62,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'loginInCtrl',
                     controllerUrl : ['../app/views/loginIn/loginIn.js',
                                      '../app/directives/foot/foot.js',
-                                     '../app/service/user/userService.js']
+                                     '../app/service/user/userService.js',
+                                     '../app/service/question/questionService.js']
                 })
             }
         }))
@@ -75,7 +77,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'registerCtrl',
                     controllerUrl : ['../app/views/register/register.js',
                                      '../app/directives/foot/foot.js',
-                                     '../app/service/user/userService.js']
+                                     '../app/service/user/userService.js',
+                                     '../app/service/question/questionService.js']
                 })
             }
         }))
@@ -88,7 +91,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'chooseCtrl',
                     controllerUrl : ['../app/views/chooseInterests/chooseInterests.js',
                                      '../app/directives/foot/foot.js',
-                                     '../app/service/user/userService.js']
+                                     '../app/service/user/userService.js',
+                                     '../app/service/question/questionService.js']
                 })
             }
         }))
@@ -101,7 +105,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'aboutCtrl',
                     controllerUrl : ['../app/views/aboutUs/aboutUs.js',
                                      '../app/directives/foot/foot.js',
-                                     '../app/service/user/userService.js']
+                                     '../app/service/user/userService.js',
+                                     '../app/service/question/questionService.js']
                 })
             }
         }))
@@ -114,7 +119,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'questionCtrl',
                     controllerUrl : ['../app/views/question/question.js',
                                      '../app/directives/foot/foot.js',
-                                     '../app/service/user/userService.js']
+                                     '../app/service/user/userService.js',
+                                     '../app/service/question/questionService.js']
                 })
             }
         }))
@@ -214,10 +220,10 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
             url : '/fileupload',
             views : {
                 '' : angularAMD.route({
-                    templateUrl : '/GSHARING/app/directives/fileupload/fileupload.html',
+                    templateUrl : '../app/directives/fileupload/fileupload.html',
                     controller : '',
-                    controllerUrl : ['/GSHARING/lib/bootstrapfileinput/fileinput.js',
-                                     '/GSHARING/app/directives/fileupload/fileupload.js']
+                    controllerUrl : ['../lib/bootstrapfileinput/fileinput.js',
+                                     '../app/directives/fileupload/fileupload.js']
                 })
             }
         }))
@@ -243,7 +249,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 '' : angularAMD.route({
                     templateUrl : '../app/views/userInfo/userInfo.html',
                     controller : 'userInfoCtrl',
-                    controllerUrl : ['/SHARING/app/views/userInfo/userInfo.js',
+                    controllerUrl : ['../app/views/userInfo/userInfo.js',
                                      '../app/directives/title/title.js',
                                      '../app/service/user/userService.js',
                                      '../lib/bootstrap/js/bootstrap.min.js',
@@ -258,13 +264,13 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
             url : '/information/:userId',
             views : {
                 '' : angularAMD.route({
-                    templateUrl : '/SHRING/app/views/userInfo/changeUserInfo.html',
+                    templateUrl : '../app/views/userInfo/changeUserInfo.html',
                     controller : 'changeUserInfoCtrl',
-                    controllerUrl : ['/SHRING/app/views/userInfo/changeUserInfo.js',
+                    controllerUrl : ['../app/views/userInfo/changeUserInfo.js',
                                      '../app/directives/title/title.js',
                                      '../lib/bootstrap/js/bootstrap.min.js',
                                      '../app/service/user/userService.js',
-                                     '/SHRING/lib/ng-img-crop/ng-img-crop.js']
+                                     '../lib/ng-img-crop/ng-img-crop.js']
                 })
             }
         }))
@@ -275,7 +281,7 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 '' : angularAMD.route({
                     templateUrl : '/SHARING/app/views/userInfo/changePassWord.html',
                     controller : 'changePassWordCtrl',
-                    controllerUrl : ['/SHRING/app/views/userInfo/changePassWord.js',
+                    controllerUrl : ['../app/views/userInfo/changePassWord.js',
                                      '../app/directives/title/title.js',
                                      '../app/service/user/userService.js',
                                      '../lib/bootstrap/js/bootstrap.min.js',
@@ -290,13 +296,13 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
             url : '/headerImg/:userId',
             views : {
                 '' : angularAMD.route({
-                    templateUrl : '/SHRING/app/views/userInfo/changeHeaderImg.html',
+                    templateUrl : '../app/views/userInfo/changeHeaderImg.html',
                     controller : 'changeHeaderImgCtrl',
-                    controllerUrl : ['/SHRING/app/views/userInfo/changeHeaderImg.js',
+                    controllerUrl : ['../app/views/userInfo/changeHeaderImg.js',
                                      '../app/directives/title/title.js',
                                      '../lib/bootstrap/js/bootstrap.min.js',
                                      '../app/service/user/userService.js',
-                                     '/SHRING/lib/ng-img-crop/ng-img-crop.js']
+                                     '../lib/ng-img-crop/ng-img-crop.js']
                 })
             }
         }))
