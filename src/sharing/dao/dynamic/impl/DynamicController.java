@@ -7,6 +7,7 @@ import java.util.Map;
 import base.sqlSession.SqlSessionUtil;
 import sharing.dao.dynamic.DynamicMapper;
 import sharing.entity.dynamic.Dynamic;
+import sharing.entity.user.User;
 
 public class DynamicController implements DynamicMapper{
 
@@ -33,6 +34,21 @@ public class DynamicController implements DynamicMapper{
 	@Override
 	public Long findCountOfDynamicsByUserId(Long userId) throws Exception {
 		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.dynamic.findCountOfDynamicsByUserId",userId);
+	}
+
+	@Override
+	public Long findMaxDynamicId() throws Exception {
+		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.dynamic.findMaxDynamicId");
+	}
+
+	@Override
+	public Map<String, Object> findAllDynamicsByUserId(Long id) throws Exception {
+		return SqlSessionUtil.getSqlSession().selectMap("sharing.entity.dynamic.findAllDynamicsByUserId",id,"id");
+	}
+	
+	@Override
+	public Map<String, Object> findNewestDynamics() throws Exception {
+		return SqlSessionUtil.getSqlSession().selectMap("sharing.entity.dynamic.findNewestDynamics","id");
 	}
 
 }

@@ -131,9 +131,17 @@
 	padding-top: 12px;
 	border-bottom: 2px solid green;
 }
+
+.dynamic_content{
+	width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;border-radius: 4%;
+}
+
+.dynamic_img_box{
+	border:1px solid red;width: 35%;float:left;display:inline-block; margin: 2px 8px 2px 0px
+}
 </style>
 
-<div class="main_wrap">
+<div class="main_wrap" ng-init="init()">
 
 	<div class="main_wrap_head">
 		<div class="main_wrap_head_title">我的动态</div>
@@ -186,70 +194,26 @@
 		</div>
 
 		<!-- 动态历史纪录区域 -->
-		<div class="main_wrap_dynamic">
+		<div class="main_wrap_dynamic" ng-repeat="dynamic in dynamics">
 			<div class="full_height float_left" style="width: 10%;">
 				<span><img src="../app/image/title/c1342c0ad0.jpg"
 					class="dynamicOwn_img" /></span>
 			</div>
-			<div class="full_height float_right"
-				style="width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;">
+			<div class="full_height float_right dynamic_content">
 				<div class="full_width">
 					<p>
-						<a href="#">我有故事/\君尚有酒？</a>老司机，给你来福利啦，漂亮吗？哈哈哈哈，这个给你了，不用谢。
+						<a href="#">{{userName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;{{dynamic.content}}
 					</p>
 				</div>
-				<div class="full_width">
-					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
+				<div class="full_width"><!-- ../app/image/title/c1342c0ad0.jpg -->
+					<div class='dynamic_img_box'  ng-repeat="imge in dynamic.images">
+						<img src="data:image/jpeg;base64,{{imge.fileCode}}" style="width:100%;"/>
+					</div>
+					<div style="clear: both;"></div>
 				</div>
 				<div class="full_width"
 					style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
-					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
-						A53m</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="main_wrap_dynamic">
-			<div class="full_height float_left" style="width: 10%;">
-				<span><img src="../app/image/title/c1342c0ad0.jpg"
-					class="dynamicOwn_img" /></span>
-			</div>
-			<div class="full_height float_right"
-				style="width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;">
-				<div class="full_width">
-					<p>
-						<a href="#">我有故事/\君尚有酒？</a>老司机，给你来福利啦，漂亮吗？哈哈哈哈，这个给你了，不用谢。
-					</p>
-				</div>
-				<div class="full_width">
-					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
-				</div>
-				<div class="full_width"
-					style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
-					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
-						A53m</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="main_wrap_dynamic">
-			<div class="full_height float_left" style="width: 10%;">
-				<span><img src="../app/image/title/c1342c0ad0.jpg"
-					class="dynamicOwn_img" /></span>
-			</div>
-			<div class="full_height float_right"
-				style="width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;">
-				<div class="full_width">
-					<p>
-						<a href="#">我有故事/\君尚有酒？</a>老司机，给你来福利啦，漂亮吗？哈哈哈哈，这个给你了，不用谢。
-					</p>
-				</div>
-				<div class="full_width">
-					<img src="../app/image/title/c1342c0ad0.jpg" style="width: 35%;" />
-				</div>
-				<div class="full_width"
-					style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
-					<a href="#">2017年6月17日</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
+					<a href="#">{{formatDate(dynamic.publishTime)}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
 						A53m</span>
 				</div>
 			</div>

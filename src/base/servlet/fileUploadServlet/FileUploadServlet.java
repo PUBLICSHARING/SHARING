@@ -1,6 +1,10 @@
 package base.servlet.fileUploadServlet;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,12 +16,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -59,10 +64,6 @@ public class FileUploadServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)  
 			throws ServletException, IOException {  
 		
-		Long did = (long)-1;
-		
-		HttpSession didSession = null;
-		
 		PrintWriter out = response.getWriter();
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();  
@@ -100,59 +101,60 @@ public class FileUploadServlet extends HttpServlet {
 			        	 Dynamic dynamic = new Dynamic();
 			        	 dynamic.setContent(mes[1]);
 			        	 dynamic.setUser(user);
+			        	 
+			        	 //设置点赞人数
+			        	 dynamic.setDislikeNum((long) 0);
+			        	 dynamic.setLikeNum((long)0);
+			        	 
 			        	 dynamic.setPublishTime(new Date());
-			        	 did = dynamicAction.addDynamic(dynamic);
-			        	 didSession = request.getSession(true);
-			        	 didSession.setAttribute("Did", did);
-			        	 System.out.println(name); 
-			        	 System.out.println(value);
+			        	 synchronized (dynamic) {
+			        		 dynamicId = dynamicAction.addDynamic(dynamic);
+						}
 			         }
 				}
-				//附加文件动态
-				for(FileItem fitem : dd){  
-					if(dd == null)
-						break;
-					if(fitem.isFormField()){//判断是否是文件流 ，这里还有一种是文本
-						
-					}else{  
-						//会将完整路径名传过来 
-						String value = fitem.getName(); 
-						int start = value.lastIndexOf("\\");  
-						String fileName = value.substring(start+1);  
-						//以流的形式返回上传文件的主体内容
-						InputStream in = item.getInputStream();  
-						//item.write(new File(realPath,fileName));  
-						int index = fileName.lastIndexOf(".");  
-						String realFileName = fileName.substring(0,index);  
-						String type = fileName.substring(index+1);
-						
-						//图片的流处理为base64编码
-						String base64Code = ioToBase64(in);
-						
-						//构造一个文件的对象
-						SharingFile sharingFile = new SharingFile();
-						Dynamic dynamic = new Dynamic();
-						didSession = request.getSession(true);
-						Long id = Long.parseLong(didSession.getAttribute("Did") + "");
-						System.out.println(id);
-						//session设置外键
-						dynamic.setId(id);
-						
-						sharingFile.setFileName(realFileName);
-						sharingFile.setFileCode(base64Code);
-						sharingFile.setFileType(type);
-						sharingFile.setUploadDate(new Date());
-						sharingFile.setDynamic(dynamic);
-						
-						//持久化到数据库中
-						sharingFileAction.addSharingFile(sharingFile);
-						//write方法将FileItem对象中的内容保存到某个指定的文件中
-						//item.write(new File("D:\\12324.jpg"));
-					}  
-				} 
 			}
 			
-			out.write(JSON.toJSONString(did));
+			//附加文件动态
+			for(FileItem item : dd){  
+				if(dd == null)
+					break;
+				if(item.isFormField()){//判断是否是文件流 ，这里还有一种是文本
+					
+				}else{  
+					//会将完整路径名传过来 
+					String value = item.getName(); 
+					int start = value.lastIndexOf("\\");  
+					String fileName = value.substring(start+1); 
+					
+					//处理图片
+					InputStream in = handUploadImg(item);
+					//以流的形式返回上传文件的主体内容
+					//InputStream in = item.getInputStream();  
+					
+					int index = fileName.lastIndexOf(".");  
+					String realFileName = fileName.substring(0,index);  
+					String type = fileName.substring(index+1);
+					
+					//图片的流处理为base64编码
+					String base64Code = ioToBase64(in);
+					
+					//构造一个文件的对象
+					SharingFile sharingFile = new SharingFile();
+					Dynamic dynamic = new Dynamic();
+					Long id = dynamicAction.findMaxDynamicId();
+					dynamic.setId(id);
+					
+					sharingFile.setFileName(realFileName);
+					sharingFile.setFileCode(base64Code);
+					sharingFile.setFileType(type);
+					sharingFile.setUploadDate(new Date());
+					sharingFile.setDynamic(dynamic);
+					
+					//持久化到数据库中
+					sharingFileAction.addSharingFile(sharingFile);
+				}  
+				out.write(JSON.toJSONString(new Object()));
+			} 
 			
 		} catch (Exception e) {  
 
@@ -196,5 +198,39 @@ public class FileUploadServlet extends HttpServlet {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+	}
+	
+	//处理上传的图片大小
+	public InputStream handUploadImg(FileItem item){
+		try {
+			InputStream inputStream = item.getInputStream();
+			//设置图片高度为620px
+			int imgHeight = 720;
+			int imgWidth = 450;
+			
+			//获取图片
+			Image src = ImageIO.read(inputStream); 
+			
+			//将设置好的图片追加到BufferedImage中 
+			BufferedImage bufferedImage = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB); 
+			Graphics2D graphics = bufferedImage.createGraphics(); 
+			
+			//重构图片 
+			graphics.drawImage(src, 0, 0, imgWidth, imgHeight, null); 
+			
+			ByteArrayOutputStream bs =new ByteArrayOutputStream(); 
+			
+			ImageOutputStream imOut =ImageIO.createImageOutputStream(bs); 
+			
+			ImageIO.write(bufferedImage,"jpg",imOut); 
+			
+			//将图片转为inputStream流 
+			inputStream = new ByteArrayInputStream(bs.toByteArray());
+			
+			return inputStream;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

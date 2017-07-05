@@ -2,10 +2,12 @@ package sharing.service.dynamic.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import sharing.dao.dynamic.DynamicMapper;
 import sharing.dao.dynamic.impl.DynamicController;
 import sharing.entity.dynamic.Dynamic;
+import sharing.entity.user.User;
 import sharing.service.dynamic.DynamicService;
 
 public class DynamicServiceBean implements DynamicService{
@@ -53,6 +55,36 @@ public class DynamicServiceBean implements DynamicService{
 		catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("findCountOfDynamicsByUserId",e);
+		}
+	}
+	
+	@Override
+	public Long findMaxDynamicId() throws Exception{
+		try {
+			return this.dynamicMapper.findMaxDynamicId();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("findMaxDynamicId",e);
+		}
+	}
+
+	@Override
+	public Map<String, Object> findAllDynamicsByUserId(Long id) throws Exception {
+		try {
+			return this.dynamicMapper.findAllDynamicsByUserId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("findAllDynamicsByUserId",e);
+		}
+	}
+	
+	@Override
+	public Map<String,Object> findNewestDynamics() throws Exception{
+		try {
+			return this.dynamicMapper.findNewestDynamics();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("findAllDynamicsByUserId",e);
 		}
 	}
 

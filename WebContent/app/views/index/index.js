@@ -1,5 +1,5 @@
 var indexApp = angular.module("indexApp",[]);
-indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams",function($scope,$rootScope,$state,$stateParams) {
+indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService",function($scope,$rootScope,$state,$stateParams,DynamicsService) {
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}
@@ -15,5 +15,19 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams",f
 	$scope.saveComment = function($event) {
 		$scope.comment = $event.target.parentElement.firstElementChild.value;
 		$rootScope.alertDisappear($scope.comment, 1000);
+	}
+	
+	$scope.init = function(){
+		$scope.newestDynamics = [];
+		DynamicsService.findNewestDynamics(success,error);
+		function success(data){
+			for(var pro in data){
+				$scope.newestDynamics.push(data[pro]);
+			}
+		}
+		
+		function error(error){
+			
+		}
 	}
 }])
