@@ -17,9 +17,13 @@ public class Comment implements Serializable{
 	
 	private Dynamic dynamic;
 	
-	private User user;
+	private User fromUser;
+	
+	private User toUser;
 	
 	private Comment fatherComment;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -53,12 +57,12 @@ public class Comment implements Serializable{
 		this.dynamic = dynamic;
 	}
 
-	public User getUser() {
-		return user;
+	public User getFromUser() {
+		return fromUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setFromUser(User fromUser) {
+		this.fromUser = fromUser;
 	}
 
 	public Comment getFatherComment() {
@@ -68,4 +72,13 @@ public class Comment implements Serializable{
 	public void setFatherComment(Comment fatherComment) {
 		this.fatherComment = fatherComment;
 	}
+
+	public User getToUser() {
+		return toUser;
+	}
+
+	public void setToUser(User toUser) {
+		this.toUser = toUser;
+	}
+	
 }

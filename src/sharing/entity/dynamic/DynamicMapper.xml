@@ -51,10 +51,29 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	</select>
 
 	<select id="findNewestDynamics" resultMap="newestDynamicsInfo">
-		SELECT `user`.id as userId,dy.id,`user`.`name`,dy.content,dy.publishTime,dy.likeNum,dy.dislikeNum,sf.fileCode FROM dynamic dy LEFT JOIN `user` ON `user`.id = dy.userId LEFT JOIN sharingfile sf ON dy.id = sf.dynamicId ORDER BY dy.publishTime DESC
+		SELECT
+		dus.id AS userId,
+		dy.id,
+		dus.`name`,
+		dy.content,
+		dy.publishTime,
+		dy.likeNum,
+		dy.dislikeNum,
+		sf.fileCode,
+		fus.`name` AS fname,
+		fus.id AS fid,
+		co.content AS commentContent,
+		co.commentTime,
+		co.id as commentId
+		FROM
+		dynamic AS dy
+		LEFT JOIN `user` AS dus ON dus.id = dy.userId
+		LEFT JOIN sharingfile AS sf ON dy.id = sf.dynamicId
+		LEFT JOIN `comment` AS co ON dy.id = co.dynamicId
+		LEFT JOIN `user` AS fus ON co.fromUserId = fus.id
+		ORDER BY
+		dy.publishTime DESC
 	</select>
-
-
 	<resultMap type="sharing.entity.user.User" id="UserAllDynamicInfo">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
@@ -75,12 +94,21 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<result property="publishTime" column="publishTime" />
 		<result property="likeNum" column="likeNum" />
 		<result property="dislikeNum" column="dislikeNum" />
-    	<association property="user" javaType="sharing.entity.user.User">  
-        	<id property="id" column="userId"/>  
-        	<result property="name" column="name"/>
-    	</association>  
-    	<collection property="images" ofType="sharing.entity.file.SharingFile">
+		<association property="user" javaType="sharing.entity.user.User">
+			<id property="id" column="userId" />
+			<result property="name" column="name" />
+		</association>
+		<collection property="images" ofType="sharing.entity.file.SharingFile">
 			<result property="fileCode" column="fileCode" />
+		</collection>
+		<collection property="comments" ofType="sharing.entity.comment.Comment">
+			<result property="id" column="commentId" />
+			<result property="content" column="commentContent" />
+			<result property="commentTime" column="commentTime" />
+			<association property="fromUser" javaType="sharing.entity.user.User">
+				<id property="id" column="fid" />
+				<result property="name" column="fname" />
+			</association>
 		</collection>
 	</resultMap>
 </mapper>

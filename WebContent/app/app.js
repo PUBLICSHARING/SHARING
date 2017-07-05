@@ -50,7 +50,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                                      '../app/directives/foot/foot.js',
                                      '../app/service/question/questionService.js',
                                      '../app/service/dynamic/dynamicsService.js',
-                                     '../app/service/accusation/accusationService.js']
+                                     '../app/service/accusation/accusationService.js',
+                                     '../app/service/comment/commentService.js']
                 })
             }
         }))

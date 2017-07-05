@@ -6,4 +6,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="findCountOfCommentsByUserId" resultType="java.lang.Long">
 		select count(id) from comment where userId=#{userId}
 	</select>
+	<insert id="addComment" keyColumn="id" parameterType="sharing.entity.comment.Comment" useGeneratedKeys="true" keyProperty="id">
+		insert into comment(content,commentTime,dynamicId,fromUserId,toUserId,fatherCommentId) values(#{content},#{commentTime},#{dynamic.id},#{fromUser.id},#{toUser.id},#{fatherComment.id})
+	</insert>
 </mapper>

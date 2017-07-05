@@ -1,5 +1,5 @@
 var indexApp = angular.module("indexApp",[]);
-indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService",function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService) {
+indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService",function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService) {
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}
@@ -18,6 +18,7 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 	}
 	
 	$scope.init = function(){
+		$scope.comment = {};
 		$scope.newestDynamics = [];
 		DynamicsService.findNewestDynamics(success,error);
 		function success(data){
@@ -27,7 +28,7 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 		}
 		
 		function error(error){
-			
+			$rootScope.alertWarn("查询出错");
 		}
 	}
 	
@@ -44,12 +45,34 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 	    return "" + year + "年" + month + "月    " + hour + "时" + minutes + "分" + second + "秒";
 	}
 	
-	$scope.conment = function(index){
+	$scope.openConment = function(index){
 		$("#" + index).slideDown(200);
+		$scope.content = "";
 	}
 	
 	$scope.cancelConment = function(index){
 		$("#" + index).slideUp(200);
+		$scope.content = "";
+	}
+	
+	$scope.saveComment = function(outerIndex,dynamicId){
+		var user = {};
+		var dynamic = {};
+		dynamic.id = dynamicId;
+		user.id = window.localStorage.getItem("UID");
+		$scope.comment.fromUser = user;
+		$scope.comment.dynamic = dynamic;
+		$scope.comment.content = $scope.newestDynamics[outerIndex].newContent;
+	
+		CommentService.addComment($scope.comment,success,error);
+		
+		function success(data){
+			$state.go('main.index',{"userId":$stateParams.userId},{ reload:true});
+		}
+		
+		function error(error){
+			
+		}
 	}
 	/*举报*/
 	$scope.accusation = {};
