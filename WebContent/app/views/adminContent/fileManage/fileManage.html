@@ -15,7 +15,6 @@
 		<table class="table table-bordered userManage-table fileManage-table">
 			<tr>
 				<td class="fileManage-table-td table-id"><label>id</label></td>
-				<td class="fileManage-table-td"><label>文件流</label></td>
 				<td class="fileManage-table-td"><label>文件名</label></td>
 				<td class="fileManage-table-td fileManage-table-width"><label>宽</label></td>
 				<td class="fileManage-table-td fileManage-table-width"><label>高</label></td>
@@ -28,7 +27,6 @@
 			</tr>
 			<tr ng-repeat="(index,file) in files">
 				<td class="fileManage-table-td table-id">{{file.id}}</td>
-				<td class="fileManage-table-td">{{file.fileCode}}</td>
 				<td class="fileManage-table-td">{{file.fileName}}</td>
 				<td class="fileManage-table-td fileManage-table-width">{{file.width}}</td>
 				<td class="fileManage-table-td fileManage-table-width">{{file.height}}</td>

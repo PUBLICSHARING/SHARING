@@ -148,7 +148,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 'left@adminMain' : angularAMD.route({
                     templateUrl : '../app/views/adminMain/adminLeft/adminLeft.html',
                     controller : 'adminLeftCtrl',
-                    controllerUrl : ['../app/views/adminMain/adminLeft/adminLeft.js']
+                    controllerUrl : ['../app/views/adminMain/adminLeft/adminLeft.js',
+                                     '../app/service/question/questionService.js']
                 }),
                 'right@adminMain' : angularAMD.route({
                     templateUrl : '../app/views/adminMain/adminRight/adminRight.html',
@@ -213,6 +214,18 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     controller : 'fileMCtrl',
                     controllerUrl : ['../app/views/adminContent/fileManage/fileManage.js',
                                      '../app/service/file/sharingFileService.js']
+                })
+            }
+        }))
+        /*管理-反馈管理*/
+        .state('adminMain.index.questionManage',angularAMD.route({
+            url : '/questionManage/:adminId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/adminContent/questionManage/questionManage.html',
+                    controller : 'questionMCtrl',
+                    controllerUrl : ['../app/views/adminContent/questionManage/questionManage.js',
+                                     '../app/service/question/questionService.js']
                 })
             }
         }))

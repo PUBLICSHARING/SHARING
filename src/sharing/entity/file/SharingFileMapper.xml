@@ -22,7 +22,6 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	</resultMap>
 	<resultMap type="sharing.entity.file.SharingFile" id="FileBaseInfo">
 		<result property="id" column="id"/>
-		<result property="fileCode" column="fileCode"/>
 		<result property="fileType" column="fileType"/>
 		<result property="fileName" column="fileName"/>
 		<result property="width" column="width"/>

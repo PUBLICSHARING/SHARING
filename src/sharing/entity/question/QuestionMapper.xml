@@ -6,4 +6,33 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<insert id="addQuestion" parameterType="sharing.entity.question.Question" useGeneratedKeys="true" keyProperty="id">
 		insert into question(remark,userId,submitDate) values(#{remark},#{userId},#{submitDate})
 	</insert>
+	<resultMap type="sharing.entity.user.User" id="UserNameAndId">
+		<result property="id" column="userId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap type="sharing.entity.question.Question" id="QuestionInfoAndUserBase">
+		<result property="id" column="id"/>
+		<result property="remark" column="remark"/>
+		<result property="submitDate" column="submitDate"/>
+		<result property="isRead" column="isRead"/>
+		<association property="user"  column="userId" javaType="sharing.entity.user.User" resultMap="UserNameAndId"/>
+	</resultMap>
+	<select id="findQuestionsByLimit" resultMap="QuestionInfoAndUserBase">
+		select * from question left join user on user.id=question.userId limit #{startIndex},#{pageSize}
+	</select>
+	<select id="findQuestionsTotal" resultType="java.lang.Long">
+		select count(id) from question
+	</select>
+	<select id="findQuestionInfoById" resultMap="QuestionInfoAndUserBase">
+		select * from question left join user on user.id=question.userId where question.id=#{questionId}
+	</select>
+	<select id="findNotReadCountOfQuestion" resultType="java.lang.Long">
+		select count(id) from question where question.isRead='否'
+	</select>
+	<update id="markReaded">
+		update question set question.isRead='是' where question.id=#{questionId}
+	</update>
+	<delete id="deleteQuestionById">
+		delete from question where question.id=#{questionId}
+	</delete>
 </mapper>

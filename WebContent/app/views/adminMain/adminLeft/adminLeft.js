@@ -1,5 +1,5 @@
 var adminLeftApp = angular.module("adminLeftApp",[]);
-adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateParams",function($state,$scope,$rootScope,$stateParams) {
+adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateParams","QuestionService",function($state,$scope,$rootScope,$stateParams,QuestionService) {
 	$scope.adminId = $stateParams.adminId;
 	
 	$scope.goAdminMain = function() {
@@ -17,4 +17,19 @@ adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateP
 	$scope.goFileManage = function() {
 		$state.go("adminMain.index.fileManage",{adminId:$scope.adminId});
 	}
+	
+	$scope.goQuestionManage = function() {
+		$state.go("adminMain.index.questionManage",{adminId:$scope.adminId});
+	}
+	
+	$scope.findNotReadCountOfQuestion = function() {
+		QuestionService.findNotReadCountOfQuestion(sucesscb,errorcb);
+		function sucesscb(data) {
+			$scope.notReadQuestionNum = data;
+		}
+		function errorcb(error) {
+			$rootScope.alertWarn("查询未查看反馈数量失败！");
+		}
+	}
+	$scope.findNotReadCountOfQuestion();
 }])
