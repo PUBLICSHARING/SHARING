@@ -196,8 +196,12 @@ public class UserServiceBean implements UserService{
 		try {
 			User user = findUserById(userId);
 			String path = user.getHeadImg();
-			File file = new File(path);
-			return getImageString(file);
+			if(!path.equals("") && path != "" && path != null) {
+				File file = new File(path);
+				return getImageString(file);
+			}else {
+				return null;
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw e;

@@ -32,13 +32,13 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right" ng-if="userId">
 					<li class="dropdown">
-						<a id="head-img-a" class="dropdown-toggle pointer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<a id="head-img-a" class="dropdown-toggle pointer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click = "showList()">
 							<img id="head-img" ng-if="myCroppedImage.length > 0" ng-src = "{{myCroppedImage}}">
 							<img id="head-img" ng-if="myCroppedImage.length == 0" src="../app/directives/title/image/default.jpg">
 							{{userInfo.name}}
 							<span class="caret"></span>
 						</a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu" style = "display:block!important;" ng-if = "show">
 							<li><a class="pointer">消息</a></li>
 							<li><a class="pointer" ng-click = "manageUserInfo()">个人资料</a></li>
 							<li><a class="pointer">我的地盘</a></li>

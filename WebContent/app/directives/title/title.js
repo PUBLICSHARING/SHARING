@@ -8,6 +8,7 @@ titleApp.directive("title",function() {
 		controller:['$scope','$rootScope','$state','$stateParams','UserService',function($scope,$rootScope,$state,$stateParams,UserService){
 
 			$scope.init = function() {
+				$scope.show = false;
 				$scope.userId = $stateParams.userId;
 				/*加载用户信息*/
 
@@ -23,8 +24,12 @@ titleApp.directive("title",function() {
 				UserService.findUserHeadImg($scope.userId, sucess, error);
 
 				function sucess(data) {
-					var b64 = data.replace('','data:image/png;base64,');
-					$scope.myCroppedImage = b64;
+					if(data != null) {
+						var b64 = data.replace('','data:image/png;base64,');
+						$scope.myCroppedImage = b64;
+					} else {
+						alert("获取头像信息失败");
+					}
 				}
 
 				function error(error) {
@@ -48,7 +53,11 @@ titleApp.directive("title",function() {
 
 			/*跳转用户中心*/
 			$scope.manageUserInfo = function() {
-				$state.go("userInfo",{userId:$scope.userId});
+				$state.go("userInfo.changeUserInfo",{userId:$scope.userId});
+			}
+			
+			$scope.showList = function() {
+				$scope.show = !$scope.show;
 			}
 
 		}],
