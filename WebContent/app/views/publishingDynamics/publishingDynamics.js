@@ -69,11 +69,9 @@ angular.module("publishingDynamicsModule",[])
 		}
 		
 		//查询个人动态
-		DynamicsService.findAllDynamicsByUserId($scope.userId,sucess,error);
+		DynamicsService.findAllDynamicsByUserId($scope.userId,1,5,sucess,error);
 		function sucess(data){
-			for(var pro in data){
-				$scope.personalDynamics.push(data[pro]);
-			}
+				$scope.personalDynamics = data.dynamics;
 			
 			$scope.dynamicNums = $scope.personalDynamics.length;
 		}

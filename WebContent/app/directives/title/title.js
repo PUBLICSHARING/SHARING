@@ -87,6 +87,7 @@ titleApp.directive("title",function() {
 			$scope.showList = function() {
 				$scope.show = !$scope.show;
 			}
+			
 			$scope.findCountOfNotifycationNotRead();
 			
 			//进入消息中心
