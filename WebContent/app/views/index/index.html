@@ -2,73 +2,81 @@
 <div class="index_main" style="background: #fff" ng-init="init()">
 	<div class="index_center">
 		<div>
-			<article class="index_article" ng-init="outerIndex = $index" ng-repeat="(index,dynamic) in newestDynamics">
+			<article class="index_article" ng-init="outerIndex = $index"
+				ng-repeat="(index,dynamic) in newestDynamics">
 				<header class="index_article_header">
-					<a class="pointer">
-						<img id="head-img" ng-src = "data:image/jpeg;base64,{{dynamic.user.headImg}}">
-					<a>
-						&nbsp;&nbsp;{{dynamic.user.name}}
-					</a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
+					<a class="pointer"> <img id="head-img"
+						ng-src="data:image/jpeg;base64,{{dynamic.user.headImg}}"> <a>
+							&nbsp;&nbsp;{{dynamic.user.name}} </a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
+					
 				</header>
 				<div style="width: 100%;">
 					<ul>
 						<li ng-repeat="imge in dynamic.images" style="display: inline;">
-							<img src="data:image/jpeg;base64,{{imge.fileCode}}" style="width: 30%;">
+							<img src="data:image/jpeg;base64,{{imge.fileCode}}"
+							style="width: 30%;">
 						</li>
 					</ul>
-					<div class="width:100%;" style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+					<div class="width:100%;"
+						style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
 						<a class="pointer">{{formatDate(dynamic.publishTime)}}</a>
 					</div>
 				</div>
 				<div class="index_comment">
 					<div class="index_image_div" ng-click="enterFavor($event)">
-						<a class="pointer" ng-click = "clickLike(dynamic)">
-							<span class="glyphicon glyphicon-thumbs-up" style="cursor: pointer;"></span>
+						<a class="pointer" ng-click="clickLike(dynamic)"> <span
+							class="glyphicon glyphicon-thumbs-up" style="cursor: pointer;"></span>
 							+{{dynamic.likeNum}}次
-						</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<a class="pointer">
-							<span class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>
+						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"> <span
+							class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>
 							-{{dynamic.dislikeNum}}次
-						</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<a class="pointer" ng-click="clickAccusation('dynamic',dynamic.id)">
-							<span class="glyphicon glyphicon-question-sign" style="cursor: pointer; text-decoration: none"></span>
-							举报
-						</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<a class="pointer" ng-click="openParentConment($index)">
-							<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none"></span>
-							回复
+						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"
+							ng-click="clickAccusation('dynamic',dynamic.id)"> <span
+							class="glyphicon glyphicon-question-sign"
+							style="cursor: pointer; text-decoration: none"></span> 举报
+						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"
+							ng-click="openParentConment($index)"> <span
+							class="glyphicon glyphicon-pencil"
+							style="cursor: pointer; text-decoration: none"></span> 回复
 						</a>
 					</div>
 					<div class="index_center_comment">
 						<hr>
- 						<ul class="index_center_ul" style="font-size: 12px;">
-							<li ng-repeat="($index,comment) in dynamic.comments">
-								<a class="pointer">{{comment.fromUser.name}}</a>
-								:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;
-								<a class="pointer" ng-click="openChildConment(outerIndex,comment.id,comment.fromUser)">
-									<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none"></span>
-									回复
-								</a>
+						<ul class="index_center_ul" style="font-size: 12px;">
+							<li ng-repeat="($index,comment) in dynamic.comments"
+								ng-show="comment.toUser==undefined"><a class="pointer">{{comment.fromUser.name}}</a>
+								:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp; <a class="pointer"
+								ng-click="openChildConment(outerIndex,comment.id,comment.fromUser)">
+									<span class="glyphicon glyphicon-pencil"
+									style="cursor: pointer; text-decoration: none"></span> 回复
+							</a>
 								<ul>
-									<li ng-repeat="childComment in comment.childComments">
-										<a>{{childComment.fromUser.name}}</a>&nbsp;&nbsp;回复&nbsp;&nbsp;<a>{{childComment.toUser.name}}</a>&nbsp;:{{childComment.content}}
+									<li ng-repeat="childComment in comment.childComments"><a>{{childComment.fromUser.name}}</a>&nbsp;&nbsp;回复&nbsp;&nbsp;<a>{{childComment.toUser.name}}</a>&nbsp;:{{childComment.content}}
+										&nbsp;&nbsp;&nbsp; 
+										<a class="pointer"ng-click="openChildConment(outerIndex,comment.id,childComment.fromUser)" ng-if="childComment.toUser.id==loginUserId">
+											<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none">
+												回复
+											</span>
+										</a>
 									</li>
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 					</div>
-					<section class="index_center_section" style="display:none" id="{{$index}}">
+					<section class="index_center_section" style="display: none"
+						id="{{$index}}">
 						<form class="section_form">
 							<textarea placeholder="添加评论..." style="height: 18px;"
 								class="section_textarea" ng-model="dynamic.newContent"></textarea>
 						</form>
-						<div style="border-top: 1px solid #ddd;margin-top: 4%;width: 100%;padding-top: 3%;">
-							<button class="sendButton" ng-click="cancelConment($index)" style="float:right;">取消</button>
-							<div style="display: block;height:20px;width:5%;float:right;"></div>
-							<button class="sendButton" ng-click="saveComment(outerIndex,dynamic.id)" style="float:right;">发送</button>
+						<div
+							style="border-top: 1px solid #ddd; margin-top: 4%; width: 100%; padding-top: 3%;">
+							<button class="sendButton" ng-click="cancelConment($index)"
+								style="float: right;">取消</button>
+							<div
+								style="display: block; height: 20px; width: 5%; float: right;"></div>
+							<button class="sendButton"
+								ng-click="saveComment(outerIndex,dynamic.id)"
+								style="float: right;">发送</button>
 							<div style="clear: both;"></div>
 						</div>
 					</section>
@@ -79,25 +87,32 @@
 	<foot></foot>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="accusationDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">举报</h4>
-      </div>
-      <div class="modal-body">
-        <form name="questionForm">
-        	<div class="form-group">
-		    	<label for="exampleInputEmail1"></label>
-		    	<textarea rows="4" type="text" class="form-control" id="exampleInputEmail1" placeholder="输入您举报的理由" ng-model="accusation.accusationedRemark"></textarea>
-		    </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button ng-disabled="!accusation.accusationedRemark" type="button" ng-click="submmitAccusation()" class="btn btn-primary">提交</button>
-      </div>
-    </div>
-  </div>
+<div class="modal fade" id="accusationDialog" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">举报</h4>
+			</div>
+			<div class="modal-body">
+				<form name="questionForm">
+					<div class="form-group">
+						<label for="exampleInputEmail1"></label>
+						<textarea rows="4" type="text" class="form-control"
+							id="exampleInputEmail1" placeholder="输入您举报的理由"
+							ng-model="accusation.accusationedRemark"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button ng-disabled="!accusation.accusationedRemark" type="button"
+					ng-click="submmitAccusation()" class="btn btn-primary">提交</button>
+			</div>
+		</div>
+	</div>
 </div>

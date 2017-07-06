@@ -21,6 +21,7 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 		$scope.like = {};
 		$scope.comment = {};
 		$scope.newestDynamics = [];
+		$scope.loginUserId = window.localStorage.getItem("UID");
 		DynamicsService.findNewestDynamics(success,error);
 		function success(data){
 			for(var pro in data){

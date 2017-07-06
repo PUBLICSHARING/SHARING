@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		dynamic AS dy
 		LEFT JOIN `user` AS dus ON dus.id = dy.userId
 		LEFT JOIN sharingfile AS sf ON dy.id = sf.dynamicId
-		LEFT JOIN `comment` AS pco ON dy.id = pco.dynamicId
+		LEFT JOIN `comment` AS pco ON dy.id = pco.dynamicId AND pco.toUserId IS NULL
 		LEFT JOIN `comment` AS cco ON pco.id = cco.fatherCommentId
 		LEFT JOIN `user` AS cfus ON cco.fromUserId = cfus.id
 		LEFT JOIN `user` AS ctus ON cco.toUserId = ctus.id
