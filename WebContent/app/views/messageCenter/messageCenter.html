@@ -2,81 +2,78 @@
 <style>
 </style>
 <div class="index_main" style="background: #fff" ng-init="init()">
-	<div class="index_center">
-		<div
-			style="width: 100%; padding-bottom: 4%; border-bottom: 1px solid #ccc">
+	<div class="index_center" style = "padding-top: 2%;" ng-repeat="mes in messages">
+		<div style="width: 100%; padding-bottom: 4%; border-bottom: 1px solid #ccc" ng-if="mes.noticeFromComment && mes.noticeFromComment.id!=null">
 			<div style="width: 100%;">
 				<a><img id="head-img"
 					ng-src="../app/image/headImg/170705040910489.png"
 					ng-click="myLand(dynamic.user.id)"> </a> &nbsp;&nbsp;<a
-					href="javascript:void(0)">邪恶小先生</a>
+					href="javascript:void(0)">XXXXXXX</a>
 			</div>
 			<div>
 				<div style="margin-left: 6%; padding-right: 4%; background: #fcfdfd">
-					<p>回复我：&nbsp;&nbsp;由于该网站的robots.txt文件存在限制指令（限制搜索引擎抓取），系统无法提供该页面的内容</p>
+					<p>回复我：&nbsp;&nbsp;{{mes.noticeFromComment.content}}</p>
 					<p
 						style="border: 1px slid red; padding: 2%; background: #e6e3de; border-radius: 2%;">
 						<span>我的回复：</span>&nbsp;&nbsp;细节。因为对于客户的业务而言，我们是外行，如果从业务细节着手，很容易迷失方向，失去对业务核心的把握。同时要认识到，对于一个外行而言，我们对细节的深入也必定是有限的，不要指望自己能够无穷的彻底的了解每一个细枝末节。一是不可能有无限的时间给你了解，二是没有这个必要。因为未来的系统也不可能完全包办所有业务的细节，还有很多事情是要靠客户企业中这些具有专业技能的人来做的。
 					</p>
-					<p style="padding-right: 4%;">
-						<a class="pointer" ng-click="openParentConment($index)"
+					<div style="padding-right: 4%;">
+						<a class="pointer" ng-click="openParentConment()"
 							style="float: right"> <span
 							class="glyphicon glyphicon-pencil"
 							style="cursor: pointer; text-decoration: none"></span> 回复
 						</a>
-					</p>
-				</div>
-				<section class="index_center_section" style="display: none"
-					id="{{$index}}">
-					<form class="section_form">
-						<textarea placeholder="添加评论..." style="height: 18px;"
-							class="section_textarea" ng-model="dynamic.newContent"></textarea>
-					</form>
-					<div
-						style="border-top: 1px solid #ddd; margin-top: 4%; width: 100%; padding-top: 3%;">
-						<button class="sendButton" ng-click="cancelConment($index)"
-							style="float: right;">取消</button>
-						<div
-							style="display: block; height: 20px; width: 5%; float: right;"></div>
-						<button class="sendButton"
-							ng-click="saveComment(outerIndex,dynamic.id)"
-							style="float: right;">发送</button>
 						<div style="clear: both;"></div>
 					</div>
-				</section>
+					<section class="index_center_section" style="display: none"
+						id="ddd">
+						<form class="section_form">
+							<textarea placeholder="添加评论..." style="height: 18px;"
+								class="section_textarea" ng-model="dynamic.newContent"></textarea>
+						</form>
+						<div
+							style="border-top: 1px solid #ddd; margin-top: 4%; width: 100%; padding-top: 3%;">
+							<button class="sendButton" ng-click="cancelConment($index)"
+								style="float: right;">取消</button>
+							<div
+								style="display: block; height: 20px; width: 5%; float: right;"></div>
+							<button class="sendButton"
+								ng-click="saveComment(outerIndex,dynamic.id)"
+								style="float: right;">发送</button>
+							<div style="clear: both;"></div>
+						</div>
+					</section>
+				</div>
 			</div>
+		</div>
 
+		<div
+			style="width: 100%; padding-bottom: 4%; border-bottom: 1px solid #ccc" ng-if="mes.noticeFromAccusation && mes.noticeFromAccusation.id!=null">
+			<div style="width: 100%;">
+				<a><img id="head-img"
+					ng-src="../app/image/headImg/170705040910489.png"
+					ng-click="myLand(dynamic.user.id)"> </a> &nbsp;&nbsp;<a
+					href="javascript:void(0)">举报通知</a> &nbsp;&nbsp; &nbsp;&nbsp;
+				&nbsp;&nbsp;有用户举报了你
+			</div>
+			<div>
+				<div style="margin-left: 6%; padding-right: 4%; background: #fcfdfd">
+					<p>被举报动态：&nbsp;&nbsp;<a>{{mes.noticeFromAccusation.accusationedDynamic.content}}</a></p>
+					<p>举报内容：&nbsp;&nbsp;{{mes.noticeFromAccusation.accusationedRemark}}</p>
+				</div>
+			</div>
+		</div>
+		
+		<div style="width: 100%; padding-bottom: 4%; border-bottom: 1px solid #ccc"  ng-if="mes.noticeFromLike && mes.noticeFromLike.id!=null">
+			<div style="width: 100%;">
+				<a><img id="head-img"
+					ng-src="../app/image/headImg/170705040910489.png"
+					ng-click="myLand(dynamic.user.id)"> </a> &nbsp;&nbsp;<a
+					href="javascript:void(0)">{{mes.noticeFromLike.user.name}}</a> &nbsp;&nbsp; &nbsp;&nbsp;
+				&nbsp;&nbsp;赞了你的动态&nbsp;&nbsp;<a>{{mes.noticeFromLike.dynamic.content}}</a>
+			</div>
 		</div>
 	</div>
 	<foot></foot>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="accusationDialog" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="myModalLabel">举报</h4>
-			</div>
-			<div class="modal-body">
-				<form name="questionForm">
-					<div class="form-group">
-						<label for="exampleInputEmail1"></label>
-						<textarea rows="4" type="text" class="form-control"
-							id="exampleInputEmail1" placeholder="输入您举报的理由"
-							ng-model="accusation.accusationedRemark"></textarea>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button ng-disabled="!accusation.accusationedRemark" type="button"
-					ng-click="submmitAccusation()" class="btn btn-primary">提交</button>
-			</div>
-		</div>
-	</div>
-</div>
+					
