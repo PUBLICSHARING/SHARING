@@ -77,6 +77,11 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 		$scope.comment.fatherComment = null;
 		$scope.comment.toUser = null;
 	}
+	
+	//点击进入页面的。
+	$scope.myLand = function(userId){
+		$state.go("main.publishingDynamics",{userId:userId});
+	}
 
 	$scope.saveComment = function(outerIndex,dynamicId){
 		//评论用户

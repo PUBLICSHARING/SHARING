@@ -46,6 +46,16 @@ angular.module("publishingDynamicsModule",[])
 	
 	
 	$scope.init=function(){
+		
+		//权限判断
+		var currentUserid = window.localStorage.getItem("UID");
+		if(currentUserid == $scope.userId){
+			$scope.isIillegal = true;
+		}
+		else{
+			$scope.isIillegal = false;
+		}
+		
 		//获取用户头像
 		$scope.userHeadImg = window.localStorage.getItem($scope.userId);
 		
