@@ -33,15 +33,17 @@
 						<a class="pointer" ng-click = "clickDisLike(dynamic)">
 							<span class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>
 							-{{dynamic.dislikeNum}}次
-						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"
-							ng-click="clickAccusation('dynamic',dynamic.id)"> <span
-							class="glyphicon glyphicon-question-sign"
-							style="cursor: pointer; text-decoration: none"></span> 举报
-						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"
+						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"
 							ng-click="openParentConment($index)"> <span
 							class="glyphicon glyphicon-pencil"
 							style="cursor: pointer; text-decoration: none"></span> 回复
 						</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a class="pointer" ng-click="clickAccusation('dynamic',dynamic.id,dynamic.user.id)">
+							<span class="glyphicon glyphicon-question-sign" style="cursor: pointer; text-decoration: none"></span>
+							举报
+						</a>
+
 					</div>
 					<div class="index_center_comment">
 						<hr>
