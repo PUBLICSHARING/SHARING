@@ -18,6 +18,7 @@ titleApp.directive("title",function() {
 					$rootScope.alertWarn("查询消息个数失败!");
 				}
 			}
+
 			$scope.init = function() {
 				$scope.show = false;
 				/*加载用户信息*/
