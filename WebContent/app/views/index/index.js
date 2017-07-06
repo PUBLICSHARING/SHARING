@@ -48,25 +48,44 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 		return "" + year + "年" + month + "月    " + hour + "时" + minutes + "分" + second + "秒";
 	}
 
-	$scope.openConment = function(index){
+	$scope.openParentConment = function(index,id,type){
+		$("#" + index).slideUp(20);
 		$("#" + index).slideDown(200);
 		$scope.content = "";
+		$scope.comment.fatherComment = null;
+		$scope.comment.toUser = null;
+		$scope.contentType = "parent";
+	}
+	
+	$scope.openChildConment = function(index,parentConmentId,toUser){
+		$("#" + index).slideUp(20);
+		$("#" + index).slideDown(200);
+		//父亲评论
+		$scope.comment.fatherComment = {id:parentConmentId};
+		//被评论用户
+		$scope.comment.toUser = toUser;
+		
+		$scope.contentType = "child";
+		
+		console.log($scope.comment.fatherComment.id + "#####" + $scope.comment.toUser.id);
 	}
 
+	//取消，至空
 	$scope.cancelConment = function(index){
 		$("#" + index).slideUp(200);
 		$scope.content = "";
+		$scope.comment.fatherComment = null;
+		$scope.comment.toUser = null;
 	}
 
 	$scope.saveComment = function(outerIndex,dynamicId){
-		var user = {};
-		var dynamic = {};
-		dynamic.id = dynamicId;
-		user.id = window.localStorage.getItem("UID");
-		$scope.comment.fromUser = user;
-		$scope.comment.dynamic = dynamic;
+		//评论用户
+		$scope.comment.fromUser = {id:window.localStorage.getItem("UID")};
+		//被评动态
+		$scope.comment.dynamic = {id:dynamicId};
+		
 		$scope.comment.content = $scope.newestDynamics[outerIndex].newContent;
-
+		
 		CommentService.addComment($scope.comment,success,error);
 
 		function success(data){

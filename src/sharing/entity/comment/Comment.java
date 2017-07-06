@@ -2,6 +2,8 @@ package sharing.entity.comment;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import sharing.entity.dynamic.Dynamic;
 import sharing.entity.user.User;
 
@@ -22,6 +24,8 @@ public class Comment implements Serializable{
 	private User toUser;
 	
 	private Comment fatherComment;
+	
+	private List<Comment> childComments;
 	
 	
 
@@ -79,6 +83,14 @@ public class Comment implements Serializable{
 
 	public void setToUser(User toUser) {
 		this.toUser = toUser;
+	}
+
+	public List<Comment> getChildComments() {
+		return childComments;
+	}
+
+	public void setChildComments(List<Comment> childComments) {
+		this.childComments = childComments;
 	}
 	
 }

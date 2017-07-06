@@ -7,7 +7,7 @@
 					<a class="pointer">
 						<img id="head-img" ng-src = "data:image/jpeg;base64,{{dynamic.user.headImg}}">
 					<a>
-						{{dynamic.user.name}}
+						&nbsp;&nbsp;{{dynamic.user.name}}
 					</a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
 				</header>
 				<div style="width: 100%;">
@@ -37,7 +37,7 @@
 							举报
 						</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<a class="pointer" ng-click="openConment($index)">
+						<a class="pointer" ng-click="openParentConment($index)">
 							<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none"></span>
 							回复
 						</a>
@@ -45,13 +45,18 @@
 					<div class="index_center_comment">
 						<hr>
  						<ul class="index_center_ul" style="font-size: 12px;">
-							<li ng-repeat="comment in dynamic.comments">
+							<li ng-repeat="($index,comment) in dynamic.comments">
 								<a class="pointer">{{comment.fromUser.name}}</a>
 								:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;
-								<a class="pointer" ng-click="openConment(outerIndex)">
+								<a class="pointer" ng-click="openChildConment(outerIndex,comment.id,comment.fromUser)">
 									<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none"></span>
 									回复
 								</a>
+								<ul>
+									<li ng-repeat="childComment in comment.childComments">
+										<a>{{childComment.fromUser.name}}</a>&nbsp;&nbsp;回复&nbsp;&nbsp;<a>{{childComment.toUser.name}}</a>&nbsp;:{{childComment.content}}
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</div>
