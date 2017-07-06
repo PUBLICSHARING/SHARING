@@ -152,12 +152,14 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                     templateUrl : '../app/views/adminMain/adminLeft/adminLeft.html',
                     controller : 'adminLeftCtrl',
                     controllerUrl : ['../app/views/adminMain/adminLeft/adminLeft.js',
-                                     '../app/service/question/questionService.js']
+                                     '../app/service/question/questionService.js',
+                                     '../app/service/accusation/accusationService.js']
                 }),
                 'right@adminMain' : angularAMD.route({
                     templateUrl : '../app/views/adminMain/adminRight/adminRight.html',
                     controller : 'adminRightCtrl',
-                    controllerUrl : ['../app/views/adminMain/adminRight/adminRight.js']
+                    controllerUrl : ['../app/views/adminMain/adminRight/adminRight.js',
+                                     '../app/service/admin/adminService.js']
                 })
             }
         }))

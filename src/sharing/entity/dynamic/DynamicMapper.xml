@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	</resultMap>
 	<select id="findDynamicsByLimit" resultMap="DynamicBaseInfo">
 		select * from dynamic
-		left join user on user.id=dynamic.userId order by user.id desc limit
+		left join user on user.id=dynamic.userId order by dynamic.publishTime desc limit
 		#{startIndex},#{pageSize}
 	</select>
 	<select id="findAllDynamicsTotal" resultType="java.lang.Long">

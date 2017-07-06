@@ -1,8 +1,8 @@
 <div class="col-md-12 no-padding adminMain-right-block-block">
 	<div class="adminMian-right-title-block">
 	    <div class="adminMain-right-title-right-block">
-	    	<span>您好，admin</span>
-	    	<a>退出</a>
+	    	<span>您好，{{admin.name}}</span>
+	    	<a class="pointer" ng-click="quit()">退出</a>
 	    </div>
 	</div>
 	<div class="col-md-12 no-padding adminMain-right-content-block" ui-view></div>

@@ -77,6 +77,16 @@ accusationMApp.controller("accusationMCtrl",["$state","$scope","$rootScope","$st
 		}
 	}
 	
+	$scope.markReaded = function(index,accusationId) {
+		AccusationService.markReaded(accusationId,sucesscb,errorcb);
+		function sucesscb(data) {
+			$scope.accusations[index].isRead = '是';
+		}
+		function errorcb(error) {
+			$rootScop.alertWarn("标记失败！");
+		}
+	}
+	
 	$scope.findTotalAndAccusationByLimit();
 	
 }])

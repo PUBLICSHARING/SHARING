@@ -20,4 +20,15 @@ public class AdminServiceBean implements AdminService{
 		}
 	}
 
+	@Override
+	public Admin findAdminById(Long adminId) throws Exception {
+		try{
+			return this.adminMapper.findAdminById(adminId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findAdminById",e);
+		}
+	}
+
 }

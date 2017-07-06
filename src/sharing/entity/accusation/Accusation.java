@@ -24,6 +24,16 @@ public class Accusation implements Serializable{
 	private String accusationedRemark;
 	
 	private Date accusationedDate;
+	
+	private String isRead;
+
+	public String getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(String isRead) {
+		this.isRead = isRead;
+	}
 
 	public Long getId() {
 		return id;

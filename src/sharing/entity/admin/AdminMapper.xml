@@ -6,4 +6,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="judgeAdmin" parameterType="sharing.entity.admin.Admin" resultType="sharing.entity.admin.Admin">
 		select * from admin where name=#{name} and password=#{password}
 	</select>
+	<select id="findAdminById" resultType="sharing.entity.admin.Admin">
+		select * from admin where admin.id=#{adminId}
+	</select>
 </mapper>

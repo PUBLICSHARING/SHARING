@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sharing.entity.accusation">
 	<insert keyColumn="id" id="addAccusation" parameterType="sharing.entity.accusation.Accusation" useGeneratedKeys="true" keyProperty="id">
-		insert into accusation(accusationUserId,accusationedUserId,accusationedDynamicId,accusationedCommentId,accusationedRemark,accusationedDate) values(#{accusationUserId},#{accusationedUserId},#{accusationedDynamicId},#{accusationedCommentId},#{accusationedRemark},#{accusationedDate})
+		insert into accusation(accusationUserId,accusationedUserId,accusationedDynamicId,accusationedCommentId,accusationedRemark,accusationedDate,isRead) values(#{accusationUserId},#{accusationedUserId},#{accusationedDynamicId},#{accusationedCommentId},#{accusationedRemark},#{accusationedDate},'否')
 	</insert>
 	<delete id="deleteAccusation">
 		delete from accusation where accusation.id=#{accusationId}
@@ -27,15 +27,22 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<result property="id" column="id"/>
 		<result property="accusationedRemark" column="accusationedRemark"/>
 		<result property="accusationedDate" column="accusationedDate"/>
+		<result property="isRead" column="isRead"/>
 		<association property="accusationUser" column="accusationUserId" javaType="sharing.entity.user.User"  resultMap="UserNameAndId1"/>
 		<association property="accusationedUser" column="accusationedUserId" javaType="sharing.entity.user.User"  resultMap="UserNameAndId2"/>
 		<association property="accusationedDynamic" column="accusationedDynamicId" javaType="sharing.entity.dynamic.Dynamic"  resultMap="DynamicId"/>
 		<association property="accusationedComment" column="accusationedCommentId" javaType="sharing.entity.comment.Comment"  resultMap="CommentId"/>
 	</resultMap>
 	<select id="findAccusationByLimit" resultMap="AccusationBaseInfo">
-		select * from accusation left join user u1 on u1.id=accusation.accusationUserId left join user u2 on u2.id=accusation.accusationedUserId left join dynamic on dynamic.id=accusation.accusationedDynamicId left join comment on comment.id=accusation.accusationedCommentId
+		select * from accusation left join user u1 on u1.id=accusation.accusationUserId left join user u2 on u2.id=accusation.accusationedUserId left join dynamic on dynamic.id=accusation.accusationedDynamicId left join comment on comment.id=accusation.accusationedCommentId order by accusation.accusationedDate desc limit #{startIndex},#{pageSize}
 	</select>
 	<select id="findTotalOfAllAccusation" resultType="java.lang.Long">
 		select count(id) from accusation
+	</select>
+	<update id="markReaded">
+		update accusation set isRead='是' where accusation.id=#{accusationId}
+	</update>
+	<select id="findCountOfNotReaded" resultType="java.lang.Long">
+		select count(id) from accusation where accusation.isRead='否'
 	</select>
 </mapper>

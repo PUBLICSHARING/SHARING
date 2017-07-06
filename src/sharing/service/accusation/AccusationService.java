@@ -14,4 +14,8 @@ public interface AccusationService {
 
 	Long findTotalOfAllAccusation() throws Exception;
 
+	int markReaded(Long accusationId) throws Exception;
+
+	Long findCountOfNotReaded() throws Exception;
+
 }

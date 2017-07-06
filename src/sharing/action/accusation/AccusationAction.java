@@ -64,4 +64,24 @@ public class AccusationAction {
 			throw e;
 		}
 	}
+	
+	public int markReaded(Long accusationId) throws Exception{
+		try{
+			return this.accusationService.markReaded(accusationId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Long findCountOfNotReaded() throws Exception {
+		try{
+			return this.accusationService.findCountOfNotReaded();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

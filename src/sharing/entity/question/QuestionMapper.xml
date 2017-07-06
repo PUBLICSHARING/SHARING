@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<association property="user"  column="userId" javaType="sharing.entity.user.User" resultMap="UserNameAndId"/>
 	</resultMap>
 	<select id="findQuestionsByLimit" resultMap="QuestionInfoAndUserBase">
-		select * from question left join user on user.id=question.userId limit #{startIndex},#{pageSize}
+		select * from question left join user on user.id=question.userId order by question.submitDate desc limit #{startIndex},#{pageSize}
 	</select>
 	<select id="findQuestionsTotal" resultType="java.lang.Long">
 		select count(id) from question

@@ -1,5 +1,5 @@
 var adminLeftApp = angular.module("adminLeftApp",[]);
-adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateParams","QuestionService",function($state,$scope,$rootScope,$stateParams,QuestionService) {
+adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateParams","QuestionService","AccusationService",function($state,$scope,$rootScope,$stateParams,QuestionService,AccusationService) {
 	$scope.adminId = $stateParams.adminId;
 	
 	$scope.goAdminMain = function() {
@@ -36,5 +36,15 @@ adminLeftApp.controller("adminLeftCtrl",["$state","$scope","$rootScope","$stateP
 		$state.go("adminMain.index.accusationManage",{adminId:$scope.adminId});
 	}
 	
+	$scope.findCountOfNotReaded = function() {
+		AccusationService.findCountOfNotReaded(sucesscb,errorcb);
+		function sucesscb(data) {
+			$scope.notReadAccusationNum = data;
+		}
+		function errorcb(error) {
+			$rootScope.alertWarn("查询未查看举报数量失败！")
+		}
+	}
+	$scope.findCountOfNotReaded();
 	$scope.findNotReadCountOfQuestion();
 }])

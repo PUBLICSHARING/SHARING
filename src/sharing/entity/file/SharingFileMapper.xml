@@ -31,6 +31,6 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<association property="dynamic" column="dynamicId" resultMap="DynamicIdAndContent"></association>
 	</resultMap>
 	<select id="findFilesByLimit" resultMap="FileBaseInfo">
-		select * from sharingFile left join user on user.id=sharingFile.userId left join dynamic on dynamic.id=sharingFile.dynamicId limit #{startIndex},#{pageSize}
+		select * from sharingFile left join user on user.id=sharingFile.userId left join dynamic on dynamic.id=sharingFile.dynamicId order by sharingFile.uploadDate desc limit #{startIndex},#{pageSize}
 	</select>
 </mapper>

@@ -63,4 +63,14 @@ public class AccusationController implements AccusationMapper{
 		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.accusation.findTotalOfAllAccusation");
 	}
 
+	@Override
+	public int markReaded(Long accusationId) throws Exception {
+		return SqlSessionUtil.getSqlSession().update("sharing.entity.accusation.markReaded", accusationId);
+	}
+
+	@Override
+	public Long findCountOfNotReaded() throws Exception {
+		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.accusation.findCountOfNotReaded");
+	}
+
 }

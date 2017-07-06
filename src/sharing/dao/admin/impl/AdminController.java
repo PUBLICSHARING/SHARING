@@ -17,4 +17,9 @@ public class AdminController implements AdminMapper{
 		}
 	}
 
+	@Override
+	public Admin findAdminById(Long adminId) throws Exception {
+		return SqlSessionUtil.getSqlSession().selectOne("sharing.entity.admin.findAdminById",adminId);
+	}
+
 }

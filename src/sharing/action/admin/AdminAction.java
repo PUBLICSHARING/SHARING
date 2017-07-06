@@ -12,7 +12,18 @@ public class AdminAction {
 		return this.adminService.judgeAdmin(admin);	
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			throw e;
 		}
+	}
+	
+	public Admin findAdminById (Long adminId) throws Exception {
+		try{
+			return this.adminService.findAdminById(adminId);	
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				throw e;
+			}
 	}
 }

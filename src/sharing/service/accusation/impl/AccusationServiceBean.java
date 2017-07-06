@@ -55,4 +55,26 @@ public class AccusationServiceBean implements AccusationService{
 		}
 	}
 
+	@Override
+	public int markReaded(Long accusationId) throws Exception {
+		try{
+			return this.accusationMapper.markReaded(accusationId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("markReaded",e);
+		}
+	}
+
+	@Override
+	public Long findCountOfNotReaded() throws Exception {
+		try{
+			return this.accusationMapper.findCountOfNotReaded();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("findCountOfNotReaded",e);
+		}
+	}
+
 }

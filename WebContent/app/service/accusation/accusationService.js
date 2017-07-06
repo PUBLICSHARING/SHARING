@@ -15,6 +15,12 @@ define(['app'],function(app) {
 		},
 		accusationService.findTotalAndAccusationByLimit = function(currentPage,pageSize,sucesscb,errorcb) {
 			accusationService.get({action:"findTotalAndAccusationByLimit",currentPage:currentPage,pageSize:pageSize},sucesscb,errorcb);
+		},
+		accusationService.findCountOfNotReaded = function(sucesscb,errorcb) {
+			accusationService.get({action:"findCountOfNotReaded"},sucesscb,errorcb);
+		},
+		accusationService.markReaded = function(accusationId,sucesscb,errorcb) {
+			accusationService.query({action:"markReaded",accusationId:accusationId},sucesscb,errorcb);
 		}
 		return accusationService;
 	})
