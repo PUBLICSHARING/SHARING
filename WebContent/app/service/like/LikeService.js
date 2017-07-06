@@ -19,6 +19,9 @@ define(['app'],function(app) {
 		},
 		likeService.findLikeByUserIdAndDynamicId = function(userId, dynamicId, sucesscb, errorcb) {
 			likeService.get({action:"findLikeByUserIdAndDynamicId",userId:userId, dynamicId:dynamicId},sucesscb,errorcb);
+		},
+		likeService.deleteLikeByDynamicIdAndUserId = function(dynamicId, userId, sucesscb, errorcb)	{
+			likeService.save({action:"deleteLikeByDynamicIdAndUserId"},{dynamicId:dynamicId, userId:userId},sucesscb,errorcb);
 		}
 		return likeService;
 	})

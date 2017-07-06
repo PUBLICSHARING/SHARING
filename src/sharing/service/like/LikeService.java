@@ -13,4 +13,6 @@ public interface LikeService {
 	public Long deleteLikeById(Long likeId) throws Exception;
 
 	public String findLikeByUserIdAndDynamicId(Long userId, Long dynamicId) throws Exception;
+	
+	public Long deleteLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception;
 }

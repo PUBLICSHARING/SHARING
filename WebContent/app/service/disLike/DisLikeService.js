@@ -19,7 +19,10 @@ define(['app'],function(app) {
 		},
 		disLikeService.findDisLikeByUserIdAndDynamicId = function(userId, dynamicId, sucesscb, errorcb) {
 			disLikeService.get({action:"findDisLikeByUserIdAndDynamicId",userId:userId, dynamicId:dynamicId},sucesscb,errorcb);
+		},
+		disLikeService.deleteDisLikeByDynamicIdAndUserId = function(dynamicId, userId, sucesscb, errorcb)	{
+			disLikeService.save({action:"deleteDisLikeByDynamicIdAndUserId"},{dynamicId:dynamicId, userId:userId},sucesscb,errorcb);
 		}
-		return likeService;
+		return disLikeService;
 	})
 })

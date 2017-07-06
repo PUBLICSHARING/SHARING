@@ -1,5 +1,7 @@
 package sharing.service.disLike.impl;
 
+import java.util.Date;
+
 import sharing.dao.disLike.DisLikeMapper;
 import sharing.dao.disLike.impl.DisLikeController;
 import sharing.entity.disLike.DisLike;
@@ -10,6 +12,7 @@ public class DisLikeServiceBean implements DisLikeService {
 	@Override
 	public Long addDisLike(DisLike disLike) throws Exception {
 		try {
+			disLike.setClickTime(new Date());
 			return this.disLikeMapper.addDisLike(disLike);
 		} catch(Exception e) {
 			throw e;
@@ -47,6 +50,15 @@ public class DisLikeServiceBean implements DisLikeService {
 	public String findDisLikeByUserIdAndDynamicId(Long userId, Long dynamicId) throws Exception {
 		try {
 			return this.disLikeMapper.findDisLikeByUserIdAndDynamicId(userId, dynamicId);
+		} catch(Exception e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public Long deleteDisLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception {
+		try {
+			return this.disLikeMapper.deleteDisLikeByDynamicIdAndUserId(dynamicId, userId);
 		} catch(Exception e) {
 			throw e;
 		}

@@ -25,4 +25,8 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="findDisLikeByUserIdAndDynamicId" resultType="sharing.entity.disLike.DisLike">
 		select * from dislike where userId = #{userId} and dynamicId = #{dynamicId};
 	</select>
+	
+	<delete id = "deleteDisLikeByDynamicIdAndUserId" parameterType = "sharing.entity.disLike.DisLike">
+		delete from dislike where userId = #{userId} and dynamicId = #{dynamicId};
+	</delete>
 </mapper>

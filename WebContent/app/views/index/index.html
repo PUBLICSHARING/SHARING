@@ -27,8 +27,10 @@
 						<a class="pointer" ng-click="clickLike(dynamic)"> <span
 							class="glyphicon glyphicon-thumbs-up" style="cursor: pointer;"></span>
 							+{{dynamic.likeNum}}次
-						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"> <span
-							class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>
+						</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a class="pointer" ng-click = "clickDisLike(dynamic)">
+							<span class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>
 							-{{dynamic.dislikeNum}}次
 						</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"
 							ng-click="clickAccusation('dynamic',dynamic.id)"> <span

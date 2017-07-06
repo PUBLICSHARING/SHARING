@@ -56,4 +56,13 @@ public class LikeServiceBean implements LikeService {
 			throw e;
 		}
 	}
+	
+	@Override
+	public Long deleteLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception {
+		try {
+			return this.likeMapper.deleteLikeByDynamicIdAndUserId(dynamicId, userId);
+		} catch(Exception e) {
+			throw e;
+		}
+	}
 }

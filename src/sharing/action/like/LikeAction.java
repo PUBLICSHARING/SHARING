@@ -52,4 +52,13 @@ public class LikeAction {
 			throw e;
 		}
 	}
+	
+	public Long deleteLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception {
+		try {
+			return this.likeService.deleteLikeByDynamicIdAndUserId(dynamicId, userId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

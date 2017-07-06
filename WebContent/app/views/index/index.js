@@ -1,5 +1,5 @@
 var indexApp = angular.module("indexApp",[]);
-indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService", "UserService","LikeService", function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService, UserService, LikeService) {
+indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService", "UserService","LikeService","DisLikeService", function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService, UserService, LikeService, DisLikeService) {
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}
@@ -19,6 +19,7 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 
 	$scope.init = function(){
 		$scope.like = {};
+		$scope.disLike = {};
 		$scope.comment = {};
 		$scope.newestDynamics = [];
 		$scope.loginUserId = window.localStorage.getItem("UID");
@@ -142,39 +143,138 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 			$rootScope.alertWarn("举报失败！");
 		}
 	}
-
+	
+	/*赞操作*/
 	$scope.clickLike = function(dynamic) {
-		LikeService.findLikeByUserIdAndDynamicId($stateParams.userId, dynamic.id, sucessCallBack, errorCallBack);
-
-		function sucessCallBack(data) {
-			if(data == "true") {
-				$scope.like.dynamic = {id:dynamic.id};
-				$scope.like.user = {id:$stateParams.userId};
-
-				LikeService.addLike($scope.like,sucess,error);
-
-				function sucess(data) {
-					dynamic.likeNum++;
-					//更新信息
+		//首先判断用户有没有踩过这条动态,如果踩过删除踩的记录,然后执行增加赞的记录
+		DisLikeService.findDisLikeByUserIdAndDynamicId($stateParams.userId, dynamic.id, sucessDis, errorDis);
+		function sucessDis(data) {
+			if(data == "false") {	//如果存在踩的记录,删除该条记录
+				DisLikeService.deleteDisLikeByDynamicIdAndUserId(dynamic.id, $stateParams.userId, su, er);
+				
+				function su(data) {
+					dynamic.dislikeNum--;
+					
 					DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
 
 					function sucesscb(data) {
+						
 					}
 
 					function errorcb(error) {
 
 					}
 				}
-				function error(error) {
-					alert("点赞失败");
+				
+				function er(error) {
+					
 				}
-			} else {
-				alert("你已经为该条动态点过赞了")
+			}
+			
+			LikeService.findLikeByUserIdAndDynamicId($stateParams.userId, dynamic.id, sucessCallBack, errorCallBack);
+
+			function sucessCallBack(data) {
+				if(data == "true") {
+					$scope.like.dynamic = {id:dynamic.id};
+					$scope.like.user = {id:$stateParams.userId};
+
+					LikeService.addLike($scope.like,sucess,error);
+
+					function sucess(data) {
+						dynamic.likeNum++;
+						//更新信息
+						DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
+
+						function sucesscb(data) {
+						}
+
+						function errorcb(error) {
+
+						}
+					}
+					function error(error) {
+						alert("点赞失败");
+					}
+				} else {
+					alert("你已经为该条动态点过赞了")
+				}
+			}
+
+			function errorCallBack(error) {
+
 			}
 		}
+		
+		function errorDis(error) {
+			
+		}
+		
+	}
+	
+	/*踩操作*/
+	$scope.clickDisLike = function(dynamic) {
+		//首先判断有无赞的记录,如果有,删除赞的记录,进行赞
+		LikeService.findLikeByUserIdAndDynamicId($stateParams.userId, dynamic.id, sucesslike, errorlike);
+		
+		function sucesslike(data) {
+			if(data == "false") { //存在赞的记录,删除这条记录
+				LikeService.deleteLikeByDynamicIdAndUserId(dynamic.id, $stateParams.userId, suc, err);
+				
+				function suc(data) {
+					dynamic.likeNum--;
+					
+					DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
 
-		function errorCallBack(error) {
+					function sucesscb(data) {
+						
+					}
 
+					function errorcb(error) {
+
+					}
+				}
+				
+				function err(error) {
+					
+				}				
+			} 
+			
+			DisLikeService.findDisLikeByUserIdAndDynamicId($stateParams.userId, dynamic.id, sucessCallBack, errorCallBack);
+
+			function sucessCallBack(data) {
+				if(data == "true") {
+					$scope.disLike.dynamic = {id:dynamic.id};
+					$scope.disLike.user = {id:$stateParams.userId};
+
+					DisLikeService.addDisLike($scope.disLike,sucess,error);
+
+					function sucess(data) {
+						dynamic.dislikeNum++;
+						//更新信息
+						DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
+
+						function sucesscb(data) {
+						}
+
+						function errorcb(error) {
+
+						}
+					}
+					function error(error) {
+						alert("踩失败");
+					}
+				} else {
+					alert("你已经踩过该条动态了")
+				}
+			}
+
+			function errorCallBack(error) {
+
+			}
+		}
+		
+		function errorlike(error) {
+			
 		}
 	}
 }])

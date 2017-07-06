@@ -13,4 +13,6 @@ public interface DisLikeService {
 	public Long deleteDisLikeById(Long disLikeId) throws Exception;
 	
 	public String findDisLikeByUserIdAndDynamicId(Long userId, Long dynamicId) throws Exception;
+	
+	public Long deleteDisLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception;
 }

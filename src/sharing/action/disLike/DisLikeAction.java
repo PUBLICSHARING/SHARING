@@ -9,7 +9,7 @@ public class DisLikeAction {
 	
 	public Long addDisLike(DisLike disLike) throws Exception {
 		try {
-			return this.addDisLike(disLike);
+			return this.disLikeService.addDisLike(disLike);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -47,6 +47,15 @@ public class DisLikeAction {
 	public String findDisLikeByUserIdAndDynamicId(Long userId, Long dynamicId) throws Exception {
 		try {
 			return this.disLikeService.findDisLikeByUserIdAndDynamicId(userId, dynamicId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Long deleteDisLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception {
+		try {
+			return this.disLikeService.deleteDisLikeByDynamicIdAndUserId(dynamicId, userId);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw e;

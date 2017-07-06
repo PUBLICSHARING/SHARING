@@ -46,4 +46,13 @@ public class DisLikeController implements DisLikeMapper {
 		}
 	}
 
+	@Override
+	public Long deleteDisLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception {
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put("userId", userId);
+		params.put("dynamicId", dynamicId);
+		SqlSessionUtil.getSqlSession().delete("sharing.entity.disLike.DisLikeMapper.deleteDisLikeByDynamicIdAndUserId", params);
+		return 1L;
+	}
+
 }

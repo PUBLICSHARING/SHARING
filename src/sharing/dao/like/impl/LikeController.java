@@ -45,4 +45,13 @@ public class LikeController implements LikeMapper {
 			return "true";
 		}
 	}
+
+	@Override
+	public Long deleteLikeByDynamicIdAndUserId(Long dynamicId, Long userId) throws Exception {
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put("userId", userId);
+		params.put("dynamicId", dynamicId);
+		SqlSessionUtil.getSqlSession().delete("sharing.entity.like.LikeMapper.deleteLikeByDynamicIdAndUserId", params);
+		return 1L;
+	}
 }
