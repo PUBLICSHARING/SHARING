@@ -136,4 +136,8 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 			</collection>
 		</collection>
 	</resultMap>
+	
+	<update id = "updateDynamic" parameterType = "sharing.entity.dynamic.Dynamic">
+		update dynamic set dynamic.content = #{content},dynamic.publishTime = #{publishTime},dynamic.likeNum = #{likeNum},dynamic.dislikeNum = #{dislikeNum},dynamic.userId = #{user.id} where dynamic.id = #{id};
+	</update>
 </mapper>

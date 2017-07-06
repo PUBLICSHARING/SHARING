@@ -23,5 +23,6 @@ PUBLIC "-//mybatis.org//DTO Config 3.0//EN"
 		<mapper resource="sharing/entity/comment/CommentMapper.xml"/>
 		<mapper resource="sharing/entity/accusation/AccusationMapper.xml"/>
 		<mapper resource="sharing/entity/question/QuestionMapper.xml"/>
+		<mapper resource = "sharing/entity/like/LikeMapper.xml"/>
 	</mappers>
 </configuration>

@@ -11,4 +11,6 @@ public interface LikeMapper {
 	public Like findLikeById(Long likeId) throws Exception;
 	
 	public Long deleteLikeById(Long likeId) throws Exception;
+	
+	public String findLikeByUserIdAndDynamicId(Long userId, Long dynamicId) throws Exception;
 }

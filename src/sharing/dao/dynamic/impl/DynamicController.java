@@ -50,5 +50,11 @@ public class DynamicController implements DynamicMapper{
 	public Map<String, Object> findNewestDynamics() throws Exception {
 		return SqlSessionUtil.getSqlSession().selectMap("sharing.entity.dynamic.findNewestDynamics","id");
 	}
+	
+	@Override
+	public Dynamic updateDynamic(Dynamic dynamic) throws Exception {
+		SqlSessionUtil.getSqlSession().update("sharing.entity.dynamic.updateDynamic", dynamic);
+		return dynamic;
+	}
 
 }

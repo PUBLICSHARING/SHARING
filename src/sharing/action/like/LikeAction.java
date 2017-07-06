@@ -42,4 +42,14 @@ public class LikeAction {
 			throw e;
 		}
 	}
+	
+	/*方法,根据用户ID和动态ID查询是否赞过该条动态*/
+	public String findLikeByUserIdAndDynamicId(Long userId, Long dynamicId) throws Exception {
+		try {
+			return this.likeService.findLikeByUserIdAndDynamicId(userId, dynamicId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

@@ -12,14 +12,17 @@ define(['app'],function(app) {
 		},
 		dynamicService.findDynamicsAndTotalByLimit = function(currentPage,pageSize,sucesscb,errorcb) {
 			dynamicService.get({action:"findDynamicsAndTotalByLimit",currentPage:currentPage,pageSize:pageSize},sucesscb,errorcb);
-		}
+		},
 		
 		dynamicService.findAllDynamicsByUserId = function(userId,sucesscb,errorcb){
 			dynamicService.get({action:"findAllDynamicsByUserId",id:userId},sucesscb,errorcb);
-		}
+		},
 		
 		dynamicService.findNewestDynamics = function(sucesscb,errorcb){
 			dynamicService.get({action:"findNewestDynamics"},sucesscb,errorcb);
+		},
+		dynamicService.updateDynamic = function(dynamic,sucesscb,errorcb) {
+			dynamicService.save({action:"updateDynamic"},{dynamic:dynamic},sucesscb,errorcb);
 		}
 		
 		return dynamicService;

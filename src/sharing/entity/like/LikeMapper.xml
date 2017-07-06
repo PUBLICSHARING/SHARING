@@ -3,22 +3,26 @@
 PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="sharing.entity.like">
+<mapper namespace="sharing.entity.like.LikeMapper">
 
 	<insert keyColumn="id" id="addLike" parameterType="sharing.entity.like.Like"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into like(userId,dynamicId,clickTime) values (#{user.id},#{dynamic.id},#{clickTime})
+		insert into `like`(userId,dynamicId,clickTime) values (#{user.id},#{dynamic.id},#{clickTime});
 	</insert>
 
 	<update id="updateLike" parameterType="sharing.entity.like.Like">
-		update like set like.userId = #{userId},like.dynamicId = #{dynamicId},like.clickTime = #{clickTime} where like.id = #{id};
+		update `like` set `like`.userId = #{userId},`like`.dynamicId = #{dynamicId},`like`.clickTime = #{clickTime} where `like`.id = #{id};
 	</update>
 	
 	<select id="findLikeById" resultType="sharing.entity.like.Like">
-		select * from like where id = #{id}
+		select * from `like` where id = #{id}
 	</select>
 	
 	<delete id = "deleteLikeById" parameterType = "sharing.entity.like.Like">
-		delete from like where id = #{id};
+		delete from `lik` where id = #{id};
 	</delete>
+	
+	<select id="findLikeByUserIdAndDynamicId" resultType="sharing.entity.like.Like">
+		select * from `like` where userId = #{userId} and dynamicId = #{dynamicId};
+	</select>
 </mapper>

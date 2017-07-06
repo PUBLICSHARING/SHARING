@@ -1,7 +1,5 @@
 var indexApp = angular.module("indexApp",[]);
-indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService", "UserService",function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService, UserService) {
-	$scope.userId = $stateParams.userId;
-	
+indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService", "UserService","LikeService", function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService, UserService, LikeService) {
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}
@@ -20,6 +18,7 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 	}
 
 	$scope.init = function(){
+		$scope.like = {};
 		$scope.comment = {};
 		$scope.newestDynamics = [];
 		DynamicsService.findNewestDynamics(success,error);
@@ -135,6 +134,41 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 			$scope.type = null;
 			$scope.id = null;
 			$rootScope.alertWarn("举报失败！");
+		}
+	}
+
+	$scope.clickLike = function(dynamic) {
+		LikeService.findLikeByUserIdAndDynamicId($stateParams.userId, dynamic.id, sucessCallBack, errorCallBack);
+
+		function sucessCallBack(data) {
+			if(data == "true") {
+				$scope.like.dynamic = {id:dynamic.id};
+				$scope.like.user = {id:$stateParams.userId};
+
+				LikeService.addLike($scope.like,sucess,error);
+
+				function sucess(data) {
+					dynamic.likeNum++;
+					//更新信息
+					DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
+
+					function sucesscb(data) {
+					}
+
+					function errorcb(error) {
+
+					}
+				}
+				function error(error) {
+					alert("点赞失败");
+				}
+			} else {
+				alert("你已经为该条动态点过赞了")
+			}
+		}
+
+		function errorCallBack(error) {
+
 		}
 	}
 }])

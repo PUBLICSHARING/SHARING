@@ -20,4 +20,6 @@ public interface DynamicMapper {
 	public Map<String, Object> findAllDynamicsByUserId(Long id) throws Exception;
 
 	public Map<String, Object> findNewestDynamics() throws Exception;
+	
+	public Dynamic updateDynamic(Dynamic dynamic) throws Exception;
 }

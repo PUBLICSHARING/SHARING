@@ -87,5 +87,15 @@ public class DynamicServiceBean implements DynamicService{
 			throw new Exception("findAllDynamicsByUserId",e);
 		}
 	}
+	
+	@Override
+	public Dynamic updateDynamic(Dynamic dynamic) throws Exception {
+		try {
+			return this.dynamicMapper.updateDynamic(dynamic);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("updateDynamic", e);
+		}
+	}
 
 }

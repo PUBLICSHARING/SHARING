@@ -21,4 +21,6 @@ public interface DynamicService {
 
 	public Map<String, Object> findNewestDynamics() throws Exception;
 	
+	public Dynamic updateDynamic(Dynamic dynamic) throws Exception;
+	
 }

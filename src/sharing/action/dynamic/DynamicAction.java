@@ -1,23 +1,16 @@
 package sharing.action.dynamic;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import sharing.entity.dynamic.Dynamic;
-import sharing.entity.user.User;
 import sharing.service.dynamic.DynamicService;
 import sharing.service.dynamic.impl.DynamicServiceBean;
-import sharing.service.user.UserService;
-import sharing.service.user.impl.UserServiceBean;
 
 public class DynamicAction {
 	private DynamicService dynamicService = new DynamicServiceBean();
 	
-	private UserService uerService = new UserServiceBean();
 	
 	/**
 	 * 添加动态
@@ -119,6 +112,15 @@ public class DynamicAction {
 			}*/
 			return newestDynamic;
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public Dynamic updateDynamic(Dynamic dynamic) throws Exception {
+		try {
+			return this.dynamicService.updateDynamic(dynamic);
+		} catch(Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
