@@ -105,7 +105,7 @@ public class DynamicAction {
 	public Map<String, Object> findNewestDynamics() throws Exception{
 		try {
 			Map<String, Object> newestDynamic =  this.dynamicService.findNewestDynamics();
-			Set<Entry<String, Object>> setIterator = newestDynamic.entrySet();
+/*			Set<Entry<String, Object>> setIterator = newestDynamic.entrySet();
 			
 			Iterator<Entry<String, Object>> iterator = setIterator.iterator();
 			
@@ -116,7 +116,7 @@ public class DynamicAction {
 				User user = dynamic.getUser();
 				String userHeadImg = this.uerService.findUserHeadImg(user.getId());
 				user.setHeadImg(userHeadImg);
-			}
+			}*/
 			return newestDynamic;
 		} catch (Exception e) {
 			e.printStackTrace();

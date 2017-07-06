@@ -191,7 +191,13 @@ public class UserServiceBean implements UserService{
 			/*获取文件的名称*/
 			String path = getPath(User.PATH);	//获取上传的头像新的路径名+文件名
 			
-			/*将图片解码并写入文件*/
+			//直接更新数据库用户头像
+			User user = findUserById(userId);	//根据用户Id查询出对应用户
+			user.setHeadImg(splitString[1]);	//设置头像路径
+			updateUser(user);
+			return user.getId();
+			
+/*			将图片解码并写入文件
 			if(GenerateImage(splitString[1], path)) {	//成功将图片保存在指定目录后的操作,将书籍信息和保存的文件路径写入到数据库
 				User user = findUserById(userId);	//根据用户Id查询出对应用户
 				user.setHeadImg(path);	//设置头像路径
@@ -199,7 +205,7 @@ public class UserServiceBean implements UserService{
 				return user.getId();
 			} else {
 				return null;
-			}
+			}*/
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("updateHeadImg", e);
@@ -210,13 +216,19 @@ public class UserServiceBean implements UserService{
 	public String findUserHeadImg(Long userId) throws Exception {
 		try {
 			User user = findUserById(userId); //根据用户Id查询用哪用户信息
-			String path = user.getHeadImg();
-			if(!path.equals("") && path != "" && path != null) {
+			String headImg = user.getHeadImg();
+			if(headImg!=null){
+				return headImg;
+			}
+			else {
+				return null;
+			}
+			/*if(!path.equals("") && path != "" && path != null) {
 				File file = new File(path);
 				return getImageString(file);
 			}else {
 				return null;
-			}
+			}*/
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("findUserHeadImg", e);

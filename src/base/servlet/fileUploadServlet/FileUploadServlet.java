@@ -211,6 +211,8 @@ public class FileUploadServlet extends HttpServlet {
 			//获取图片
 			Image src = ImageIO.read(inputStream); 
 			
+			Image image = src.getScaledInstance(imgWidth, imgHeight, Image.SCALE_REPLICATE);
+			
 			//将设置好的图片追加到BufferedImage中 
 			BufferedImage bufferedImage = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB); 
 			Graphics2D graphics = bufferedImage.createGraphics(); 
