@@ -11,11 +11,11 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	</select>
 	<resultMap type="sharing.entity.user.User" id="UserNameAndId1">
 		<result property="id" column="accusationUserId"/>
-		<result property="name" column="name"/>
+		<result property="name" column="accusationUserName"/>
 	</resultMap>
 	<resultMap type="sharing.entity.user.User" id="UserNameAndId2">
 		<result property="id" column="accusationedUserId"/>
-		<result property="name" column="name"/>
+		<result property="name" column="accusationedUserName"/>
 	</resultMap>
 	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicId">
 		<result property="id" column="accusationedDynamicId"/>
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<result property="id" column="noticeFromAccusationId"/>
 		<result property="accusationedRemark" column="accusationedRemark"/>
 		<result property="accusationedDate" column="accusationedDate"/>
-		<result property="isRead" column="isRead"/>
+		<result property="isRead" column="accusationIsRead"/>
 		<association property="accusationUser" column="accusationUserId" javaType="sharing.entity.user.User"  resultMap="UserNameAndId1"/>
 		<association property="accusationedUser" column="accusationedUserId" javaType="sharing.entity.user.User"  resultMap="UserNameAndId2"/>
 		<association property="accusationedDynamic" column="accusationedDynamicId" javaType="sharing.entity.dynamic.Dynamic"  resultMap="DynamicId"/>
@@ -35,51 +35,63 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	</resultMap>
 	<resultMap type="sharing.entity.user.User" id="NoticeUserNameAndId">
 		<result property="id" column="noticeUserId"/>
-		<result property="name" column="name"/>
+		<result property="name" column="noticeUserName"/>
 	</resultMap>
 	<resultMap  type="sharing.entity.user.User" id="LikeUserNameAndId">
-		<result property="id" column="userId"/>
-		<result property="name" column="name"/>
+		<result property="id" column="likeUserId"/>
+		<result property="name" column="likeUserName"/>
 	</resultMap>
 	<resultMap type="sharing.entity.user.User" id="LikeDynamicUserNameAndId">
-		<result property="id" column="userId" />
-		<result property="name" column="name" />
+		<result property="id" column="likeDynamicUserId" />
+		<result property="name" column="likeDynamicUserName" />
 	</resultMap>
 	<resultMap type="sharing.entity.dynamic.Dynamic" id="LikeDynamicBaseInfo">
-		<result property="id" column="dynamicId" />
-		<result property="content" column="content" />
-		<result property="publishTime" column="publishTime" />
-		<result property="likeNum" column="likeNum" />
-		<result property="dislikeNum" column="dislikeNum" />
-		<association property="user" column="userId" javaType="sharing.entity.user.User" resultMap="LikeDynamicUserNameAndId"></association>
+		<result property="id" column="likeDynamicId" />
+		<result property="content" column="likeDynamicContent" />
+		<result property="publishTime" column="likeDynamicPublicshTime" />
+		<result property="likeNum" column="likeDynamicLikeNum" />
+		<result property="dislikeNum" column="likeDynamicDislikeNum" />
+		<association property="user" column="likeDynamicUserId" javaType="sharing.entity.user.User" resultMap="LikeDynamicUserNameAndId"></association>
+	</resultMap>
+	<resultMap type="sharing.entity.user.User" id="noticeFromCommentDynamicUser">
+		<result property="id" column="likeDynamicUserId" />
+		<result property="name" column="noticeFromCommentDynamicUserName" />
+	</resultMap>
+	<resultMap type="sharing.entity.dynamic.Dynamic" id="LikeDynamicBaseInfo1">
+		<result property="id" column="noticeFromCommentDynamicId" />
+		<result property="content" column="noticeFromCommentDynamicContent" />
+		<result property="publishTime" column="noticeFromCommentDynamicPublicshTime" />
+		<result property="likeNum" column="noticeFromCommentDynamicLikeNum" />
+		<result property="dislikeNum" column="noticeFromCommentDynamicDislikeNum" />
+		<association property="user" column="noticeFromCommentDynamicUserId" javaType="sharing.entity.user.User" resultMap="noticeFromCommentDynamicUser"></association>
 	</resultMap>
 	<resultMap type="sharing.entity.like.Like" id="LikeBaseInfo">
 		<result property="id" column="noticeFromLikeId"/>
 		<result property="clickTime" column="clickTime"/>
-		<association property="user" column="userId" javaType="sharing.entity.user.User" resultMap="LikeUserNameAndId"/>
-		<association property="dynamic" column="dynamicId" javaType="sharing.entity.dynamic.Dynamic"  resultMap="LikeDynamicBaseInfo"/>
+		<association property="user" column="likeUserId" javaType="sharing.entity.user.User" resultMap="LikeUserNameAndId"/>
+		<association property="dynamic" column="likeDynamicId" javaType="sharing.entity.dynamic.Dynamic"  resultMap="LikeDynamicBaseInfo"/>
 	</resultMap>
 	<resultMap  type="sharing.entity.user.User" id="fromUserIdAndName">
-		<result property="id" column="fromUserId"/>
-		<result property="name" column="name"/>
+		<result property="id" column="noticeFromCommentFromUserId"/>
+		<result property="name" column="noticeFromCommentFromUserName"/>
 	</resultMap>
 	<resultMap  type="sharing.entity.user.User" id="toUserIdAndName">
-		<result property="id" column="toUserId"/>
-		<result property="name" column="name"/>
+		<result property="id" column="noticeFromCommentToUserId"/>
+		<result property="name" column="noticeFromCommentToUserName"/>
 	</resultMap>
 	<resultMap type="sharing.entity.comment.Comment" id="fatherComment">
-		<result property="id" column="fatherCommentId"/>
-		<result property="content" column="content"/>
-		<result property="commentTime" column="commentTime"/>
+		<result property="id" column="noticeFromCommentFatherCommentId"/>
+		<result property="content" column="noticeFromCommentFatherCommentContent"/>
+		<result property="commentTime" column="noticeFromCommentFatherCommentCommentTime"/>
 	</resultMap>
 	<resultMap type="sharing.entity.comment.Comment" id="commentBaseInfo">
 		<result property="id" column="noticeFromCommentId"/>
-		<result property="content" column="content"/>
-		<result property="commentTime" column="commentTime"/>
-		<association property="dynamic" column="dynamicId" javaType="sharing.entity.dynamic.Dynamic" resultMap="LikeDynamicBaseInfo"/>
-		<association property="fromUser" column="fromUserId" javaType="sharing.entity.user.User" resultMap="fromUserIdAndName"/>
-		<association property="toUser" column="toUserId" javaType="sharing.entity.user.User" resultMap="toUserIdAndName"/>
-		<association property="fatherComment" column="fatherCommentId" javaType="sharing.entity.comment.Comment" resultMap="fatherComment"/>
+		<result property="content" column="noticeFromCommentContent"/>
+		<result property="commentTime" column="noticeFromCommentcommentTime"/>
+		<association property="dynamic" column="noticeFromCommentDynamicId" javaType="sharing.entity.dynamic.Dynamic" resultMap="LikeDynamicBaseInfo1"/>
+		<association property="fromUser" column="noticeFromCommentFromUserId" javaType="sharing.entity.user.User" resultMap="fromUserIdAndName"/>
+		<association property="toUser" column="noticeFromCommentToUserId" javaType="sharing.entity.user.User" resultMap="toUserIdAndName"/>
+		<association property="fatherComment" column="noticeFromCommentFatherCommentId" javaType="sharing.entity.comment.Comment" resultMap="fatherComment"/>
 	</resultMap>
 	<resultMap type="sharing.entity.notifycation.Notifycation" id="NotifycationBaseInfo">
 		<result property="id" column="id"/>
@@ -92,7 +104,24 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<association property="noticeFromComment" javaType="sharing.entity.comment.Comment" column="noticeFromCommentId" resultMap="commentBaseInfo"/>
 	</resultMap>
 	<select id="findUserNotifycationByLimit" resultMap="NotifycationBaseInfo">
-		select * from notifycation n left join user u1 on u1.id=n.noticeUserId 
+		select n.id as id,n.noticeContent as noticeContent,n.isRead as isRead n.date as date,
+		u1.id as noticeUserId,u1.name as noticeUserName,
+		a.id as noticeFromAccusationId,a.accusationedRemark,a.isRead as accusationIsRead,
+		u2.id as accusationUserId,u2.name as accusationUserName,
+    u3.id as accusationedUserId,u3.name as accusationedUserName,
+    d1.id as accusationedDynamicId,
+    c1.id as accusationedCommentId,
+    `like`.id as noticeFromLikeId,`like`.clickTime as clickTime,
+     u4.id as likeUserId,u4.name as likeUserName,
+    d2.id as likeDynamicId,d2.content as likeDynamicContent,d2.publishTime as likeDynamicPublicshTime,d2.likeNum as likeDynamicLikeNum,d2.dislikeNum AS likeDynamicDislikeNum
+    u5.id as likeDynamicUserId,u5.name as likeDynamicUserName,
+    c2.id as noticeFromCommentId,c2.content as noticeFromCommentContent,c2.commentTime as noticeFromCommentcommentTime,
+    d3.id as noticeFromCommentDynamicId,d3.content as noticeFromCommentDynamicContent,d3.publishTime as noticeFromCommentDynamicPublicshTime,d3.likeNum as noticeFromCommentDynamicLikeNum,d3.dislikeNum as noticeFromCommentDynamicDislikeNum,
+    u6.id as noticeFromCommentDynamicUserId,u6.name as noticeFromCommentDynamicUserName,
+    u7.id as noticeFromCommentFromUserId,u7.name as noticeFromCommentFromUserName,
+    u8.id as noticeFromCommentToUserId,u8.name as noticeFromCommentToUserName,
+    c3.id as noticeFromCommentFatherCommentId,c3.content as noticeFromCommentFatherCommentContent,c3.commentTime as noticeFromCommentFatherCommentCommentTime 
+		from notifycation n left join user u1 on u1.id=n.noticeUserId 
 		LEFT JOIN accusation a on n.noticeFromAccusationId=a.id 
 		LEFT JOIN `user` u2 on a.accusationUserId=u2.id 
 		LEFT JOIN `user` u3 on a.accusationedUserId=u3.id 
@@ -120,7 +149,24 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		select count(id) from notifycation
 	</select>
 	<select id="findAllNotifycationByLimit" resultMap="NotifycationBaseInfo">
-		select * from notifycation n left join user u1 on u1.id=n.noticeUserId 
+		select n.id as id,n.noticeContent as noticeContent,n.isRead as isRead n.date as date,
+		u1.id as noticeUserId,u1.name as noticeUserName,
+		a.id as noticeFromAccusationId,a.accusationedRemark,a.isRead as accusationIsRead,
+		u2.id as accusationUserId,u2.name as accusationUserName,
+    u3.id as accusationedUserId,u3.name as accusationedUserName,
+    d1.id as accusationedDynamicId,
+    c1.id as accusationedCommentId,
+    `like`.id as noticeFromLikeId,`like`.clickTime as clickTime,
+     u4.id as likeUserId,u4.name as likeUserName,
+    d2.id as likeDynamicId,d2.content as likeDynamicContent,d2.publishTime as likeDynamicPublicshTime,d2.likeNum as likeDynamicLikeNum,d2.dislikeNum AS likeDynamicDislikeNum
+    u5.id as likeDynamicUserId,u5.name as likeDynamicUserName,
+    c2.id as noticeFromCommentId,c2.content as noticeFromCommentContent,c2.commentTime as noticeFromCommentcommentTime,
+    d3.id as noticeFromCommentDynamicId,d3.content as noticeFromCommentDynamicContent,d3.publishTime as noticeFromCommentDynamicPublicshTime,d3.likeNum as noticeFromCommentDynamicLikeNum,d3.dislikeNum as noticeFromCommentDynamicDislikeNum,
+    u6.id as noticeFromCommentDynamicUserId,u6.name as noticeFromCommentDynamicUserName,
+    u7.id as noticeFromCommentFromUserId,u7.name as noticeFromCommentFromUserName,
+    u8.id as noticeFromCommentToUserId,u8.name as noticeFromCommentToUserName,
+    c3.id as noticeFromCommentFatherCommentId,c3.content as noticeFromCommentFatherCommentContent,c3.commentTime as noticeFromCommentFatherCommentCommentTime 
+		from notifycation n left join user u1 on u1.id=n.noticeUserId 
 		LEFT JOIN accusation a on n.noticeFromAccusationId=a.id 
 		LEFT JOIN `user` u2 on a.accusationUserId=u2.id 
 		LEFT JOIN `user` u3 on a.accusationedUserId=u3.id 
