@@ -85,30 +85,24 @@ public class DynamicAction {
 		}
 	}
 	
-	public List<Dynamic> findAllDynamicsByUserId(Long id) throws Exception{
+	public Map<String, Object> findAllDynamicsByUserId(Long id,Long currentPage,Long pageSize) throws Exception{
 		try {
-			return this.dynamicService.findAllDynamicsByUserId(id);
+			Map<String, Object> result = new HashMap<String,Object>();
+			result.put("total",this.findAllDynamicsTotal());
+			result.put("dynamics", this.dynamicService.findAllDynamicsByUserId(id,currentPage,pageSize));
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
 	
-	public List<Dynamic> findNewestDynamics() throws Exception{
+	public Map<String, Object> findNewestDynamics(Long currentPage,Long pageSize) throws Exception{
 		try {
-			return this.dynamicService.findNewestDynamics();
-/*			Set<Entry<String, Object>> setIterator = newestDynamic.entrySet();
-			
-			Iterator<Entry<String, Object>> iterator = setIterator.iterator();
-			
-			//进行头像的处理，顺便带出头像
-			while (iterator.hasNext()) {
-				Entry<String, Object> entry = iterator.next();
-				Dynamic dynamic = (Dynamic)entry.getValue();
-				User user = dynamic.getUser();
-				String userHeadImg = this.uerService.findUserHeadImg(user.getId());
-				user.setHeadImg(userHeadImg);
-			}*/
+			Map<String, Object> result = new HashMap<String,Object>();
+			result.put("total",this.findAllDynamicsTotal());
+			result.put("dynamics",this.dynamicService.findNewestDynamics(currentPage,pageSize));
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

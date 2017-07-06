@@ -69,9 +69,9 @@ public class DynamicServiceBean implements DynamicService{
 	}
 
 	@Override
-	public List<Dynamic> findAllDynamicsByUserId(Long id) throws Exception {
+	public List<Dynamic> findAllDynamicsByUserId(Long id,Long currentPage,Long pageSize) throws Exception {
 		try {
-			return this.dynamicMapper.findAllDynamicsByUserId(id);
+			return this.dynamicMapper.findAllDynamicsByUserId(id,currentPage,pageSize);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("findAllDynamicsByUserId",e);
@@ -79,9 +79,9 @@ public class DynamicServiceBean implements DynamicService{
 	}
 	
 	@Override
-	public List<Dynamic> findNewestDynamics() throws Exception{
+	public List<Dynamic> findNewestDynamics(Long currentPage,Long pageSize) throws Exception{
 		try {
-			return this.dynamicMapper.findNewestDynamics();
+			return this.dynamicMapper.findNewestDynamics(currentPage,pageSize);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("findAllDynamicsByUserId",e);

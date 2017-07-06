@@ -18,6 +18,12 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 		$scope.comment = $event.target.parentElement.firstElementChild.value;
 		$rootScope.alertDisappear($scope.comment, 1000);
 	}
+	
+	$scope.currentPage = 1;
+	$scope.pageSize = 5;
+	$scope.total = 0;
+	$scope.hasDataMore = true;
+	$scope.allPage = 0;
 
 	$scope.init = function(){
 		$scope.like = {};
@@ -25,20 +31,40 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 		$scope.comment = {};
 		$scope.newestDynamics = [];
 		$scope.loginUserId = window.localStorage.getItem("UID");
-		DynamicsService.findNewestDynamics(success,error);
+		$scope.findNewestDynamics();
+	}
+	
+	$scope.findNewestDynamics = function() {
+		DynamicsService.findNewestDynamics($scope.currentPage,$scope.pageSize,success,error);
 		function success(data){
-			for(var pro in data){
-				$scope.newestDynamics.push(data[pro]);
+			$scope.total = data.total;
+			$rootScope.hideRefresh();
+			if(($scope.currentPage * $scope.pageSize) >= $scope.total) {
+				$scope.hasDataMore = false;
+			}
+			if($scope.currentPage === 1) {
+				$scope.newestDynamics = data.dynamics;
+			}
+			else{
+				$scope.newestDynamics = $scope.newestDynamics.concat(data.dynamics);
 			}
 		}
-
 		function error(error){
+			$scope.currentPage++;
+			$rootScope.hideRefresh();
 			$rootScope.alertWarn("查询出错");
 		}
 	}
 
-
-
+	$scope.nextPage = function() {
+		if($scope.hasDataMore){
+			$scope.findNewestDynamics();
+		}
+		else{
+			$rootScope.alertWarn("没有更多数据了");
+		}
+	}
+	
 	$scope.formatDate = function(longTime){
 		var date = new Date(longTime);
 		var year = date.getFullYear();

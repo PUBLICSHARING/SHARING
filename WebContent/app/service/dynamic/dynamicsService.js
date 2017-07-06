@@ -14,12 +14,12 @@ define(['app'],function(app) {
 			dynamicService.get({action:"findDynamicsAndTotalByLimit",currentPage:currentPage,pageSize:pageSize},sucesscb,errorcb);
 		},
 		
-		dynamicService.findAllDynamicsByUserId = function(userId,sucesscb,errorcb){
-			dynamicService.get({action:"findAllDynamicsByUserId",id:userId},sucesscb,errorcb);
+		dynamicService.findAllDynamicsByUserId = function(userId,currentPage,pageSize,sucesscb,errorcb){
+			dynamicService.get({action:"findAllDynamicsByUserId",id:userId,currentPage:currentPage,pageSize:pageSize},sucesscb,errorcb);
 		},
 		
-		dynamicService.findNewestDynamics = function(sucesscb,errorcb){
-			dynamicService.get({action:"findNewestDynamics"},sucesscb,errorcb);
+		dynamicService.findNewestDynamics = function(currentPage,pageSize,sucesscb,errorcb){
+			dynamicService.get({action:"findNewestDynamics",currentPage:currentPage,pageSize:pageSize},sucesscb,errorcb);
 		},
 		dynamicService.updateDynamic = function(dynamic,sucesscb,errorcb) {
 			dynamicService.save({action:"updateDynamic"},{dynamic:dynamic},sucesscb,errorcb);

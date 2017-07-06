@@ -17,9 +17,9 @@ public interface DynamicMapper {
 	
 	public Long findMaxDynamicId() throws Exception;
 	
-	public List<Dynamic> findAllDynamicsByUserId(Long id) throws Exception;
+	public List<Dynamic> findAllDynamicsByUserId(Long id, Long currentPage, Long pageSize) throws Exception;
 
-	public List<Dynamic> findNewestDynamics() throws Exception;
+	public List<Dynamic> findNewestDynamics(Long currentPage, Long pageSize) throws Exception;
 	
 	public Dynamic updateDynamic(Dynamic dynamic) throws Exception;
 }

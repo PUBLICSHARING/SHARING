@@ -42,15 +42,22 @@ public class DynamicController implements DynamicMapper{
 	}
 
 	@Override
-	public List<Dynamic> findAllDynamicsByUserId(Long id) throws Exception {
+	public List<Dynamic> findAllDynamicsByUserId(Long id,Long currentPage,Long pageSize) throws Exception {
 		Map<String, Object> params = new HashMap<String,Object>();
+		Long startIndex = Long.valueOf((currentPage.longValue() - 1L)* pageSize.longValue());
 		params.put("id", id);
+		params.put("startIndex", startIndex);
+		params.put("pageSize", pageSize);
 		return SqlSessionUtil.getSqlSession().selectList("sharing.entity.dynamic.findAllDynamicsByUserId",params);
 	}
 	
 	@Override
-	public List<Dynamic> findNewestDynamics() throws Exception {
-		return SqlSessionUtil.getSqlSession().selectList("sharing.entity.dynamic.findNewestDynamics");
+	public List<Dynamic> findNewestDynamics(Long currentPage,Long pageSize) throws Exception {
+		Map<String, Object> params = new HashMap<String,Object>();
+		Long startIndex = Long.valueOf((currentPage.longValue() - 1L)* pageSize.longValue());
+		params.put("startIndex", startIndex);
+		params.put("pageSize", pageSize);
+		return SqlSessionUtil.getSqlSession().selectList("sharing.entity.dynamic.findNewestDynamics",params);
 	}
 	
 	@Override
