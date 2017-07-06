@@ -32,7 +32,7 @@
 				<td ng-if="!accusation.accusationedDynamic.id" class="fileManage-table-td">空</td>
 				<td ng-if="accusation.accusationedComment.id" class="fileManage-table-td">{{accusation.accusationedComment.id}}</td>
 				<td ng-if="!accusation.accusationedComment.id" class="fileManage-table-td">空</td>
-				<td class="fileManage-table-td">{{accusation.accusationedRemark}}</td>
+				<td class="fileManage-table-td" title = '{{accusation.accusationedRemark}}'>{{accusation.accusationedRemark}}</td>
 				<td class="fileManage-table-td">{{accusation.accusationedDate | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
 				<td>
 					<a class="pointer" ng-click="deleteAccusation(accusation.id)">删除</a>
