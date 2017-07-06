@@ -133,7 +133,7 @@
 }
 
 .dynamic_content{
-	width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;border-radius: 4%;
+	width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;
 }
 
 .dynamic_img_box{
@@ -141,6 +141,7 @@
 }
 </style>
 
+<!-- <div style="width: 100%;background-repeat: no-repeat;height: 150px;background:url(../app/image/title/1657b3cea5bb265.jpg);background-size:100%;"  auto-height=""> --></div>
 <div class="main_wrap" ng-init="init()">
 
 	<div class="main_wrap_head">
@@ -166,12 +167,12 @@
 			<!-- 头像对应块 -->
 			<div class="profile_div full_width">
 				<div class="personnal_img">
-					<img src="{{userHeadImg}}"
+					<img src="data:image/jpeg;base64,{{currentPageOwner.headImg}}"
 						style="width: 100%; height: 100%;" alt="..." class="img-circle">
 				</div>
 				<div class="personnal_name_info">
-					<span class="pname text_style1"><a href="#">{{userName}}</a></span> <span
-						class="pname"><i style="color: red;">322</i>条说说</span>
+					<span class="pname text_style1"><a href="#">{{currentPageOwner.name}}</a></span> <span
+						class="pname"><i style="color: red;">{{dynamicNums}}</i>条说说</span>
 				</div>
 			</div>
 
@@ -186,25 +187,25 @@
 			<div class="comment_examine full_width">
 				<a style="display: inline-block;">说说使用帮助</a>
 				<p style="font-size: 12px; color: #777;">
-					温馨提醒：</br>若有修改QQ密码会清除定时说说发表，需要重新设置定时说说
+					温馨提醒：</br>若有修改SHARING平台密码会清除定时说说发表，需要重新设置定时说说
 				</p>
 			</div>
 			<div style="clear: both;"></div>
 		</div>
 
 		<!-- 动态历史纪录区域 -->
-		<div class="main_wrap_dynamic" ng-repeat="dynamic in dynamics">
+		<div class="main_wrap_dynamic" ng-repeat="dynamic in personalDynamics">
 			<div class="full_height float_left" style="width: 10%;">
-				<span><img src="{{userHeadImg}}"
+				<span><img src="data:image/jpeg;base64,{{currentPageOwner.headImg}}"
 					class="dynamicOwn_img" /></span>
 			</div>
 			<div class="full_height float_right dynamic_content">
 				<div class="full_width">
 					<p>
-						<a href="#">{{userName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;{{dynamic.content}}
+						<a href="#">{{dynamic.user.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;{{dynamic.content}}
 					</p>
 				</div>
-				<div class="full_width"><!-- ../app/image/title/c1342c0ad0.jpg -->
+				<div class="full_width">
 					<div class='dynamic_img_box'  ng-repeat="imge in dynamic.images">
 						<img src="data:image/jpeg;base64,{{imge.fileCode}}" style="width:100%;"/>
 					</div>
@@ -212,8 +213,7 @@
 				</div>
 				<div class="full_width"
 					style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
-					<a href="#">{{formatDate(dynamic.publishTime)}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
-						A53m</span>
+					<a href="#">{{formatDate(dynamic.publishTime)}}</a>
 				</div>
 			</div>
 		</div>

@@ -46,7 +46,9 @@ angular.module("publishingDynamicsModule",[])
 	
 	
 	$scope.init=function(){
-		
+		$scope.like = {};
+		$scope.comment = {};
+		$scope.personalDynamics = [];
 		//权限判断
 		var currentUserid = window.localStorage.getItem("UID");
 		if(currentUserid == $scope.userId){
@@ -56,15 +58,24 @@ angular.module("publishingDynamicsModule",[])
 			$scope.isIillegal = false;
 		}
 		
-		//获取用户头像
-		$scope.userHeadImg = window.localStorage.getItem($scope.userId);
+		//查询用户个人信息
+		UserService.findUserById($scope.userId,suc,ero);
+		function suc(data){
+			$scope.currentPageOwner = data;
+		}
+		
+		function ero(error){
+			$rootScope.alertWarn("查询用户信息出错！亲联系管理员");
+		}
 		
 		//查询个人动态
 		DynamicsService.findAllDynamicsByUserId($scope.userId,sucess,error);
-		
 		function sucess(data){
-			$scope.userName = data[$scope.userId].name;
-			$scope.dynamics = data[$scope.userId].dynamics;
+			for(var pro in data){
+				$scope.personalDynamics.push(data[pro]);
+			}
+			
+			$scope.dynamicNums = $scope.personalDynamics.length;
 		}
 		
 		function error(error){

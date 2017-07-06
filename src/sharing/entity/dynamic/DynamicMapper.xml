@@ -43,11 +43,41 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		SELECT MAX(id) as Did
 		FROM dynamic
 	</select>
-	<select id="findAllDynamicsByUserId" resultMap="UserAllDynamicInfo">
+	<select id="findAllDynamicsByUserId" resultMap="newestDynamicsInfo">
 		SELECT
-		`user`.`name`,`user`.id,dy.content,dy.publishTime,dy.likeNum,dy.dislikeNum,sharingfile.fileCode
-		from `user` LEFT JOIN dynamic dy ON dy.userId = `user`.id LEFT JOIN
-		sharingfile ON dynamicId = dy.id WHERE `user`.id=#{id}
+		dus.id AS userId,
+		dus.headImg,
+		dy.id,
+		dus.`name`,
+		dy.content,
+		dy.publishTime,
+		dy.likeNum,
+		dy.dislikeNum,
+		sf.fileCode,
+		fus.`name` AS fname,
+		fus.id AS fid,
+		pco.content AS pcommentContent,
+		pco.commentTime,
+		pco.id as commentId,
+		cco.content AS ccommentContent,
+		cco.commentTime AS ccommentTime,
+		cco.id AS ccommentId,
+		cfus.id AS cfusId,
+		cfus.`name` AS cfusName,
+		ctus.id AS ctusId,
+		ctus.`name` AS ctusName
+		FROM
+		dynamic AS dy
+		LEFT JOIN `user` AS dus ON dus.id = dy.userId
+		LEFT JOIN sharingfile AS sf ON dy.id = sf.dynamicId
+		LEFT JOIN `comment` AS pco ON dy.id = pco.dynamicId AND pco.toUserId IS NULL
+		LEFT JOIN `comment` AS cco ON pco.id = cco.fatherCommentId
+		LEFT JOIN `user` AS cfus ON cco.fromUserId = cfus.id
+		LEFT JOIN `user` AS ctus ON cco.toUserId = ctus.id
+		LEFT JOIN `user` AS fus ON pco.fromUserId = fus.id
+		WHERE dus.id = #{id}
+		ORDER BY
+		dy.publishTime DESC 
 	</select>
 
 	<select id="findNewestDynamics" resultMap="newestDynamicsInfo">
@@ -85,7 +115,9 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		ORDER BY
 		dy.publishTime DESC
 	</select>
-	<resultMap type="sharing.entity.user.User" id="UserAllDynamicInfo">
+	
+	<!-- 我的地盘首页的动态 -->
+<!-- 	<resultMap type="sharing.entity.dynamic.Dynamic" id="UserAllDynamicInfo">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
 		<collection property="dynamics" ofType="sharing.entity.dynamic.Dynamic">
@@ -97,8 +129,9 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 				<result property="fileCode" column="fileCode" />
 			</collection>
 		</collection>
-	</resultMap>
+	</resultMap> -->
 
+	<!-- 首页的动态 -->
 	<resultMap type="sharing.entity.dynamic.Dynamic" id="newestDynamicsInfo">
 		<id property="id" column="id" />
 		<result property="content" column="content" />
