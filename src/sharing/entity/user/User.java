@@ -31,6 +31,8 @@ public class User implements Serializable{
 	
 	private String headImg;
 	
+	private String fileCode;
+	
 	private List<SharingFile> images;
 	
 	private List<Dynamic> dynamics;
@@ -144,4 +146,14 @@ public class User implements Serializable{
 	public void setHeadImg(String headImg) {
 		this.headImg = headImg;
 	}
+
+	public String getFileCode() {
+		return fileCode;
+	}
+
+	public void setFileCode(String fileCode) {
+		this.fileCode = fileCode;
+	}
+	
+	
 }

@@ -4,13 +4,18 @@
 		<div>
 			<article class="index_article" ng-init="outerIndex = $index" ng-repeat="(index,dynamic) in newestDynamics">
 				<header class="index_article_header">
-					<a>{{dynamic.user.name}}</a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
+					<a>
+					<!-- <img id="head-img" ng-if="myCroppedImage.length > 0" ng-src = "{{myCroppedImage}}">
+							<img id="head-img" ng-if="myCroppedImage.length == 0" src="../app/directives/title/image/default.jpg"> -->
+						{{dynamic.user.name}}
+					</a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
 				</header>
 				<div style="width: 100%;">
 					<ul>
 						<li ng-repeat="imge in dynamic.images" style="display: inline;"><img
 							src="data:image/jpeg;base64,{{imge.fileCode}}"
-							style="width: 30%;"></li>
+							style="width: 30%;">
+						</li>
 					</ul>
 					<div class="width:100%;"
 						style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">

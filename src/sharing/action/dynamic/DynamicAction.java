@@ -1,13 +1,16 @@
 package sharing.action.dynamic;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import sharing.entity.dynamic.Dynamic;
 import sharing.entity.user.User;
 import sharing.service.dynamic.DynamicService;
 import sharing.service.dynamic.impl.DynamicServiceBean;
+import sharing.service.user.impl.UserServiceBean;
 
 public class DynamicAction {
 	private DynamicService dynamicService = new DynamicServiceBean();
