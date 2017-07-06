@@ -187,11 +187,13 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 					LikeService.addLike($scope.like,sucess,error);
 
 					function sucess(data) {
+						$scope.addNotifycation("like", dynamic.user.id, data);
 						dynamic.likeNum++;
 						//更新信息
 						DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
 
 						function sucesscb(data) {
+							
 						}
 
 						function errorcb(error) {
