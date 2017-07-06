@@ -12,13 +12,13 @@
 			</div>
 			<div>
 				<div style="margin-left: 6%; padding-right: 4%; background: #fcfdfd">
-					<p>回复我：&nbsp;&nbsp;{{mes.noticeFromComment.content}}</p>
+					<p>回复我的动态：&nbsp;&nbsp;{{mes.noticeFromComment.content}}</p>
 					<p
 						style="border: 1px slid red; padding: 2%; background: #e6e3de; border-radius: 2%;">
-						<span>我的回复：</span>&nbsp;&nbsp;细节。因为对于客户的业务而言，我们是外行，如果从业务细节着手，很容易迷失方向，失去对业务核心的把握。同时要认识到，对于一个外行而言，我们对细节的深入也必定是有限的，不要指望自己能够无穷的彻底的了解每一个细枝末节。一是不可能有无限的时间给你了解，二是没有这个必要。因为未来的系统也不可能完全包办所有业务的细节，还有很多事情是要靠客户企业中这些具有专业技能的人来做的。
+						<span>动态内容：</span>&nbsp;&nbsp;XXXXXXXXXXXXXXXXX♂😁
 					</p>
 					<div style="padding-right: 4%;">
-						<a class="pointer" ng-click="openParentConment()"
+						<a class="pointer" ng-click="openParentConment($index)"
 							style="float: right"> <span
 							class="glyphicon glyphicon-pencil"
 							style="cursor: pointer; text-decoration: none"></span> 回复
@@ -26,10 +26,10 @@
 						<div style="clear: both;"></div>
 					</div>
 					<section class="index_center_section" style="display: none"
-						id="ddd">
+						id="{{$index}}">
 						<form class="section_form">
 							<textarea placeholder="添加评论..." style="height: 18px;"
-								class="section_textarea" ng-model="dynamic.newContent"></textarea>
+								class="section_textarea" ng-model="mes.noticeFromComment.dynamic.newContent"></textarea>
 						</form>
 						<div
 							style="border-top: 1px solid #ddd; margin-top: 4%; width: 100%; padding-top: 3%;">
@@ -38,7 +38,7 @@
 							<div
 								style="display: block; height: 20px; width: 5%; float: right;"></div>
 							<button class="sendButton"
-								ng-click="saveComment(outerIndex,dynamic.id)"
+								ng-click="saveComment(mes.noticeFromComment.dynamic.id,mes.noticeFromComment.fromUser.id,mes.noticeFromComment.dynamic.newContent,mes.noticeFromComment.fatherComment.id,mes.noticeFromComment.id)"
 								style="float: right;">发送</button>
 							<div style="clear: both;"></div>
 						</div>
