@@ -39,9 +39,11 @@ messageCenterApp.controller("messageCenterCtrl",["$scope","$rootScope","$state",
 		//查询有未读消息的用户动态
 		NotifycationService.findUserNotifycationByLimit($scope.userId,1,2,suc1,ero1);
 		function suc1(data){
+			$scope.messages = data;
 		}
 		
 		function ero1(error){
+			alert("查询消息出错");
 		}
 	}
 
@@ -59,9 +61,9 @@ messageCenterApp.controller("messageCenterCtrl",["$scope","$rootScope","$state",
 		return "" + year + "年" + month + "月    " + hour + "时" + minutes + "分" + second + "秒";
 	}
 
-	$scope.openParentConment = function(index,id,type){
-		$("#" + index).slideUp(20);
-		$("#" + index).slideDown(200);
+	$scope.openParentConment = function(){
+		$("#ddd").slideUp(20);
+		$("#ddd").slideDown(200);
 		$scope.content = "";
 		$scope.comment.fatherComment = null;
 		$scope.comment.toUser = null;
