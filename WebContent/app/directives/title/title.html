@@ -4,20 +4,21 @@
 		<div class="container-fluid col-md-8 no-padding">
 			<div class="navbar-header">
 				<div id="d-title-netName-block">
-					<a ng-click="goHome()" class="pointer"> <img id="d-title-icon"
-						src="../app/directives/title/image/name.png">
+					<a ng-click="goHome()" class="pointer"> 
+					<img id="d-title-icon"
+						ng-src="../app/directives/title/image/name.png">
 					</a>
 				</div>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
-				<form class="navbar-form navbar-left">
+				<!-- <form class="navbar-form navbar-left">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="关键字">
 					</div>
 					<button type="submit" class="btn btn-default"
 						ui-sref="publishingDynamics">搜索</button>
-				</form>
+				</form> -->
 				<ul class="nav navbar-nav smallFont">
 					<li><a class="pointer" ng-click=""></a></li>
 					<li><a class="pointer"></a></li>
@@ -32,7 +33,7 @@
 						role="button" aria-haspopup="true" aria-expanded="false"
 						ng-click="showList()"> <img id="head-img"
 							ng-if="myCroppedImage.length > 0" ng-src="{{myCroppedImage}}">
-							<img id="head-img" ng-if="myCroppedImage.length == 0"
+							<img id="head-img" ng-if="!myCroppedImage"
 							src="../app/directives/title/image/default.jpg">
 							{{userInfo.name}} <span class="caret"></span>
 					</a>

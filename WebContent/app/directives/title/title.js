@@ -35,13 +35,13 @@ titleApp.directive("title",function() {
 				UserService.findUserHeadImg($scope.userId, sucess, error);
 
 				function sucess(data) {
-					if(data != null) {
+					if(data != "null") {
 						var b64 = data.replace('','data:image/png;base64,');
 						$scope.myCroppedImage = b64;
 						//把用户头像放入缓存，免得再次请求后台
 						window.localStorage.setItem($scope.userId, b64);
 					} else {
-						alert("获取头像信息失败");
+						$scope.myCroppedImage = null;
 					}
 				}
 

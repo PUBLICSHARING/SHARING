@@ -5,7 +5,7 @@
 			<article class="index_article" ng-init="outerIndex = $index"
 				ng-repeat="(index,dynamic) in newestDynamics">
 				<header class="index_article_header">
-					<a class="pointer"> <img id="head-img"
+					<a class="pointer" style = "text-decoration:none"> <img id="head-img"
 						ng-src="data:image/jpeg;base64,{{dynamic.user.headImg}}"
 						ng-click="myLand(dynamic.user.id)">
 					</a> &nbsp;&nbsp;<a href="javascript:void(0)">{{dynamic.user.name}} </a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
@@ -30,11 +30,7 @@
 							+{{dynamic.likeNum}}次
 						</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<!-- <a class="pointer" ng-click = "clickDisLike(dynamic)">
-							<span class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>
-							-{{dynamic.dislikeNum}}次
-						</a>  -->
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="pointer"
+						 <a class="pointer"
 							ng-click="openParentConment($index)"> <span
 							class="glyphicon glyphicon-pencil"
 							style="cursor: pointer; text-decoration: none"></span> 回复
