@@ -10,7 +10,8 @@ changeHeaderImgApp.controller("changeHeaderImgCtrl",["$scope","$rootScope","$sta
 		
 		function sucesscb(data) {
 			if(data == "null" || data == null) {
-				$rootScope.alertWarn("获取头像信息失败");
+				$scope.myCroppedImage = null;
+				return;
 			}
 			var b64 = data.replace('','data:image/png;base64,');
 			$scope.myCroppedImage = b64;
