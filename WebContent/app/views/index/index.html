@@ -4,52 +4,53 @@
 		<div>
 			<article class="index_article" ng-init="outerIndex = $index" ng-repeat="(index,dynamic) in newestDynamics">
 				<header class="index_article_header">
-					<a>
-					<!-- <img id="head-img" ng-if="myCroppedImage.length > 0" ng-src = "{{myCroppedImage}}">
-							<img id="head-img" ng-if="myCroppedImage.length == 0" src="../app/directives/title/image/default.jpg"> -->
+					<a class="pointer">
 						{{dynamic.user.name}}
 					</a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
 				</header>
 				<div style="width: 100%;">
 					<ul>
-						<li ng-repeat="imge in dynamic.images" style="display: inline;"><img
-							src="data:image/jpeg;base64,{{imge.fileCode}}"
-							style="width: 30%;">
+						<li ng-repeat="imge in dynamic.images" style="display: inline;">
+							<img src="data:image/jpeg;base64,{{imge.fileCode}}" style="width: 30%;">
 						</li>
 					</ul>
-					<div class="width:100%;"
-						style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
-						<a href="#">{{formatDate(dynamic.publishTime)}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span>来自OPPO
-							A53m</span>
+					<div class="width:100%;" style="padding: 3px 15px 6px; height: 20px; color: #777; font-size: 12px;">
+						<a class="pointer">{{formatDate(dynamic.publishTime)}}</a>
 					</div>
 				</div>
 				<div class="index_comment">
 					<div class="index_image_div" ng-click="enterFavor($event)">
-						<a><span class="glyphicon glyphicon-thumbs-up"
-							style="cursor: pointer;"></span>+{{dynamic.likeNum}}次</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a><span
-							class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>-{{dynamic.dislikeNum}}次</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a><span
-							class="glyphicon glyphicon-question-sign"
-							style="cursor: pointer; text-decoration: none"></span>举报</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a ng-click="openConment($index)"><span
-							class="glyphicon glyphicon-pencil"
-							style="cursor: pointer; text-decoration: none"></span>回复</a>
+						<a class="pointer">
+							<span class="glyphicon glyphicon-thumbs-up" style="cursor: pointer;"></span>
+							+{{dynamic.likeNum}}次
+						</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a class="pointer">
+							<span class="glyphicon glyphicon-thumbs-down" style="cursor: pointer;"></span>
+							-{{dynamic.dislikeNum}}次
+						</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a class="pointer" ng-click="clickAccusation('dynamic',dynamic.id)">
+							<span class="glyphicon glyphicon-question-sign" style="cursor: pointer; text-decoration: none"></span>
+							举报
+						</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a class="pointer" ng-click="openConment($index)">
+							<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none"></span>
+							回复
+						</a>
 					</div>
-<!-- 					<div class="index_center_info">
-						<span class="index_center_span">送你们的福利 </span>
-					</div> -->
 					<div class="index_center_comment">
-<!-- 						<div style="width:100%;height:30px;border:1px solid red;border-top: 2px solid #ccc;" ng-repeat="comment in dynamic.comments">
-							<span><a>{{comment.fromUser.name}}</span>:&nbsp;<p style="display: inline;">{{comment.content}}&nbsp;&nbsp;&nbsp;<a ng-click="openConment(outerIndex)"><span
-							class="glyphicon glyphicon-pencil"
-							style="cursor: pointer; text-decoration: none"></span>回复</a></p>
-						</div> -->
 						<hr>
  						<ul class="index_center_ul" style="font-size: 12px;">
-							<li ng-repeat="comment in dynamic.comments"><a>{{comment.fromUser.name}}</a>:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;<a ng-click="openConment(outerIndex)"><span
-							class="glyphicon glyphicon-pencil"
-							style="cursor: pointer; text-decoration: none"></span>回复</a></li>
+							<li ng-repeat="comment in dynamic.comments">
+								<a class="pointer">{{comment.fromUser.name}}</a>
+								:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;
+								<a class="pointer" ng-click="openConment(outerIndex)">
+									<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none"></span>
+									回复
+								</a>
+							</li>
 						</ul>
 					</div>
 					<section class="index_center_section" style="display:none" id="{{$index}}">
