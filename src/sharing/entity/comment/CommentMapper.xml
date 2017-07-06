@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sharing.entity.comment">
 	<select id="findCountOfCommentsByUserId" resultType="java.lang.Long">
-		select count(id) from comment where userId=#{userId}
+		select count(id) from comment where fromUserId=#{userId}
 	</select>
 	<insert id="addComment" keyColumn="id" parameterType="sharing.entity.comment.Comment" useGeneratedKeys="true" keyProperty="id">
 		insert into comment(content,commentTime,dynamicId,fromUserId,toUserId,fatherCommentId) values(#{content},#{commentTime},#{dynamic.id},#{fromUser.id},#{toUser.id},#{fatherComment.id})

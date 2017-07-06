@@ -1,5 +1,7 @@
 var indexApp = angular.module("indexApp",[]);
 indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService", "UserService",function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService, UserService) {
+	$scope.userId = $stateParams.userId;
+	
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}

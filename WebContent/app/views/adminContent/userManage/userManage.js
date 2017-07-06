@@ -21,6 +21,9 @@ userMApp.controller("userMCtrl",["$state","$scope","$rootScope","$stateParams","
 			if($scope.total % $scope.pageSize !== 0) {
 				$scope.allPage = ($scope.total-$scope.total % $scope.pageSize) / $scope.pageSize + 1;
 			}
+			else{
+				$scope.allPage = $scope.total / $scope.pageSize;
+			}
 			$rootScope.hideRefresh();
 		}
 		function errorcb(error) {
