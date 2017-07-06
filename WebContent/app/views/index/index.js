@@ -1,5 +1,7 @@
 var indexApp = angular.module("indexApp",[]);
-indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService", "UserService","LikeService","DisLikeService", function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService, UserService, LikeService, DisLikeService) {
+indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","AccusationService","CommentService", "UserService","LikeService","DisLikeService","NotifycationService", function($scope,$rootScope,$state,$stateParams,DynamicsService,AccusationService,CommentService, UserService, LikeService, DisLikeService,NotifycationService) {
+	$scope.userId = $stateParams.userId;
+	
 	$scope.dialog = function() {
 		$rootScope.alertDisappear("注册成功",1000);
 	}
@@ -106,9 +108,11 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 	$scope.accusation = {};
 	$scope.type = null;
 	$scope.id = null;
-	$scope.clickAccusation = function(type,id) {
+	$scope.edId = null;
+	$scope.clickAccusation = function(type,id,edId) {
 		$scope.type = type;
 		$scope.id = id;
+		$scope.edId = edId;
 		$('#accusationDialog').modal({backdrop:'static', keyboard: false});
 		$('#accusationDialog').modal('show');
 	}
@@ -130,11 +134,13 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 	$scope.addAccusation = function() {
 		AccusationService.addAccusation($scope.accusation,sucesscb,errorcb);
 		function sucesscb(data) {
+			$('#accusationDialog').modal('hide');
+			$rootScope.alertDisappear("举报成功，我们会尽快处理！",1000);
+			$scope.addNotifycation('accusation',$scope.edId,data.id);
 			$scope.accusation = {};
 			$scope.type = null;
 			$scope.id = null;
-			$('#accusationDialog').modal('hide');
-			$rootScope.alertDisappear("举报成功，我们会尽快处理！",1000);
+			$scope.edId = null;
 		}
 		function errorcb(error) {
 			$scope.accusation = {};
@@ -196,7 +202,7 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 						alert("点赞失败");
 					}
 				} else {
-					alert("你已经为该条动态点过赞了")
+					alert("你已经为该条动态点过赞了");
 				}
 			}
 
@@ -275,6 +281,34 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 		
 		function errorlike(error) {
 			
+		}
+	}
+	/*消息*/
+	$scope.notifycation = {};
+	$scope.addNotifycation = function(type,userId,aimId) {
+		$scope.notifycation.noticeUser = {id:userId};
+		if(type==='comment') {
+			$scope.notifycation.noticeFromComment = {id:aimId};
+		}
+		else if(type==='accusation') {
+			$scope.notifycation.noticeFromAccusation = {id:aimId};
+		}
+		else if(type==='like') {
+			$scope.notifycation.noticeFromLike = {id:aimId};
+		}
+		else if(type==='dynamic') {
+			$scope.notifycation.noticeFromDynamic = {id:aimId};
+		}
+		else{
+			$rootScope.alertWarn("添加消息传入类型错误");
+			return;
+		}
+		NotifycationService.addNotifycation($scope.notifycation,sucesscb,errorcb);
+		function sucesscb(data) {
+			
+		}
+		function errorcb(error) {
+			$rootScope.alertWarn("添加消息失败！");
 		}
 	}
 }])

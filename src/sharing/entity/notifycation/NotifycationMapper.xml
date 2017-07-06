@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sharing.entity.notifycation">
+	<insert id="addNotifycation" keyColumn="id"  parameterType="sharing.entity.notifycation.Notifycation" useGeneratedKeys="true" keyProperty="id">
+		insert into notifycation(noticeUserId,noticeFromAccusationId,noticeFromDynamicId,noticeFromCommentId,noticeFromLikeId,noticeContent,date) values(#{noticeUserId},#{noticeFromAccusationId},#{noticeFromDynamicId},#{noticeFromCommentId},#{noticeFromLikeId},#{noticeContent},#{date})
+	</insert>
+	<select id="findCountOfNotifycationNotRead" resultType="java.lang.Long">
+		select count(id) from notifycation where notifycation.noticeUserId=#{userId}
+	</select>
+	<resultMap type="sharing.entity.user.User" id="UserNameAndId1">
+		<result property="id" column="accusationUserId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap type="sharing.entity.user.User" id="UserNameAndId2">
+		<result property="id" column="accusationedUserId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap type="sharing.entity.dynamic.Dynamic" id="DynamicId">
+		<result property="id" column="accusationedDynamicId"/>
+	</resultMap>
+	<resultMap type="sharing.entity.comment.Comment" id="CommentId">
+		<result property="id" column="accusationedCommentId"/>
+	</resultMap>
+	<resultMap type="sharing.entity.accusation.Accusation" id="AccusationBaseInfo">
+		<result property="id" column="noticeFromAccusationId"/>
+		<result property="accusationedRemark" column="accusationedRemark"/>
+		<result property="accusationedDate" column="accusationedDate"/>
+		<result property="isRead" column="isRead"/>
+		<association property="accusationUser" column="accusationUserId" javaType="sharing.entity.user.User"  resultMap="UserNameAndId1"/>
+		<association property="accusationedUser" column="accusationedUserId" javaType="sharing.entity.user.User"  resultMap="UserNameAndId2"/>
+		<association property="accusationedDynamic" column="accusationedDynamicId" javaType="sharing.entity.dynamic.Dynamic"  resultMap="DynamicId"/>
+		<association property="accusationedComment" column="accusationedCommentId" javaType="sharing.entity.comment.Comment"  resultMap="CommentId"/>
+	</resultMap>
+	<resultMap type="sharing.entity.user.User" id="NoticeUserNameAndId">
+		<result property="id" column="noticeUserId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap  type="sharing.entity.user.User" id="LikeUserNameAndId">
+		<result property="id" column="userId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap type="sharing.entity.user.User" id="LikeDynamicUserNameAndId">
+		<result property="id" column="userId" />
+		<result property="name" column="name" />
+	</resultMap>
+	<resultMap type="sharing.entity.dynamic.Dynamic" id="LikeDynamicBaseInfo">
+		<result property="id" column="dynamicId" />
+		<result property="content" column="content" />
+		<result property="publishTime" column="publishTime" />
+		<result property="likeNum" column="likeNum" />
+		<result property="dislikeNum" column="dislikeNum" />
+		<association property="user" column="userId" javaType="sharing.entity.user.User" resultMap="LikeDynamicUserNameAndId"></association>
+	</resultMap>
+	<resultMap type="sharing.entity.like.Like" id="LikeBaseInfo">
+		<result property="id" column="noticeFromLikeId"/>
+		<result property="clickTime" column="clickTime"/>
+		<association property="user" column="userId" javaType="sharing.entity.user.User" resultMap="LikeUserNameAndId"/>
+		<association property="dynamic" column="dynamicId" javaType="sharing.entity.dynamic.Dynamic"  resultMap="LikeDynamicBaseInfo"/>
+	</resultMap>
+	<resultMap  type="sharing.entity.user.User" id="fromUserIdAndName">
+		<result property="id" column="fromUserId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap  type="sharing.entity.user.User" id="toUserIdAndName">
+		<result property="id" column="toUserId"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<resultMap type="sharing.entity.comment.Comment" id="fatherComment">
+		<result property="id" column="fatherCommentId"/>
+		<result property="content" column="content"/>
+		<result property="commentTime" column="commentTime"/>
+	</resultMap>
+	<resultMap type="sharing.entity.comment.Comment" id="commentBaseInfo">
+		<result property="id" column="noticeFromCommentId"/>
+		<result property="content" column="content"/>
+		<result property="commentTime" column="commentTime"/>
+		<association property="dynamic" column="dynamicId" javaType="sharing.entity.dynamic.Dynamic" resultMap="LikeDynamicBaseInfo"/>
+		<association property="fromUser" column="fromUserId" javaType="sharing.entity.user.User" resultMap="fromUserIdAndName"/>
+		<association property="toUser" column="toUserId" javaType="sharing.entity.user.User" resultMap="toUserIdAndName"/>
+		<association property="fatherComment" column="fatherCommentId" javaType="sharing.entity.comment.Comment" resultMap="fatherComment"/>
+	</resultMap>
+	<resultMap type="sharing.entity.notifycation.Notifycation" id="NotifycationBaseInfo">
+		<result property="id" column="id"/>
+		<result property="noticeContent" column="noticeContent"/>
+		<result property="isRead" column="isRead"/>
+		<result property="date" column="date"/>
+		<association property="noticeUser" javaType="sharing.entity.user.User"  column="noticeUserId" resultMap="NoticeUserNameAndId"/>
+		<association property="noticeFromAccusation" javaType="sharing.entity.accusation.Accusation" column="noticeFromAccusationId" resultMap="AccusationBaseInfo"/>
+		<association property="noticeFromLike" javaType="sharing.entity.like.Like" column="noticeFromLikeId" resultMap="LikeBaseInfo"></association>
+		<association property="noticeFromComment" javaType="sharing.entity.comment.Comment" column="noticeFromCommentId" resultMap="commentBaseInfo"/>
+	</resultMap>
+	<select id="findUserNotifycationByLimit" resultMap="NotifycationBaseInfo">
+		select * from notifycation n left join user u1 on u1.id=n.noticeUserId 
+		LEFT JOIN accusation a on n.noticeFromAccusationId=a.id 
+		LEFT JOIN `user` u2 on a.accusationUserId=u2.id 
+		LEFT JOIN `user` u3 on a.accusationedUserId=u3.id 
+		LEFT JOIN dynamic d1 on d1.id=a.accusationedDynamicId 
+		LEFT JOIN `comment` c1 on c1.id=a.accusationedCommentId 
+		LEFT JOIN `like`  on `like`.id=n.noticeFromLikeId 
+		LEFT JOIN `user` u4 ON u4.id=`like`.userId 
+		LEFT JOIN dynamic d2 on d2.id=`like`.dynamicId 
+		LEFT JOIN `user` u5 on u5.id=d2.userId 
+		LEFT JOIN `comment` c2 on n.noticeFromCommentId=c2.id 
+		LEFT JOIN dynamic d3 ON d3.id=c1.dynamicId 
+		LEFT JOIN `user` u6 on u6.id=d3.userId 
+		LEFT JOIN `user` u7 on u7.id=c1.fromUserId 
+		LEFT JOIN `user` u8 on u8.id=c1.toUserId 
+		LEFT JOIN `comment` c3 on c3.id=c2.fatherCommentId 
+		where n.noticeUserId=#{userId} order by n.date desc limit #{startIndex},#{pageSize}
+	</select>
+	<select id="findTotalOfUserNotifycation" resultType="java.lang.Long">
+		select count(id) from notifycation where noticeUserId=#{userId}
+	</select>
+	<update id="markReaded">
+		update notifycation set isRead='是' where id=#{notifycationId}
+	</update>
+	<select id="findTotalOfAllNotifycation" resultType="java.lang.Long">
+		select count(id) from notifycation
+	</select>
+	<select id="findAllNotifycationByLimit" resultMap="NotifycationBaseInfo">
+		select * from notifycation n left join user u1 on u1.id=n.noticeUserId 
+		LEFT JOIN accusation a on n.noticeFromAccusationId=a.id 
+		LEFT JOIN `user` u2 on a.accusationUserId=u2.id 
+		LEFT JOIN `user` u3 on a.accusationedUserId=u3.id 
+		LEFT JOIN dynamic d1 on d1.id=a.accusationedDynamicId 
+		LEFT JOIN `comment` c1 on c1.id=a.accusationedCommentId 
+		LEFT JOIN `like`  on `like`.id=n.noticeFromLikeId 
+		LEFT JOIN `user` u4 ON u4.id=`like`.userId 
+		LEFT JOIN dynamic d2 on d2.id=`like`.dynamicId 
+		LEFT JOIN `user` u5 on u5.id=d2.userId 
+		LEFT JOIN `comment` c2 on n.noticeFromCommentId=c2.id 
+		LEFT JOIN dynamic d3 ON d3.id=c1.dynamicId 
+		LEFT JOIN `user` u6 on u6.id=d3.userId 
+		LEFT JOIN `user` u7 on u7.id=c1.fromUserId 
+		LEFT JOIN `user` u8 on u8.id=c1.toUserId 
+		LEFT JOIN `comment` c3 on c3.id=c2.fatherCommentId 
+		order by n.date desc limit #{startIndex},#{pageSize}
+	</select>
+</mapper>

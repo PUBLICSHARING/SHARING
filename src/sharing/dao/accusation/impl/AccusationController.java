@@ -41,6 +41,7 @@ public class AccusationController implements AccusationMapper{
 		params.put("accusationedRemark", accusation.getAccusationedRemark());
 		params.put("accusationedDate", new Date());
 		SqlSessionUtil.getSqlSession().insert("sharing.entity.accusation.addAccusation", params);
+		accusation.setId((Long) params.get("id"));
 		return accusation;
 	}
 

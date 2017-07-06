@@ -53,7 +53,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                                      '../app/service/accusation/accusationService.js',
                                      '../app/service/comment/commentService.js',
                                      '../app/service/like/LikeService.js',
-                                     '../app/service/disLike/DisLikeService.js']
+                                     '../app/service/disLike/DisLikeService.js',
+                                     '../app/service/notifycation/notifycationService.js']
                 })
             }
         }))
