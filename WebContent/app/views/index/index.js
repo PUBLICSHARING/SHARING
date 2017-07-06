@@ -98,10 +98,18 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 
 		function success(data){
 			$state.go('main.index',{"userId":$stateParams.userId},{ reload:true});
+			
+			if($scope.contentType == "parent"){
+				$scope.addNotifycation ("comment",$scope.newestDynamics[outerIndex].user.id,data);
+			}
+			else{
+				//消息提醒
+				$scope.addNotifycation ("comment",$scope.comment.toUser.id,data);
+			}
 		}
 
 		function error(error){
-
+			
 		}
 	}
 	/*举报*/
