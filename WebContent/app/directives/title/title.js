@@ -5,11 +5,22 @@ titleApp.directive("title",function() {
 
 		},
 		restrict:'EMAC',
-		controller:['$scope','$rootScope','$state','$stateParams','UserService',function($scope,$rootScope,$state,$stateParams,UserService){
-
+		controller:['$scope','$rootScope','$state','$stateParams','UserService',"NotifycationService",function($scope,$rootScope,$state,$stateParams,UserService,NotifycationService){
+			$scope.userId = $stateParams.userId;
+			$scope.countOfNotifycationNotRead = null;
+			
+			$scope.findCountOfNotifycationNotRead = function() {
+				NotifycationService.findCountOfNotifycationNotRead($scope.userId,sucesscb,errorcb);
+				function sucesscb(data) {
+					$scope.countOfNotifycationNotRead = data;
+				}
+				function errorcb(error) {
+					$rootScope.alertWarn("查询消息个数失败!");
+				}
+			}
+			
 			$scope.init = function() {
 				$scope.show = false;
-				$scope.userId = $stateParams.userId;
 				/*加载用户信息*/
 
 				UserService.findUserInfoTitleNeedById($scope.userId,sucesscb,errorcb);
@@ -66,7 +77,7 @@ titleApp.directive("title",function() {
 			$scope.showList = function() {
 				$scope.show = !$scope.show;
 			}
-
+			$scope.findCountOfNotifycationNotRead();
 		}],
 		templateUrl:'../app/directives/title/title.html'
 	}

@@ -21,7 +21,10 @@
 .back-red{
 	background-color:#F44336;;
 }
-
+.titleInfoNum{
+	background-color: #F44336;
+    margin-left: 15px;
+}
 
 /**私有css(请标注所用页面)**/
 

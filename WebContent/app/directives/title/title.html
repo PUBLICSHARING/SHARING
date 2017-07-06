@@ -3,11 +3,6 @@
 		<div class="col-md-2 navbar-default"></div>
 		<div class="container-fluid col-md-8 no-padding">
 			<div class="navbar-header">
-				<!-- <div id="d-title-icon-block">
-					<a ng-click="goHome()"> <img id="d-title-icon"
-						src="../app/directives/title/image/icon.png">
-					</a>
-				</div> -->
 				<div id="d-title-netName-block">
 					<a ng-click="goHome()" class="pointer"> <img id="d-title-icon"
 						src="../app/directives/title/image/name.png">
@@ -39,7 +34,7 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" style = "display:block!important;" ng-if = "show">
-							<li><a class="pointer">消息</a></li>
+							<li><a class="pointer">消息<span  ng-if="countOfNotifycationNotRead > 0" class="badge titleInfoNum">{{countOfNotifycationNotRead}}</span></a></li>
 							<li><a class="pointer" ng-click = "manageUserInfo()">个人资料</a></li>
 							<li><a class="pointer" ng-click = "myLand()">我的地盘</a></li>
 							<li><a class="pointer" ng-click="exit()">退出</a></li>
