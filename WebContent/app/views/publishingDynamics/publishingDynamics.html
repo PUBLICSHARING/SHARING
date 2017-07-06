@@ -137,7 +137,7 @@
 }
 
 .dynamic_img_box{
-	border:1px solid red;width: 35%;float:left;display:inline-block; margin: 2px 8px 2px 0px
+	width: 30%;float:left;display:inline-block; margin: 2px 8px 2px 0px
 }
 </style>
 
@@ -166,7 +166,7 @@
 			<!-- 头像对应块 -->
 			<div class="profile_div full_width">
 				<div class="personnal_img">
-					<img src="../app/image/title/c1342c0ad0.jpg"
+					<img src="{{userHeadImg}}"
 						style="width: 100%; height: 100%;" alt="..." class="img-circle">
 				</div>
 				<div class="personnal_name_info">
@@ -195,7 +195,7 @@
 		<!-- 动态历史纪录区域 -->
 		<div class="main_wrap_dynamic" ng-repeat="dynamic in dynamics">
 			<div class="full_height float_left" style="width: 10%;">
-				<span><img src="../app/image/title/c1342c0ad0.jpg"
+				<span><img src="{{userHeadImg}}"
 					class="dynamicOwn_img" /></span>
 			</div>
 			<div class="full_height float_right dynamic_content">

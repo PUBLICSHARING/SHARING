@@ -6,6 +6,6 @@ public interface CommentService {
 
 	public Long findCountOfCommentsByUserId(Long userId) throws Exception;
 
-	public Long addComment(Comment comment) throws Exception;
+	public Long addComment(Comment comment) throws Exception;   
 
 }

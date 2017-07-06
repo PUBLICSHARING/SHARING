@@ -258,8 +258,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
             }
         }))
         	//发布动态
-		.state('publishingDynamics',angularAMD.route({
-			url : '/publishingDynamics',
+		.state('main.publishingDynamics',angularAMD.route({
+			url : '/publishingDynamics/:userId',
 			views : {
 				'' : angularAMD.route({
 					templateUrl : '../app/views/publishingDynamics/publishingDynamics.html',
@@ -267,7 +267,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
 					controllerUrl : ['../lib/bootstrapfileinput/fileinput.js',
 					                 '../app/directives/fileupload/fileupload.js',
 					                 '../app/service/dynamic/dynamicsService.js',
-					                 '../app/views/publishingDynamics/publishingDynamics.js']
+					                 '../app/views/publishingDynamics/publishingDynamics.js',
+					                 '../app/service/user/userService.js']
 				})
 			}
 		}))

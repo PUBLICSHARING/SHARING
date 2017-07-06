@@ -4,16 +4,20 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import sharing.entity.dynamic.Dynamic;
 import sharing.entity.user.User;
 import sharing.service.dynamic.DynamicService;
 import sharing.service.dynamic.impl.DynamicServiceBean;
+import sharing.service.user.UserService;
 import sharing.service.user.impl.UserServiceBean;
 
 public class DynamicAction {
 	private DynamicService dynamicService = new DynamicServiceBean();
+	
+	private UserService uerService = new UserServiceBean();
 	
 	/**
 	 * 添加动态
@@ -100,8 +104,20 @@ public class DynamicAction {
 	
 	public Map<String, Object> findNewestDynamics() throws Exception{
 		try {
-			Map<String, Object> user =  this.dynamicService.findNewestDynamics();
-			return user;
+			Map<String, Object> newestDynamic =  this.dynamicService.findNewestDynamics();
+			Set<Entry<String, Object>> setIterator = newestDynamic.entrySet();
+			
+			Iterator<Entry<String, Object>> iterator = setIterator.iterator();
+			
+			//进行头像的处理，顺便带出头像
+			while (iterator.hasNext()) {
+				Entry<String, Object> entry = iterator.next();
+				Dynamic dynamic = (Dynamic)entry.getValue();
+				User user = dynamic.getUser();
+				String userHeadImg = this.uerService.findUserHeadImg(user.getId());
+				user.setHeadImg(userHeadImg);
+			}
+			return newestDynamic;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

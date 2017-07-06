@@ -1,7 +1,8 @@
 angular.module("publishingDynamicsModule",[])
-.controller("publishingDynamicsCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService",function($scope,$rootScope,$state,$stateParams,DynamicsService) {
+.controller("publishingDynamicsCtrl",["$scope","$rootScope","$state","$stateParams","DynamicsService","UserService",function($scope,$rootScope,$state,$stateParams,DynamicsService,UserService) {
 	$rootScope.dynamic = {};
 	$scope.fileCount = 0;
+	$scope.userId = $stateParams.userId;
 	
 	
 	$scope.publishDynamic = function(){
@@ -11,7 +12,7 @@ angular.module("publishingDynamicsModule",[])
 		}
 		else{
 			var user = {};
-			user.id = window.localStorage.getItem("UID");
+			user.id = $scope.userId;
 			$rootScope.dynamic.user = user;
 			return user.id + "," + $rootScope.dynamic.content + "," + $scope.fileCount++;
 		}
@@ -36,7 +37,7 @@ angular.module("publishingDynamicsModule",[])
 		response = data.response, reader = data.reader;
 	}).on("fileuploaded", function (event, data, previewId, index) {    //一个文件上传成功的回掉函数
 		$rootScope.alertWarn("上传成功！");
-		$state.go('publishingDynamics',null,{
+		$state.go('main.publishingDynamics',{"userId":$scope.userId},{
 		    reload:true
 		});
 	}).on('fileerror', function(event, data, msg) {  //一个文件上传失败
@@ -45,18 +46,19 @@ angular.module("publishingDynamicsModule",[])
 	
 	
 	$scope.init=function(){
-		var userId = window.localStorage.getItem("UID");
-		DynamicsService.findAllDynamicsByUserId(userId,sucess,error);
+		//获取用户头像
+		$scope.userHeadImg = window.localStorage.getItem($scope.userId);
+		
+		//查询个人动态
+		DynamicsService.findAllDynamicsByUserId($scope.userId,sucess,error);
 		
 		function sucess(data){
-			$scope.userName = data[userId].name;
-			$scope.dynamics = data[userId].dynamics;
-			//$("#d").html("<img src='showImagServlet?imgUrl=\'" + data.dynamics[0].images[0].fileCode + "\'' style='width:35%'/>");
-			//$("#d").html("<img src='data:image/jpeg;base64," + data["32"].dynamics[0].images[0].fileCode + "' style='width:35%'/>");
+			$scope.userName = data[$scope.userId].name;
+			$scope.dynamics = data[$scope.userId].dynamics;
 		}
 		
 		function error(error){
-			
+			$rootScope.alertWarn("查询出错");
 		}
 	}
 	

@@ -53,6 +53,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	<select id="findNewestDynamics" resultMap="newestDynamicsInfo">
 		SELECT
 		dus.id AS userId,
+		dus.headImg,
 		dy.id,
 		dus.`name`,
 		dy.content,
@@ -97,6 +98,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<association property="user" javaType="sharing.entity.user.User">
 			<id property="id" column="userId" />
 			<result property="name" column="name" />
+			<result property="headImg" column="headImg"/>
 		</association>
 		<collection property="images" ofType="sharing.entity.file.SharingFile">
 			<result property="fileCode" column="fileCode" />

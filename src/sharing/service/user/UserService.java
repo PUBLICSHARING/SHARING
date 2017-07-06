@@ -11,7 +11,7 @@ public interface UserService {
 	public boolean checkUserName(String name) throws Exception;
 
 	public Long addUser(User user) throws Exception;
-
+	
 	public String judgeLoginUser(User user) throws Exception;
 
 	public Map<String, Object> findUserInfoTitleNeedById(Long userId) throws Exception;

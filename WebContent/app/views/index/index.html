@@ -5,6 +5,8 @@
 			<article class="index_article" ng-init="outerIndex = $index" ng-repeat="(index,dynamic) in newestDynamics">
 				<header class="index_article_header">
 					<a class="pointer">
+						<img id="head-img" ng-src = "data:image/jpeg;base64,{{dynamic.user.headImg}}">
+					<a>
 						{{dynamic.user.name}}
 					</a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
 				</header>

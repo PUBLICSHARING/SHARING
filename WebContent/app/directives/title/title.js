@@ -27,6 +27,8 @@ titleApp.directive("title",function() {
 					if(data != null) {
 						var b64 = data.replace('','data:image/png;base64,');
 						$scope.myCroppedImage = b64;
+						//把用户头像放入缓存，免得再次请求后台
+						window.localStorage.setItem($scope.userId, b64);
 					} else {
 						alert("获取头像信息失败");
 					}
@@ -43,6 +45,10 @@ titleApp.directive("title",function() {
 			/*主页*/
 			$scope.goHome = function() {
 				$state.go("main.index",{userId:$scope.userId});
+			}
+			
+			$scope.myLand = function(){
+				$state.go("main.publishingDynamics",{userId:$scope.userId});
 			}
 
 
