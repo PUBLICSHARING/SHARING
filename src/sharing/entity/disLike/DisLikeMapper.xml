@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sharing.entity.disLike.DisLikeMapper">
+
+	<insert keyColumn="id" id="addDisLike" parameterType="sharing.entity.disLike.DisLike"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into dislike(userId,dynamicId,clickTime) values (#{user.id},#{dynamic.id},#{clickTime});
+	</insert>
+
+	<update id="updateDisLike" parameterType="sharing.entity.disLike.DisLike">
+		update dislike set dislike.userId = #{userId},dislike.dynamicId = #{dynamicId},dislike.clickTime = #{clickTime} where dislike.id = #{id};
+	</update>
+	
+	<select id="findDisLikeById" resultType="sharing.entity.disLike.DisLike">
+		select * from dislike where id = #{id}
+	</select>
+	
+	<delete id = "deleteDisLikeById" parameterType = "sharing.entity.disLike.DisLike">
+		delete from dislike where id = #{id};
+	</delete>
+	
+	<select id="findDisLikeByUserIdAndDynamicId" resultType="sharing.entity.disLike.DisLike">
+		select * from dislike where userId = #{userId} and dynamicId = #{dynamicId};
+	</select>
+</mapper>

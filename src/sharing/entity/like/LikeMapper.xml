@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 	</select>
 	
 	<delete id = "deleteLikeById" parameterType = "sharing.entity.like.Like">
-		delete from `lik` where id = #{id};
+		delete from `like` where id = #{id};
 	</delete>
 	
 	<select id="findLikeByUserIdAndDynamicId" resultType="sharing.entity.like.Like">
