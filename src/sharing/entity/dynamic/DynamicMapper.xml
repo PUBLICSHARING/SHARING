@@ -75,9 +75,8 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		LEFT JOIN `user` AS cfus ON cco.fromUserId = cfus.id
 		LEFT JOIN `user` AS ctus ON cco.toUserId = ctus.id
 		LEFT JOIN `user` AS fus ON pco.fromUserId = fus.id
-		WHERE dus.id = #{id}
-		ORDER BY
-		dy.publishTime DESC 
+		WHERE dus.id = #{id} 
+		ORDER BY dy.publishTime desc
 	</select>
 
 	<select id="findNewestDynamics" resultMap="newestDynamicsInfo">
@@ -111,9 +110,8 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		LEFT JOIN `comment` AS cco ON pco.id = cco.fatherCommentId
 		LEFT JOIN `user` AS cfus ON cco.fromUserId = cfus.id
 		LEFT JOIN `user` AS ctus ON cco.toUserId = ctus.id
-		LEFT JOIN `user` AS fus ON pco.fromUserId = fus.id
-		ORDER BY
-		dy.publishTime DESC
+		LEFT JOIN `user` AS fus ON pco.fromUserId = fus.id 
+		ORDER BY dy.publishTime desc
 	</select>
 	
 	<!-- 我的地盘首页的动态 -->

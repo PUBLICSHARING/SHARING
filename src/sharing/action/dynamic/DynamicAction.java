@@ -85,19 +85,18 @@ public class DynamicAction {
 		}
 	}
 	
-	public Map<String, Object> findAllDynamicsByUserId(Long id) throws Exception{
+	public List<Dynamic> findAllDynamicsByUserId(Long id) throws Exception{
 		try {
-			Map<String, Object> user =  this.dynamicService.findAllDynamicsByUserId(id);
-			return user;
+			return this.dynamicService.findAllDynamicsByUserId(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
 	
-	public Map<String, Object> findNewestDynamics() throws Exception{
+	public List<Dynamic> findNewestDynamics() throws Exception{
 		try {
-			Map<String, Object> newestDynamic =  this.dynamicService.findNewestDynamics();
+			return this.dynamicService.findNewestDynamics();
 /*			Set<Entry<String, Object>> setIterator = newestDynamic.entrySet();
 			
 			Iterator<Entry<String, Object>> iterator = setIterator.iterator();
@@ -110,7 +109,6 @@ public class DynamicAction {
 				String userHeadImg = this.uerService.findUserHeadImg(user.getId());
 				user.setHeadImg(userHeadImg);
 			}*/
-			return newestDynamic;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

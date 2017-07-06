@@ -69,7 +69,7 @@ public class DynamicServiceBean implements DynamicService{
 	}
 
 	@Override
-	public Map<String, Object> findAllDynamicsByUserId(Long id) throws Exception {
+	public List<Dynamic> findAllDynamicsByUserId(Long id) throws Exception {
 		try {
 			return this.dynamicMapper.findAllDynamicsByUserId(id);
 		} catch (Exception e) {
@@ -79,7 +79,7 @@ public class DynamicServiceBean implements DynamicService{
 	}
 	
 	@Override
-	public Map<String,Object> findNewestDynamics() throws Exception{
+	public List<Dynamic> findNewestDynamics() throws Exception{
 		try {
 			return this.dynamicMapper.findNewestDynamics();
 		} catch (Exception e) {

@@ -17,9 +17,9 @@ public interface DynamicService {
 
 	public Long findMaxDynamicId() throws Exception;
 	
-	public Map<String, Object> findAllDynamicsByUserId(Long id) throws Exception;
+	public List<Dynamic> findAllDynamicsByUserId(Long id) throws Exception;
 
-	public Map<String, Object> findNewestDynamics() throws Exception;
+	public List<Dynamic> findNewestDynamics() throws Exception;
 	
 	public Dynamic updateDynamic(Dynamic dynamic) throws Exception;
 	
