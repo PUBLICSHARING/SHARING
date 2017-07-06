@@ -198,16 +198,15 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 					DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
 
 					function sucesscb(data) {
-						
 					}
 
 					function errorcb(error) {
-
+						$rootScope.alertWarn("取消踩贴失败");
 					}
 				}
 				
 				function er(error) {
-					
+					$rootScope.alertWarn("查找踩贴失败");
 				}
 			}
 			
@@ -227,11 +226,9 @@ indexApp.controller("indexCtrl",["$scope","$rootScope","$state","$stateParams","
 						DynamicsService.updateDynamic(dynamic,sucesscb, errorcb);
 
 						function sucesscb(data) {
-							
 						}
 
 						function errorcb(error) {
-
 						}
 					}
 					function error(error) {
