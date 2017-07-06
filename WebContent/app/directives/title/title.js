@@ -5,7 +5,7 @@ titleApp.directive("title",function() {
 
 		},
 		restrict:'EMAC',
-		controller:['$scope','$rootScope','$state','$stateParams','UserService',"NotifycationService",function($scope,$rootScope,$state,$stateParams,UserService,NotifycationService){
+		controller:['$scope','$rootScope','$state','$stateParams','UserService','NotifycationService',function($scope,$rootScope,$state,$stateParams,UserService,NotifycationService){
 			$scope.userId = $stateParams.userId;
 			$scope.countOfNotifycationNotRead = null;
 			
@@ -18,7 +18,6 @@ titleApp.directive("title",function() {
 					$rootScope.alertWarn("查询消息个数失败!");
 				}
 			}
-			
 			$scope.init = function() {
 				$scope.show = false;
 				/*加载用户信息*/
@@ -48,11 +47,22 @@ titleApp.directive("title",function() {
 				function error(error) {
 					$scope.myCroppedImage = "";
 				}
+				
+				//查询用户未读消息个数
+				NotifycationService.findCountOfNotifycationNotRead($scope.userId,suc1,ero1);
+				function suc1(data){
+					$scope.countOfNotifycationNotRead = data;
+				}
+				
+				function ero1(error){
+					$rootScope.alertWarn("查询未读消息出错！");
+				}
 			}
 			/*注册、登录跳转*/
 			$scope.go = function(state) {
 				$state.go(state);
 			}
+			
 			/*主页*/
 			$scope.goHome = function() {
 				$state.go("main.index",{userId:$scope.userId});
@@ -78,6 +88,12 @@ titleApp.directive("title",function() {
 				$scope.show = !$scope.show;
 			}
 			$scope.findCountOfNotifycationNotRead();
+			
+			//进入消息中心
+			$scope.messageCenter = function(){
+				$state.go("main.messageCenter",{userId:$scope.userId});
+			}
+
 		}],
 		templateUrl:'../app/directives/title/title.html'
 	}

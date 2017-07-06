@@ -340,6 +340,26 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                 })
             }
         }))
+        .state('main.messageCenter',angularAMD.route({
+            url : '/messageCenter/:userId',
+            views : {
+                '' : angularAMD.route({
+                    templateUrl : '../app/views/messageCenter/messageCenter.html',
+                    controller : 'messageCenterCtrl',
+                    controllerUrl : ['../app/views/messageCenter/messageCenter.js',
+                                     '../app/directives/title/title.js',
+                                     '../app/service/user/userService.js',
+                                     '../app/directives/foot/foot.js',
+                                     '../app/service/question/questionService.js',
+                                     '../app/service/dynamic/dynamicsService.js',
+                                     '../app/service/accusation/accusationService.js',
+                                     '../app/service/comment/commentService.js',
+                                     '../app/service/like/LikeService.js',
+                                     '../app/service/disLike/DisLikeService.js',
+                                     '../app/service/notifycation/notifycationService.js']
+                })
+            }
+        }))
     });
     
     app.run(function($rootScope){

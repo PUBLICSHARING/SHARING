@@ -104,39 +104,68 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<association property="noticeFromComment" javaType="sharing.entity.comment.Comment" column="noticeFromCommentId" resultMap="commentBaseInfo"/>
 	</resultMap>
 	<select id="findUserNotifycationByLimit" resultMap="NotifycationBaseInfo">
-		select n.id as id,n.noticeContent as noticeContent,n.isRead as isRead n.date as date,
-		u1.id as noticeUserId,u1.name as noticeUserName,
-		a.id as noticeFromAccusationId,a.accusationedRemark,a.isRead as accusationIsRead,
-		u2.id as accusationUserId,u2.name as accusationUserName,
-    u3.id as accusationedUserId,u3.name as accusationedUserName,
-    d1.id as accusationedDynamicId,
-    c1.id as accusationedCommentId,
-    `like`.id as noticeFromLikeId,`like`.clickTime as clickTime,
-     u4.id as likeUserId,u4.name as likeUserName,
-    d2.id as likeDynamicId,d2.content as likeDynamicContent,d2.publishTime as likeDynamicPublicshTime,d2.likeNum as likeDynamicLikeNum,d2.dislikeNum AS likeDynamicDislikeNum
-    u5.id as likeDynamicUserId,u5.name as likeDynamicUserName,
-    c2.id as noticeFromCommentId,c2.content as noticeFromCommentContent,c2.commentTime as noticeFromCommentcommentTime,
-    d3.id as noticeFromCommentDynamicId,d3.content as noticeFromCommentDynamicContent,d3.publishTime as noticeFromCommentDynamicPublicshTime,d3.likeNum as noticeFromCommentDynamicLikeNum,d3.dislikeNum as noticeFromCommentDynamicDislikeNum,
-    u6.id as noticeFromCommentDynamicUserId,u6.name as noticeFromCommentDynamicUserName,
-    u7.id as noticeFromCommentFromUserId,u7.name as noticeFromCommentFromUserName,
-    u8.id as noticeFromCommentToUserId,u8.name as noticeFromCommentToUserName,
-    c3.id as noticeFromCommentFatherCommentId,c3.content as noticeFromCommentFatherCommentContent,c3.commentTime as noticeFromCommentFatherCommentCommentTime 
-		from notifycation n left join user u1 on u1.id=n.noticeUserId 
-		LEFT JOIN accusation a on n.noticeFromAccusationId=a.id 
-		LEFT JOIN `user` u2 on a.accusationUserId=u2.id 
-		LEFT JOIN `user` u3 on a.accusationedUserId=u3.id 
-		LEFT JOIN dynamic d1 on d1.id=a.accusationedDynamicId 
-		LEFT JOIN `comment` c1 on c1.id=a.accusationedCommentId 
-		LEFT JOIN `like`  on `like`.id=n.noticeFromLikeId 
-		LEFT JOIN `user` u4 ON u4.id=`like`.userId 
-		LEFT JOIN dynamic d2 on d2.id=`like`.dynamicId 
-		LEFT JOIN `user` u5 on u5.id=d2.userId 
-		LEFT JOIN `comment` c2 on n.noticeFromCommentId=c2.id 
-		LEFT JOIN dynamic d3 ON d3.id=c1.dynamicId 
-		LEFT JOIN `user` u6 on u6.id=d3.userId 
-		LEFT JOIN `user` u7 on u7.id=c1.fromUserId 
-		LEFT JOIN `user` u8 on u8.id=c1.toUserId 
-		LEFT JOIN `comment` c3 on c3.id=c2.fatherCommentId 
+		SELECT
+			n.id AS id,
+			n.noticeContent AS noticeContent,
+			n.isRead AS isRead ,
+			n.date as date,
+			u1.id AS noticeUserId,
+			u1. NAME AS noticeUserName,
+			a.id AS noticeFromAccusationId,
+			a.accusationedRemark,
+			a.isRead AS accusationIsRead,
+			u2.id AS accusationUserId,
+			u2. NAME AS accusationUserName,
+			u3.id AS accusationedUserId,
+			u3. NAME AS accusationedUserName,
+			d1.id AS accusationedDynamicId,
+			c1.id AS accusationedCommentId,
+			`like`.id AS noticeFromLikeId,
+			`like`.clickTime AS clickTime,
+			u4.id AS likeUserId,
+			u4. NAME AS likeUserName,
+			d2.id AS likeDynamicId,
+			d2.content AS likeDynamicContent,
+			d2.publishTime AS likeDynamicPublicshTime,
+			d2.likeNum AS likeDynamicLikeNum,
+			d2.dislikeNum AS likeDynamicDislikeNum,
+			u5.id AS likeDynamicUserId,
+			u5. NAME AS likeDynamicUserName,
+			c2.id AS noticeFromCommentId,
+			c2.content AS noticeFromCommentContent,
+			c2.commentTime AS noticeFromCommentcommentTime,
+			d3.id AS noticeFromCommentDynamicId,
+			d3.content AS noticeFromCommentDynamicContent,
+			d3.publishTime AS noticeFromCommentDynamicPublicshTime,
+			d3.likeNum AS noticeFromCommentDynamicLikeNum,
+			d3.dislikeNum AS noticeFromCommentDynamicDislikeNum,
+			u6.id AS noticeFromCommentDynamicUserId,
+			u6. NAME AS noticeFromCommentDynamicUserName,
+			u7.id AS noticeFromCommentFromUserId,
+			u7. NAME AS noticeFromCommentFromUserName,
+			u8.id AS noticeFromCommentToUserId,
+			u8. NAME AS noticeFromCommentToUserName,
+			c3.id AS noticeFromCommentFatherCommentId,
+			c3.content AS noticeFromCommentFatherCommentContent,
+			c3.commentTime AS noticeFromCommentFatherCommentCommentTime
+		FROM
+			notifycation n
+		LEFT JOIN USER u1 ON u1.id = n.noticeUserId
+		LEFT JOIN accusation a ON n.noticeFromAccusationId = a.id
+		LEFT JOIN `user` u2 ON a.accusationUserId = u2.id
+		LEFT JOIN `user` u3 ON a.accusationedUserId = u3.id
+		LEFT JOIN dynamic d1 ON d1.id = a.accusationedDynamicId
+		LEFT JOIN `comment` c1 ON c1.id = a.accusationedCommentId
+		LEFT JOIN `like` ON `like`.id = n.noticeFromLikeId
+		LEFT JOIN `user` u4 ON u4.id = `like`.userId
+		LEFT JOIN dynamic d2 ON d2.id = `like`.dynamicId
+		LEFT JOIN `user` u5 ON u5.id = d2.userId
+		LEFT JOIN `comment` c2 ON n.noticeFromCommentId = c2.id
+		LEFT JOIN dynamic d3 ON d3.id = c1.dynamicId
+		LEFT JOIN `user` u6 ON u6.id = d3.userId
+		LEFT JOIN `user` u7 ON u7.id = c1.fromUserId
+		LEFT JOIN `user` u8 ON u8.id = c1.toUserId
+		LEFT JOIN `comment` c3 ON c3.id = c2.fatherCommentId 
 		where n.noticeUserId=#{userId} order by n.date desc limit #{startIndex},#{pageSize}
 	</select>
 	<select id="findTotalOfUserNotifycation" resultType="java.lang.Long">
@@ -149,39 +178,68 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		select count(id) from notifycation
 	</select>
 	<select id="findAllNotifycationByLimit" resultMap="NotifycationBaseInfo">
-		select n.id as id,n.noticeContent as noticeContent,n.isRead as isRead n.date as date,
-		u1.id as noticeUserId,u1.name as noticeUserName,
-		a.id as noticeFromAccusationId,a.accusationedRemark,a.isRead as accusationIsRead,
-		u2.id as accusationUserId,u2.name as accusationUserName,
-    u3.id as accusationedUserId,u3.name as accusationedUserName,
-    d1.id as accusationedDynamicId,
-    c1.id as accusationedCommentId,
-    `like`.id as noticeFromLikeId,`like`.clickTime as clickTime,
-     u4.id as likeUserId,u4.name as likeUserName,
-    d2.id as likeDynamicId,d2.content as likeDynamicContent,d2.publishTime as likeDynamicPublicshTime,d2.likeNum as likeDynamicLikeNum,d2.dislikeNum AS likeDynamicDislikeNum
-    u5.id as likeDynamicUserId,u5.name as likeDynamicUserName,
-    c2.id as noticeFromCommentId,c2.content as noticeFromCommentContent,c2.commentTime as noticeFromCommentcommentTime,
-    d3.id as noticeFromCommentDynamicId,d3.content as noticeFromCommentDynamicContent,d3.publishTime as noticeFromCommentDynamicPublicshTime,d3.likeNum as noticeFromCommentDynamicLikeNum,d3.dislikeNum as noticeFromCommentDynamicDislikeNum,
-    u6.id as noticeFromCommentDynamicUserId,u6.name as noticeFromCommentDynamicUserName,
-    u7.id as noticeFromCommentFromUserId,u7.name as noticeFromCommentFromUserName,
-    u8.id as noticeFromCommentToUserId,u8.name as noticeFromCommentToUserName,
-    c3.id as noticeFromCommentFatherCommentId,c3.content as noticeFromCommentFatherCommentContent,c3.commentTime as noticeFromCommentFatherCommentCommentTime 
-		from notifycation n left join user u1 on u1.id=n.noticeUserId 
-		LEFT JOIN accusation a on n.noticeFromAccusationId=a.id 
-		LEFT JOIN `user` u2 on a.accusationUserId=u2.id 
-		LEFT JOIN `user` u3 on a.accusationedUserId=u3.id 
-		LEFT JOIN dynamic d1 on d1.id=a.accusationedDynamicId 
-		LEFT JOIN `comment` c1 on c1.id=a.accusationedCommentId 
-		LEFT JOIN `like`  on `like`.id=n.noticeFromLikeId 
-		LEFT JOIN `user` u4 ON u4.id=`like`.userId 
-		LEFT JOIN dynamic d2 on d2.id=`like`.dynamicId 
-		LEFT JOIN `user` u5 on u5.id=d2.userId 
-		LEFT JOIN `comment` c2 on n.noticeFromCommentId=c2.id 
-		LEFT JOIN dynamic d3 ON d3.id=c1.dynamicId 
-		LEFT JOIN `user` u6 on u6.id=d3.userId 
-		LEFT JOIN `user` u7 on u7.id=c1.fromUserId 
-		LEFT JOIN `user` u8 on u8.id=c1.toUserId 
-		LEFT JOIN `comment` c3 on c3.id=c2.fatherCommentId 
+		SELECT
+			n.id AS id,
+			n.noticeContent AS noticeContent,
+			n.isRead AS isRead ,
+			n.date as date,
+			u1.id AS noticeUserId,
+			u1. NAME AS noticeUserName,
+			a.id AS noticeFromAccusationId,
+			a.accusationedRemark,
+			a.isRead AS accusationIsRead,
+			u2.id AS accusationUserId,
+			u2. NAME AS accusationUserName,
+			u3.id AS accusationedUserId,
+			u3. NAME AS accusationedUserName,
+			d1.id AS accusationedDynamicId,
+			c1.id AS accusationedCommentId,
+			`like`.id AS noticeFromLikeId,
+			`like`.clickTime AS clickTime,
+			u4.id AS likeUserId,
+			u4. NAME AS likeUserName,
+			d2.id AS likeDynamicId,
+			d2.content AS likeDynamicContent,
+			d2.publishTime AS likeDynamicPublicshTime,
+			d2.likeNum AS likeDynamicLikeNum,
+			d2.dislikeNum AS likeDynamicDislikeNum,
+			u5.id AS likeDynamicUserId,
+			u5. NAME AS likeDynamicUserName,
+			c2.id AS noticeFromCommentId,
+			c2.content AS noticeFromCommentContent,
+			c2.commentTime AS noticeFromCommentcommentTime,
+			d3.id AS noticeFromCommentDynamicId,
+			d3.content AS noticeFromCommentDynamicContent,
+			d3.publishTime AS noticeFromCommentDynamicPublicshTime,
+			d3.likeNum AS noticeFromCommentDynamicLikeNum,
+			d3.dislikeNum AS noticeFromCommentDynamicDislikeNum,
+			u6.id AS noticeFromCommentDynamicUserId,
+			u6. NAME AS noticeFromCommentDynamicUserName,
+			u7.id AS noticeFromCommentFromUserId,
+			u7. NAME AS noticeFromCommentFromUserName,
+			u8.id AS noticeFromCommentToUserId,
+			u8. NAME AS noticeFromCommentToUserName,
+			c3.id AS noticeFromCommentFatherCommentId,
+			c3.content AS noticeFromCommentFatherCommentContent,
+			c3.commentTime AS noticeFromCommentFatherCommentCommentTime
+		FROM
+			notifycation n
+		LEFT JOIN USER u1 ON u1.id = n.noticeUserId
+		LEFT JOIN accusation a ON n.noticeFromAccusationId = a.id
+		LEFT JOIN `user` u2 ON a.accusationUserId = u2.id
+		LEFT JOIN `user` u3 ON a.accusationedUserId = u3.id
+		LEFT JOIN dynamic d1 ON d1.id = a.accusationedDynamicId
+		LEFT JOIN `comment` c1 ON c1.id = a.accusationedCommentId
+		LEFT JOIN `like` ON `like`.id = n.noticeFromLikeId
+		LEFT JOIN `user` u4 ON u4.id = `like`.userId
+		LEFT JOIN dynamic d2 ON d2.id = `like`.dynamicId
+		LEFT JOIN `user` u5 ON u5.id = d2.userId
+		LEFT JOIN `comment` c2 ON n.noticeFromCommentId = c2.id
+		LEFT JOIN dynamic d3 ON d3.id = c1.dynamicId
+		LEFT JOIN `user` u6 ON u6.id = d3.userId
+		LEFT JOIN `user` u7 ON u7.id = c1.fromUserId
+		LEFT JOIN `user` u8 ON u8.id = c1.toUserId
+		LEFT JOIN `comment` c3 ON c3.id = c2.fatherCommentId 
 		order by n.date desc limit #{startIndex},#{pageSize}
 	</select>
 </mapper>

@@ -56,7 +56,7 @@ public class NotifycationController implements NotifycationMapper{
 		Long startIndex = Long.valueOf((currentPage.longValue() - 1L)* pageSize.longValue());
 		params.put("startIndex", startIndex);
 		params.put("pageSize", pageSize);
-		params.put("userid", userId);
+		params.put("userId", userId);
 		return SqlSessionUtil.getSqlSession().selectList("sharing.entity.notifycation.findUserNotifycationByLimit",params);
 	}
 
