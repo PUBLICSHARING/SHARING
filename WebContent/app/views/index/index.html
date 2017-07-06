@@ -6,9 +6,10 @@
 				ng-repeat="(index,dynamic) in newestDynamics">
 				<header class="index_article_header">
 					<a class="pointer"> <img id="head-img"
-						ng-src="data:image/jpeg;base64,{{dynamic.user.headImg}}" ng-click = "myLand(dynamic.user.id)"> </a>
-							&nbsp;&nbsp;{{dynamic.user.name}} </a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
-					
+						ng-src="data:image/jpeg;base64,{{dynamic.user.headImg}}"
+						ng-click="myLand(dynamic.user.id)">
+					</a> &nbsp;&nbsp;{{dynamic.user.name}} </a>&nbsp;&nbsp;&nbsp;{{dynamic.content}}
+
 				</header>
 				<div style="width: 100%;">
 					<ul>
@@ -45,22 +46,28 @@
 					<div class="index_center_comment">
 						<hr>
 						<ul class="index_center_ul" style="font-size: 12px;">
-							<li ng-repeat="($index,comment) in dynamic.comments"
-								ng-show="comment.toUser==undefined"><a class="pointer" ng-click="myLand(comment.fromUser.id)">{{comment.fromUser.name}}</a>
-								:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp; <a class="pointer"
+							<li ng-repeat="($index,comment) in dynamic.comments" style="margin-bottom: 2%;"
+								ng-show="comment.toUser==undefined"><a class="pointer"
+								ng-click="myLand(comment.fromUser.id)">{{comment.fromUser.name}}</a>
+								:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;
+								<br><span style="color:#777;display: inline-block;margin-right: 2%;">{{comment.commentTime|date:"yyyy-MM-dd"}}</span>
+								 <a class="pointer"
 								ng-click="openChildConment(outerIndex,comment.id,comment.fromUser)">
 									<span class="glyphicon glyphicon-pencil"
 									style="cursor: pointer; text-decoration: none"></span> 回复
 							</a>
 								<ul>
-									<li ng-repeat="childComment in comment.childComments"><a ng-click="myLand(childComment.fromUser.id)">{{childComment.fromUser.name}}</a>&nbsp;&nbsp;回复&nbsp;&nbsp;<a ng-click="childComment.toUser.id">{{childComment.toUser.name}}</a>&nbsp;:{{childComment.content}}
+									<li ng-repeat="childComment in comment.childComments"><a
+										ng-click="myLand(childComment.fromUser.id)">{{childComment.fromUser.name}}</a>&nbsp;&nbsp;回复&nbsp;&nbsp;<a
+										ng-click="myLand(childComment.toUser.id)">{{childComment.toUser.name}}</a>&nbsp;:{{childComment.content}}
 										&nbsp;&nbsp;&nbsp; 
-										<a class="pointer"ng-click="openChildConment(outerIndex,comment.id,childComment.fromUser)" ng-if="childComment.toUser.id==loginUserId">
-											<span class="glyphicon glyphicon-pencil" style="cursor: pointer; text-decoration: none">
-												回复
-											</span>
-										</a>
-									</li>
+										<br><span style="color:#777;display: inline-block;margin-right: 2%;">{{childComment.commentTime|date:"yyyy-MM-dd"}}</span>
+										<a class="pointer"
+										ng-click="openChildConment(outerIndex,comment.id,childComment.fromUser)"
+										ng-if="childComment.toUser.id==loginUserId"> <span
+											class="glyphicon glyphicon-pencil"
+											style="cursor: pointer; text-decoration: none"> 回复 </span>
+									</a></li>
 								</ul></li>
 						</ul>
 					</div>
