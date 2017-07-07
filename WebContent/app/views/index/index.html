@@ -50,7 +50,7 @@
 								ng-click="myLand(comment.fromUser.id)">{{comment.fromUser.name}}</a>
 								:&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;
 								<br><span style="color:#777;display: inline-block;margin-right: 2%;">{{comment.commentTime|date:"yyyy-MM-dd"}}</span>
-								 <a class="pointer"
+								 <a class="pointer" ng-show="comment.fromUser.id!=loginUserId"
 								ng-click="openChildConment(outerIndex,comment.id,comment.fromUser)">
 									<span class="glyphicon glyphicon-pencil"
 									style="cursor: pointer; text-decoration: none"></span> 回复

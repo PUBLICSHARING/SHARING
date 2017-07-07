@@ -96,6 +96,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		<result property="commentTime" column="noticeFromCommentcommentTime"/>
 		<association property="dynamic" column="noticeFCDynamicId" javaType="sharing.entity.dynamic.Dynamic">
 			<result property="id" column="noticeFCDynamicId"/>
+			<result property="content" column="noticeFromCommentDynamicContent"/>
 		</association>
 		<association property="fromUser" column="noticeFromCommentFromUserId" javaType="sharing.entity.user.User" resultMap="fromUserIdAndName"/>
 		<association property="toUser" column="noticeFromCommentToUserId" javaType="sharing.entity.user.User" resultMap="toUserIdAndName"/>
@@ -155,7 +156,10 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 			u7.id AS noticeFromCommentFromUserId,
 			u7. NAME AS noticeFromCommentFromUserName,
 			u8.id AS noticeFromCommentToUserId,
-			u8. NAME AS noticeFromCommentToUserName
+			u8. NAME AS noticeFromCommentToUserName,
+			c3.id AS noticeFromCommentFatherCommentId,
+			c3.content AS noticeFromCommentFatherCommentContent,
+			c3.commentTime AS noticeFromCommentFatherCommentCommentTime
 		FROM
 			notifycation n
 		LEFT JOIN USER u1 ON u1.id = n.noticeUserId
@@ -173,6 +177,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		LEFT JOIN `user` u6 ON u6.id = d3.userId
 		LEFT JOIN `user` u7 ON u7.id = c2.fromUserId
 		LEFT JOIN `user` u8 ON u8.id = c2.toUserId
+		LEFT JOIN `comment` c3 ON c3.id = c2.fatherCommentId 
 		where n.noticeUserId=#{userId} order by n.date desc limit #{startIndex},#{pageSize}
 	</select>
 	<select id="findTotalOfUserNotifycation" resultType="java.lang.Long">
@@ -215,7 +220,6 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 			c2.id AS noticeFromCommentId,
 			c2.content AS noticeFromCommentContent,
 			c2.commentTime AS noticeFromCommentcommentTime,
-			c2.fatherCommentId as noticeFromCommentFatherCommentId,
 			d3.id AS noticeFromCommentDynamicId,
 			d3.content AS noticeFromCommentDynamicContent,
 			d3.publishTime AS noticeFromCommentDynamicPublicshTime,
@@ -226,7 +230,10 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 			u7.id AS noticeFromCommentFromUserId,
 			u7. NAME AS noticeFromCommentFromUserName,
 			u8.id AS noticeFromCommentToUserId,
-			u8. NAME AS noticeFromCommentToUserName
+			u8. NAME AS noticeFromCommentToUserName,
+			c3.id AS noticeFromCommentFatherCommentId,
+			c3.content AS noticeFromCommentFatherCommentContent,
+			c3.commentTime AS noticeFromCommentFatherCommentCommentTime
 		FROM
 			notifycation n
 		LEFT JOIN USER u1 ON u1.id = n.noticeUserId
@@ -244,6 +251,7 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		LEFT JOIN `user` u6 ON u6.id = d3.userId
 		LEFT JOIN `user` u7 ON u7.id = c2.fromUserId
 		LEFT JOIN `user` u8 ON u8.id = c2.toUserId
+		LEFT JOIN `comment` c3 ON c3.id = c2.fatherCommentId 
 		order by n.date desc limit #{startIndex},#{pageSize}
 	</select>
 </mapper>

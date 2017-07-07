@@ -93,7 +93,7 @@ messageCenterApp.controller("messageCenterCtrl",["$scope","$rootScope","$state",
 		$state.go("main.publishingDynamics",{userId:userId});
 	}
 
-	$scope.saveComment = function(dynamicId,toUserId,content,fatherCommentId,Ownid){
+	$scope.saveComment = function(dynamicId,toUserId,content,fatherCommentId,Ownid,curentInputId){
 		//评论用户
 		$scope.comment.fromUser = {id:$scope.userId};
 		
@@ -114,7 +114,8 @@ messageCenterApp.controller("messageCenterCtrl",["$scope","$rootScope","$state",
 		CommentService.addComment($scope.comment,success,error);
 
 		function success(data){
-			alert("回复成功");
+			$rootScope.alertDisappear("回复成功",1000);
+			$("#" + curentInputId).slideUp(200);
 		}
 
 		function error(error){

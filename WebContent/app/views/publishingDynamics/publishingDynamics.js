@@ -85,6 +85,10 @@ angular.module("publishingDynamicsModule",[])
 		return "data:image/jpeg;base64,"+imgCode;
 	}
 	
+	$scope.goHome = function(){
+		$state.go("main.index",{userId:$scope.userId});
+	}
+	
 	$scope.formatDate = function(longTime){
 		var date = new Date(longTime);
 		var year = date.getFullYear();

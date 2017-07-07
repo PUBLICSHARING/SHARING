@@ -356,7 +356,8 @@ define(['angularAMD','angularUiRouter','angular','ngLoad','jquery','bootstrap','
                                      '../app/service/comment/commentService.js',
                                      '../app/service/like/LikeService.js',
                                      '../app/service/disLike/DisLikeService.js',
-                                     '../app/service/notifycation/notifycationService.js']
+                                     '../app/service/notifycation/notifycationService.js',
+                                     '../app/directives/title/title.js']
                 })
             }
         }))

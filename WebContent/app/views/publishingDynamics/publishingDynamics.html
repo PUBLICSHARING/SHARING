@@ -132,28 +132,38 @@
 	border-bottom: 2px solid green;
 }
 
-.dynamic_content{
-	width: 89%; border: 1px solid #ddd; padding: 10px 0px 0px 10px;
+.dynamic_content {
+	width: 89%;
+	border: 1px solid #ddd;
+	padding: 10px 0px 0px 10px;
 }
 
-.dynamic_img_box{
-	width: 30%;float:left;display:inline-block; margin: 2px 8px 2px 0px
+.dynamic_img_box {
+	width: 30%;
+	float: left;
+	display: inline-block;
+	margin: 2px 8px 2px 0px
 }
 </style>
 
-<!-- <div style="width: 100%;background-repeat: no-repeat;height: 150px;background:url(../app/image/title/1657b3cea5bb265.jpg);background-size:100%;"  auto-height=""> --></div>
 <div class="main_wrap" ng-init="init()">
 
 	<div class="main_wrap_head">
+		<div class="main_wrap_head_title"
+			style="cursor: pointer; margin-right: 2%;" ng-click="goHome()">
+			<span class="glyphicon glyphicon-home"></span>
+		</div>
 		<div class="main_wrap_head_title">我的动态</div>
 	</div>
 
 	<div class="main_wrap_body">
 		<div class="main_wrap_body_left">
-			<form enctype="multipart/form-data" name = "dynamicForm" ng-show="isIillegal">
+			<form enctype="multipart/form-data" name="dynamicForm"
+				ng-show="isIillegal">
 				<div class="full_width" style="height: 80px; margin-top: 20px;">
 					<!-- <textarea class="content_area" ng-model="dynamic.content"></textarea> -->
-					<input type="text" class="content_area" ng-model="dynamic.content" name="desc" required/>
+					<input type="text" class="content_area" ng-model="dynamic.content"
+						name="desc" required />
 					<div class="oper" style="text-align: center; padding-top: 2%;">
 					</div>
 				</div>
@@ -167,13 +177,16 @@
 			<!-- 头像对应块 -->
 			<div class="profile_div full_width">
 				<div class="personnal_img">
-					<img ng-if = "currentPageOwner.headImg.length > 0" src="data:image/jpeg;base64,{{currentPageOwner.headImg}}"
+					<img ng-if="currentPageOwner.headImg.length > 0"
+						src="data:image/jpeg;base64,{{currentPageOwner.headImg}}"
 						style="width: 100%; height: 100%;" alt="..." class="img-circle">
-					<img  ng-if="!currentPageOwner.headImg" ng-src="../app/directives/title/image/default.jpg" style="width:78px;height:78px;">
+					<img ng-if="!currentPageOwner.headImg"
+						ng-src="../app/directives/title/image/default.jpg"
+						style="width: 78px; height: 78px;">
 				</div>
 				<div class="personnal_name_info">
-					<span class="pname text_style1"><a href="#">{{currentPageOwner.name}}</a></span> <span
-						class="pname"><i style="color: red;">{{dynamicNums}}</i>条说说</span>
+					<span class="pname text_style1"><a href="#">{{currentPageOwner.name}}</a></span>
+					<span class="pname"><i style="color: red;">{{dynamicNums}}</i>条说说</span>
 				</div>
 			</div>
 
@@ -197,7 +210,8 @@
 		<!-- 动态历史纪录区域 -->
 		<div class="main_wrap_dynamic" ng-repeat="dynamic in personalDynamics">
 			<div class="full_height float_left" style="width: 10%;">
-				<span><img src="data:image/jpeg;base64,{{currentPageOwner.headImg}}"
+				<span><img
+					src="data:image/jpeg;base64,{{currentPageOwner.headImg}}"
 					class="dynamicOwn_img" /></span>
 			</div>
 			<div class="full_height float_right dynamic_content">
@@ -207,8 +221,9 @@
 					</p>
 				</div>
 				<div class="full_width">
-					<div class='dynamic_img_box'  ng-repeat="imge in dynamic.images">
-						<img src="data:image/jpeg;base64,{{imge.fileCode}}" style="width:100%;"/>
+					<div class='dynamic_img_box' ng-repeat="imge in dynamic.images">
+						<img src="data:image/jpeg;base64,{{imge.fileCode}}"
+							style="width: 100%;" />
 					</div>
 					<div style="clear: both;"></div>
 				</div>

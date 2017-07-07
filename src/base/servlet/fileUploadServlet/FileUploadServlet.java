@@ -218,7 +218,8 @@ public class FileUploadServlet extends HttpServlet {
 			Graphics2D graphics = bufferedImage.createGraphics(); 
 			
 			//重构图片 
-			graphics.drawImage(src, 0, 0, imgWidth, imgHeight, null); 
+			//graphics.drawImage(src, 0, 0, imgWidth, imgHeight, null); \
+			graphics.drawImage(src.getScaledInstance(imgWidth, imgHeight, Image.SCALE_SMOOTH),0,0,null);
 			
 			ByteArrayOutputStream bs =new ByteArrayOutputStream(); 
 			
